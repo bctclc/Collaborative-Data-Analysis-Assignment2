@@ -1,0 +1,23 @@
+---
+title: "BibTex test"
+author: "Noriko Magara"
+date: "Oct. 9, 2015"
+output: html_document
+bibliography: bib_EV.bib
+---
+
+# Test BibTeX
+
+Different formats of in-text BibTeX citation:
+
+@lane2007adoption
+
+[@lane2007adoption]
+
+[see @lane2007adoption]
+
+[see @lane2007adoption, 33-40]
+
+@lane2007adoption [33-40]
+
+----------
