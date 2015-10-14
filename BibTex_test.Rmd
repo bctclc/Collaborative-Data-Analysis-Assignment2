@@ -7,14 +7,26 @@ bibliography: bib_EV.bib
 ---
 
 (a few words)
+Research Questions:
+1. Who are the potential buyers of EVs? 
+2. What makes people buy or not buy EVs? 
+(Identify potential buyers of EV in UK. Differentiated targeting strategies for EV.)
 
-## Background
+## Background  (significance of research – statement of research question)
 
 ## Literature Review
+### to be deleted: Past topics: factors influencing the choice (1, 3, 4, 6) -> what makes people buy or not buy EVs (1,3); policies to promote the adoption (2, 5)
+Literature review:
+1.	Why EV not adopted? US. More knowledge -> more adoption 
+2.	Evaluation of US tax credit policy. Suggest a differentiated benefit policy.
+3.	Motivations of people buying hybrids. UK. Toyota. Principle component analysis. A list of motivations. Environment concerns matter most, self-satisfaction/displaying value rank the second, financial incentives from the government the third, economic benefits the fourth. 
+4.	Relationship between adoption of HEVs and socio-economic factors. Finland. The analysis also suggests that the income and education level, the amount of families with children and the average size of the residences are highly interrelated with the amount of HEVs adopted per household in the studied areas.
+5.	Different policy options and their efficiency. US by state. Income and age matter. Probably concern for energy security matters too.
+6.	Factors influencing EV adoption (country-level characteristics). 
 
-## Methodology
 
-## Conclusion
+## Methodology (data source – independent variable/dependent variables – type of analysis – expected outcome)
 
+## Conclusion (refer to policy options)
 
 ----------
