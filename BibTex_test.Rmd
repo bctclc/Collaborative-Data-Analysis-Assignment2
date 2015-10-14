@@ -1,23 +1,20 @@
 ---
-title: "BibTex test"
-author: "Noriko Magara"
-date: "Oct. 9, 2015"
+title: "Assignment2"
+author: "Claire Chang Liu and Noriko Magara"
+date: "Oct. 23, 2015"
 output: html_document
 bibliography: bib_EV.bib
 ---
 
-# Test BibTeX
+(a few words)
 
-Different formats of in-text BibTeX citation:
+## Background
 
-@lane2007adoption
+## Literature Review
 
-[@lane2007adoption]
+## Methodology
 
-[see @lane2007adoption]
+## Conclusion
 
-[see @lane2007adoption, 33-40]
-
-@lane2007adoption [33-40]
 
 ----------
