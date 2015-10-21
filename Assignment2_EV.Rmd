@@ -2,7 +2,7 @@
 title: "Assignment 2"
 author: "Claire Chang Liu and Noriko Magara"
 date: "Oct. 23, 2015"
-output: pdf_document
+output: html_document
 bibliography: EV_proposal.bib
 ---
 
@@ -57,7 +57,8 @@ to be deleted: Literature review:
 -----
 
 Previous studies have examined various factors that influence consumers' choice.
-At a macro level, the relationship between demographic characteristics and EV adoption has been analyzed. For instance, \cite{countrycomparison} identify financial incentives, the prevalence of chargin stations, and the presence of a local EV manufacturer as the relevant factors,using data on 30 countries. Interestingly, however, they do not find socio-economic variables to be good predicators of a country's EV adoption level. Another macro-level study divides Finland into grids with different socioe-conomic characteristics and finds that ``the income and education level, the amount of families with children and the average size of the residences'' are related to the region-level or neighborhood-level adoption rate of EVs \citep{Finland2013}.
+At a macro level, the relationship between demographic characteristics and EV adoption has been analyzed. For instance, 
+@countrycomparison identify financial incentives, the prevalence of chargin stations, and the presence of a local EV manufacturer as the relevant factors,using data on 30 countries. Interestingly, however, they do not find socio-economic variables to be good predicators of a country's EV adoption level. Another macro-level study divides Finland into grids with different socioe-conomic characteristics and finds that "the income and education level, the amount of families with children and the average size of the residences" are related to the region-level or neighborhood-level adoption rate of EVs [@Finland2013].
 
 At a micro level, motivations and individual characteristics that affect individual choice are studied. 
 @egbue2012barriers explored characteristics of potential EV buyers through a survey targeting current conventional vehicle owners, which asked their opinions, perceptions, and attitudes towards EVs, besides socio-economic attributes. 
@@ -89,6 +90,46 @@ In this study, we will examine the micro level relationship using a recent datas
 
 
 ## Methodology (data source? independent variable/dependent variables? type of analysis? expected outcome)
+The dataset we use in this research will be "Opinions and Lifestyle Survey, Electric Vehicles Module, February 2014 and February 2015" conducted by the Social Survey Division of Office for National Statistics of the Great Britain. This module is part of the ¡°Opinions and Lifestyle Survey¡± and is conducted on the behalf of the Department for Transport. Population surveyed is adults, aged 16 or over, living in private households in Great Britain; and the sampling method is multi-stage stratified random sampling. EVs mentioned in this survey refer to vehicles that run solely on electricity or are plug-in hybrids (excluding hybrids which are not plugged into an electricity supply).
+
+The survey is consisted of mainly two sets of variables, core questions (i.e. questions related to buying an electric car or van) and demographic variables. Core questions that are of our interest are:
+
+1. Which statement best describes your attitude towards buying an electric car?
+2. What would put you off buying an electric car or van?
+3. What would encourage you to buy an electric car or van?
+
+(For the second and third question, there are two same questions asked solely on financial considerations, which we could explore in more details.)
+
+Demographic variables that are of our interest are:
+
+1. Sex
+2. Age
+3. Government office region
+4. Level of education
+5. Gross annual income
+6. Employment status
+7. Occupation status
+8. Legal marital status
+9. Household size
+10. Number of dependent children in the household
+11. Car/van ownership
+12. Ownership of accommodation
+13. Holding a valid driver¡¯s license or not
+14. Frequency of travelling by private car/van
+15. Being disabled or not
+
+We are interested in the potentially different attitudes and priorities of different groups and in identifying potential buyers of EVs as well as obstacles preventing EV consumption. (To better understand the regional differences, if there are, we will look closer into regional policies or aggregate-level characteristics of Great Britain.) Therefore, we will be using the three core questions as dependent variables and demographic variables as independent variables. We will also be primarily using data from 2015, and might draw on data from 2014 in case of a need for contrast or support. 
+
+As our dependent variables are all categories variables, multinomial logistic regression will be adopted. Therefore, we are expecting to see that different demographic groups have different probabilities of showing certain attitudes or making certain decisions. 
+
+Specifically, based on preview literature, there are several hypotheses as following:
+
+1. Younger generations are more likely to accept EVs.
+2. Higher education leads to higher acceptance of EVs.
+3. Households with children are more likely to buy EVs.
+
+Unfortunately, not much research has been done on the specific barriers or drivers of people buying EVs, so we are not able to form any hypotheses with the other two dependent variables. With that part, this study will be mostly exploratory.
+
 
 
 ## Conclusions
