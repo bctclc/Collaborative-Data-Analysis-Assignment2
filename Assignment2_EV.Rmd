@@ -1,5 +1,5 @@
 ---
-title: "Assignment2"
+title: "Assignment 2"
 author: "Claire Chang Liu and Noriko Magara"
 date: "Oct. 23, 2015"
 output: html_document
@@ -12,7 +12,27 @@ Research Questions:
 2. What makes people buy or not buy EVs? 
 (Identify potential buyers of EV in UK. Differentiated targeting strategies for EV.)
 
-## Background  (significance of research – statement of research question)
+## Background  (significance of research? statement of research question)
+
+As a part of the efforts to cope with the climate change, countries have been trying to reduce greenhouse gas (GHG) emissions. 
+Considering the fact that the large portion of GHG emission is attributed to road traffic [@EC_climate], reducing the emission from vehicles is an important issue for many industrialized countries.
+
+Several types of low emission vehicles have been invented and released into the world as listed below [@egbue2012barriers].
+
+* Hybrid electric vehicles (HEVs), which use both a conventional inner combustion engine (e.g. gasoline engine) and an electric motor, are the early generation of the low emission vehicles. 
+HEVs store electric powers in a battery from braking and the inner combustion engine, which are normally lost in conventional vehicles. 
+Thus, HEVs have better fuel efficiency and less emission compared to the conventional vehicles.
+
+* Plug-in hybrid electric vehicles (PHEVs) are the improved version of HEVs. 
+PHEVs have a smaller inner combustion engine and more powerful batteries that can be charged by plugging into charging infrastructures, as well as the energy captured from braking and the inner combustion engine. 
+Thus, PHEVs have further better fuel efficiency and less emission compared to HEVs.
+
+* Electric Vehicles (EVs) are the most recent generation of the low emission vehicles, which powered only by an electric motor. 
+The batteries that drive the motors are charged by plugging into charging infrastructures. 
+Because EVs do not use inner combustion engines at all, they make no emission when they drive.
+
+
+
 
 ## Literature Review
 ### to be deleted: Past topics: factors influencing the choice (1, 3, 4, 6) -> what makes people buy or not buy EVs (1,3); policies to promote the adoption (2, 5)
@@ -25,8 +45,10 @@ Literature review:
 6.	Factors influencing EV adoption (country-level characteristics). 
 
 
-## Methodology (data source – independent variable/dependent variables – type of analysis – expected outcome)
+## Methodology (data source? independent variable/dependent variables? type of analysis? expected outcome)
+
 
 ## Conclusion (refer to policy options)
 
 ----------
+### Reference
