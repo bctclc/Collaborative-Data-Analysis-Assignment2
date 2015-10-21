@@ -38,18 +38,25 @@ Although some articles report that EVs are cheaper than conventional vehicles in
 Also, current technical standards such as battery capacities (maximum driving distance with one-time charging) are also pointed out to be an obstacle to the widespread EV adoption [@lieven2011will].
  
 Aiming to promote EVs, governments have been taking various kinds of means such as financial incentives and R&D grants. 
-In order to maximize the performance of those governmentsf efforts, and thus to accelerate EV adoption, this study aims to identify the characteristics of the potential EV buyers, and reasons that makes those potential buyers to choose EVs over conventional vehicles.
+In order to maximize the performance of those governments' efforts, and thus to accelerate EV adoption, this study aims to **identify the characteristics of the potential EV buyers**, and **reasons that makes those potential buyers to choose EVs over conventional vehicles**.
 
 
 ## Literature Review
 ### to be deleted: Past topics: factors influencing the choice (1, 3, 4, 6) -> what makes people buy or not buy EVs (1,3); policies to promote the adoption (2, 5)
-Literature review:
+to be deleted: Literature review:
 1.	Why EV not adopted? US. More knowledge -> more adoption 
 2.	Evaluation of US tax credit policy. Suggest a differentiated benefit policy.
 3.	Motivations of people buying hybrids. UK. Toyota. Principle component analysis. A list of motivations. Environment concerns matter most, self-satisfaction/displaying value rank the second, financial incentives from the government the third, economic benefits the fourth. 
 4.	Relationship between adoption of HEVs and socio-economic factors. Finland. The analysis also suggests that the income and education level, the amount of families with children and the average size of the residences are highly interrelated with the amount of HEVs adopted per household in the studied areas.
 5.	Different policy options and their efficiency. US by state. Income and age matter. Probably concern for energy security matters too.
 6.	Factors influencing EV adoption (country-level characteristics). 
+
+
+Previous studies have examined various factors that influence consumerfs choice.
+At a macro level, the relationship between demographic characteristics and EV adoption has been analyzed. -> Lit 4 (Finland) and Lit 6 (country comparison)
+At an individual level, motivations and determinants that affect individual choice are studied. -> 1, 3
+
+In addition, possible policy options to promote EV adoption are also covered by several articles. -> 2, 5
 
 
 ## Methodology (data source? independent variable/dependent variables? type of analysis? expected outcome)
