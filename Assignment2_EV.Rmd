@@ -42,6 +42,9 @@ In order to maximize the performance of those governments' efforts, and thus to 
 
 
 ## Literature Review
+
+-----
+
 ### to be deleted: Past topics: factors influencing the choice (1, 3, 4, 6) -> what makes people buy or not buy EVs (1,3); policies to promote the adoption (2, 5)
 to be deleted: Literature review:
 1.	Why EV not adopted? US. More knowledge -> more adoption 
@@ -51,12 +54,31 @@ to be deleted: Literature review:
 5.	Different policy options and their efficiency. US by state. Income and age matter. Probably concern for energy security matters too.
 6.	Factors influencing EV adoption (country-level characteristics). 
 
+-----
 
-Previous studies have examined various factors that influence consumerfs choice.
+Previous studies have examined various factors that influence consumers' choice.
 At a macro level, the relationship between demographic characteristics and EV adoption has been analyzed. -> Lit 4 (Finland) and Lit 6 (country comparison)
-At an individual level, motivations and determinants that affect individual choice are studied. -> 1, 3
 
-In addition, possible policy options to promote EV adoption are also covered by several articles. -> 2, 5
+At a micro level, motivations and individual characteristics that affect individual choice are studied. 
+@egbue2012barriers explored characteristics of potential EV buyers through a survey targeting current conventional vehicle owners, which asked their opinions, perceptions, and attitudes towards EVs, besides socio-economic attributes. 
+Using 481 observations gained from the web-based survey, the authors performed chi-square analyses and found out that different groups of people have different stances towards EVs. 
+For instance, likelihood to purchase an EV ("How likely would you be to consider purchasing a vehicle that uses alternative fuel?") differs by gender, education level, age, and income of respondents. 
+In addition, based on the survey questions regarding the respondents' concerns, the authors revealed that more than a quarter of them were unsure about the safety of EVs. 
+Therefore, they concluded that people with better knowledge about EVs are more likely to purchase one.  
+
+There are not many studies that observed people who actually bought an EV, possibly resulting from the small adoption rate. 
+However, a similar study for another type of low emission vehicle may be helpful to think about the motivations that push people to purchase one. 
+@ozaki2011going analyzed consumers' motivations to purchase an HEV. (more to come...)
+
+
+
+In addition, possible policy options to promote EV adoption are also covered in several articles. (-> 2, 5)
+For example, @skerlos2010targeting discuss an effective way to allocate government's financial resources. 
+Currently, the U.S. federal government provides uniform tax credits to all PHEV owners aiming to expand share of PHEVs in the car market. 
+Considering the social benefits of PHEVs including reduced GHG emission, air pollution abatement, increased energy security, the authors argues that the tax credits could have worked better if the government differentiated the incentives depending on consumers' purchasing power and geographical locations. 
+As for the purchasing power, more credits to lower income individuals and fewer to higher income ones may have increased PHEV adoption, considering that current level of financial incentives may not be enough for low income people, while high income people would have bought one anyways with less or no financial incentives. 
+As for the environmental benefit, PHEV owners in highly populated areas should have received larger credits because one unit reduction of pollution delivers larger benefits (i.e. affects more people). 
+Also, it would be ideal to promote PHEVs in the areas where the electric powers are generated from alternative sources rather than thermal powers that use fossil fuels.
 
 
 ## Methodology (data source? independent variable/dependent variables? type of analysis? expected outcome)
