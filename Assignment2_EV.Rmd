@@ -3,7 +3,7 @@ title: "Assignment2"
 author: "Claire Chang Liu and Noriko Magara"
 date: "Oct. 23, 2015"
 output: html_document
-bibliography: bib_EV.bib
+bibliography: EV_proposal.bib
 ---
 
 (a few words)
