@@ -57,7 +57,7 @@ to be deleted: Literature review:
 -----
 
 Previous studies have examined various factors that influence consumers' choice.
-At a macro level, the relationship between demographic characteristics and EV adoption has been analyzed. -> Lit 4 (Finland) and Lit 6 (country comparison)
+At a macro level, the relationship between demographic characteristics and EV adoption has been analyzed. For instance, \cite{countrycomparison} identify financial incentives, the prevalence of chargin stations, and the presence of a local EV manufacturer as the relevant factors,using data on 30 countries. Interestingly, however, they do not find socio-economic variables to be good predicators of a country's EV adoption level. Another macro-level study divides Finland into grids with different socioe-conomic characteristics and finds that ``the income and education level, the amount of families with children and the average size of the residences'' are related to the region-level or neighborhood-level adoption rate of EVs \citep{Finland2013}.
 
 At a micro level, motivations and individual characteristics that affect individual choice are studied. 
 @egbue2012barriers explored characteristics of potential EV buyers through a survey targeting current conventional vehicle owners, which asked their opinions, perceptions, and attitudes towards EVs, besides socio-economic attributes. 
