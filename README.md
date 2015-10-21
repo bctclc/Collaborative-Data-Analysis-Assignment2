@@ -3,7 +3,7 @@ This is a repository for the pair assignment 2 in Collaborative Social Data Anal
 
 ## Contributers
 
-* <a href="mailto:cl1007@georgetown.edu">Clair Chang Liu</a>
+* <a href="mailto:cl1007@georgetown.edu">Claire Chang Liu</a>
 
 * <a href="mailto:norikomagara@gmail.com">Noriko Magara</a>
 
