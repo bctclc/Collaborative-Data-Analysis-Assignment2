@@ -91,7 +91,15 @@ In this study, we will examine the micro level relationship using a recent datas
 ## Methodology (data source? independent variable/dependent variables? type of analysis? expected outcome)
 
 
-## Conclusion (refer to policy options)
+## Conclusions
+
+From the analysis described above, we will identify:
+
+1. Individual-level characteristics of possible EV buyers in the U.K.
+
+2. Key factors that makes people buy or not buy an EV
+
+In addition, some possible policy options that the U.K. government could take to increase EV adoption will be derived by targeting the identified characteristics and key factors. 
 
 ----------
 ## Reference
