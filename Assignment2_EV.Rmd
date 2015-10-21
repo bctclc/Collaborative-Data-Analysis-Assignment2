@@ -2,7 +2,7 @@
 title: "Assignment 2"
 author: "Claire Chang Liu and Noriko Magara"
 date: "Oct. 23, 2015"
-output: html_document
+output: pdf_document
 bibliography: EV_proposal.bib
 ---
 
@@ -72,13 +72,20 @@ However, a similar study for another type of low emission vehicle may be helpful
 
 
 
-In addition, possible policy options to promote EV adoption are also covered in several articles. (-> 2, 5)
-For example, @skerlos2010targeting discuss an effective way to allocate government's financial resources. 
+In addition, possible policy options to promote low emission vehicle adoption are also covered in several articles.
+For an example of PHEVs, @skerlos2010targeting discuss an effective way to allocate government's financial resources. 
 Currently, the U.S. federal government provides uniform tax credits to all PHEV owners aiming to expand share of PHEVs in the car market. 
 Considering the social benefits of PHEVs including reduced GHG emission, air pollution abatement, increased energy security, the authors argues that the tax credits could have worked better if the government differentiated the incentives depending on consumers' purchasing power and geographical locations. 
 As for the purchasing power, more credits to lower income individuals and fewer to higher income ones may have increased PHEV adoption, considering that current level of financial incentives may not be enough for low income people, while high income people would have bought one anyways with less or no financial incentives. 
 As for the environmental benefit, PHEV owners in highly populated areas should have received larger credits because one unit reduction of pollution delivers larger benefits (i.e. affects more people). 
 Also, it would be ideal to promote PHEVs in the areas where the electric powers are generated from alternative sources rather than thermal powers that use fossil fuels.
+
+(Also, Lit 5)
+
+Thus, both to identifying the characteristics of potential buyers and to design government interventions targeting those individuals are the essential strategies to promote low emission vehicles. 
+Regarding electric vehicles, not many researches are made especially on the relationship between EV adoption and the micro level, individual motivations and characteristics partly due to the lack of survey data on people's attitudes towards EVs that covers both those who buy (or are willing to buy) and those who do not. 
+In this study, we will examine the micro level relationship using a recent dataset from the U.K.
+(-> continues to the dataset description in the methodology)
 
 
 ## Methodology (data source? independent variable/dependent variables? type of analysis? expected outcome)
@@ -87,4 +94,4 @@ Also, it would be ideal to promote PHEVs in the areas where the electric powers 
 ## Conclusion (refer to policy options)
 
 ----------
-### Reference
+## Reference
