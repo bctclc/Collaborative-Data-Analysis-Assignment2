@@ -2,7 +2,7 @@
 title: "Assignment 2"
 author: "Claire Chang Liu and Noriko Magara"
 date: "Oct. 23, 2015"
-output: html_document
+output: pdf_document
 bibliography: EV_proposal.bib
 ---
 
@@ -20,11 +20,9 @@ Several types of low emission vehicles have been invented and released into the 
 * Hybrid electric vehicles (HEVs), which use both a conventional inner combustion engine (e.g. gasoline engine) and an electric motor, are the early generation of the low emission vehicles. 
 HEVs store electric powers in a battery from braking and the inner combustion engine, which are normally lost in conventional vehicles. 
 Thus, HEVs have better fuel efficiency and less emission compared to the conventional vehicles.
-
 * Plug-in hybrid electric vehicles (PHEVs) are the improved version of HEVs. 
 PHEVs have a smaller inner combustion engine and more powerful batteries that can be charged by plugging into charging infrastructures, as well as the energy captured from braking and the inner combustion engine. 
 Thus, PHEVs have further better fuel efficiency and less emission compared to HEVs.
-
 * Electric Vehicles (EVs) are the most recent generation of the low emission vehicles, which powered only by an electric motor. 
 The batteries that drive the motors are charged by plugging into charging infrastructures. 
 Because EVs do not use inner combustion engines at all, they make no emission when they drive.
@@ -33,44 +31,48 @@ From the environmental point of view, EVs are the ideal type of vehicles.
 However, because of many reasons, the adoption rates of EVs are not as high as the desirable level. 
 One of the biggest reasons is the costs. 
 Although some articles report that EVs are cheaper than conventional vehicles in long-term thanks to no fuel costs [e.g. @Herron2015web], people tend to refrain from buying EVs because of the high purchase prices.
-Also, current technical standards such as battery capacities (maximum driving distance with one-time charging) are also pointed out to be an obstacle to the widespread EV adoption [@lieven2011will].
+Also, current technical standards such as battery capacities (maximum driving distance with one-time charging) are pointed out to be an obstacle to the widespread EV adoption [@lieven2011will]. 
+Availability of charging stations matters as well [@ChargingStation].
  
-Aiming to promote EVs, governments have been taking various kinds of means such as financial incentives and R&D grants. 
-In order to maximize the performance of those governments' efforts, and thus to accelerate EV adoption, this study aims to **identify the characteristics of the potential EV buyers**, and **reasons that makes those potential buyers to choose EVs over conventional vehicles**.
+Aiming to promote EVs and other types of low emission vehicles, governments have been taking various kinds of means such as financial incentives to owners, R&D grants, installation of charging infrastructures. 
+In order to maximize the performance of those governments' efforts, and thus to accelerate low emission vehicle adoption, it is crucial to **identify the characteristics of the potential EV buyers**, and **reasons that makes those potential buyers to choose EVs over conventional vehicles**.
+
+This study will focus on EVs, which is the most recent generation of low emission vehicles and thus not many researches have made so far compared to other types of sustainable vehicles.
 
 
 ## Literature Review
 
 Previous studies have examined various factors that influence consumers' choice.
+
 At a macro level, the relationship between demographic characteristics and EV adoption has been analyzed. For instance, 
-@countrycomparison identify financial incentives, the prevalence of charging stations, and the presence of a local EV manufacturer as the relevant factors, using data on 30 countries. Interestingly, however, they do not find socio-economic variables to be good predicators of a country's EV adoption level. Another macro-level study divides Finland into grids with different socioe-economic characteristics and finds that "the income and education level, the amount of families with children and the average size of the residences" (p. 459) are related to the region-level or neighborhood-level adoption rate of EVs [@Finland2013].
+@countrycomparison identify financial incentives, the prevalence of charging stations, and the presence of a local EV manufacturer as the relevant factors, using data on 30 countries. Interestingly, however, they do not find socio-economic variables to be good predicators of a country's EV adoption level. Another macro-level study divides Finland into grids with different socio-economic characteristics and finds that "the income and education level, the amount of families with children and the average size of the residences" (p. 459) are related to the region-level or neighborhood-level adoption rate of EVs [@Finland2013].
 
 At a micro level, motivations and individual characteristics that affect individual choice are studied. 
-@egbue2012barriers explored characteristics of potential EV buyers through a survey targeting current conventional vehicle owners, which asked their opinions, perceptions, and attitudes towards EVs, besides socio-economic attributes. 
-Using 481 observations gained from the web-based survey, the authors performed chi-square analyses and found out that different groups of people have different stances towards EVs. 
+@egbue2012barriers explores characteristics of potential EV buyers through a survey targeting current conventional vehicle owners, which asked their opinions, perceptions, and attitudes towards EVs, besides socio-economic attributes. 
+Using 481 observations gained from the web-based survey, the authors performs chi-square analyses and find out that different groups of people have different stances towards EVs. 
 For instance, likelihood to purchase an EV ("How likely would you be to consider purchasing a vehicle that uses alternative fuel?") differs by gender, education level, age, and income of respondents. 
-In addition, based on the survey questions regarding the respondents' concerns, the authors revealed that more than a quarter of them were unsure about the safety of EVs. 
-Therefore, they concluded that people with better knowledge about EVs are more likely to purchase one.  
+In addition, based on the survey questions regarding the respondents' concerns, the authors reveal that more than a quarter of them were unsure about the safety of EVs. 
+Therefore, they concluds that people with better knowledge about EVs are more likely to purchase one.  
 
 There are not many studies that observed people who actually bought an EV, possibly resulting from the small adoption rate. 
 However, a similar study for another type of low emission vehicle may be helpful to think about the motivations that push people to purchase one. 
-@ozaki2011going analyzed consumers' motivations to purchase an HEV.
-Based on a survey data of HEV owners, the authors discovered that people bought an HEV motivated by environmental benefits, as well as personal economic benefits. 
-As a policy implication, advertisements to the public were suggested along with financial incentives to the owners.
-
+@ozaki2011going analyze consumers' motivations to purchase an HEV.
+Based on a survey data of HEV owners, the authors discovers that people bought an HEV motivated by environmental benefits, as well as personal economic benefits. 
+As a policy implication, advertisements to the public are suggested along with financial incentives to the owners.
 
 In addition, possible policy options to promote low emission vehicle adoption are also covered in several articles.
 For an example of PHEVs, @skerlos2010targeting discuss an effective way to allocate government's financial resources. 
 Currently, the U.S. federal government provides uniform tax credits to all PHEV owners aiming to expand share of PHEVs in the car market. 
-Considering the social benefits of PHEVs including reduced GHG emission, air pollution abatement, increased energy security, the authors argues that the tax credits could have worked better if the government differentiated the incentives depending on consumers' purchasing power and geographical locations. 
+Considering the social benefits of PHEVs including reduced GHG emission, air pollution abatement, increased energy security, the authors argue that the tax credits could have worked better if the government differentiated the incentives depending on consumers' purchasing power and geographical locations. 
 As for the purchasing power, more credits to lower income individuals and fewer to higher income ones may have increased PHEV adoption, considering that current level of financial incentives may not be enough for low income people, while high income people would have bought one anyways with less or no financial incentives. 
 As for the environmental benefit, PHEV owners in highly populated areas should have received larger credits because one unit reduction of pollution delivers larger benefits (i.e. affects more people). 
-Also, it would be ideal to promote PHEVs in the areas where the electric powers are generated from alternative sources rather than thermal powers that use fossil fuels.
+It would also be ideal to promote PHEVs in the areas where the electric powers are generated from alternative sources rather than thermal powers that use fossil fuels.
 
 Since policies of financial incentives are the most common one, @givinggreen compare a number of policies to promote EV in different US states. Mainly focusing on the efficacy of sales tax waivers and income tax credits, they find that the former is "associated with ten-fold increase in hybrid sales" (p.1) and that tax incentives are generally more effective than non-tax incentives. 
 Thus, both to identifying the characteristics of potential buyers and to design government interventions targeting those individuals are the essential strategies to promote low emission vehicles. 
 
-Regarding electric vehicles, not many researches are made especially on the relationship between EV adoption and the micro level, individual motivations and characteristics partly due to the lack of survey data on people's attitudes towards EVs that covers both those who buy (or are willing to buy) and those who do not. 
+Regarding EV adoption, more detailed researches that focus on EVs are needed. 
+In particular, not many studies on the relationship between EV adoption and the micro level, individual motivations and characteristics have made partly due to the lack of survey data on people's attitudes towards EVs that covers both those who buy (or are willing to buy) and those who do not. 
 In this study, we will examine the micro level relationship using a recent dataset from the U.K.
 
 
@@ -130,7 +132,6 @@ Unfortunately, not much research has been done on the specific barriers or drive
 From the analysis described above, we will identify:
 
 1. Individual-level characteristics of possible EV buyers in the U.K.
-
 2. Key factors that makes people buy or not buy an EV
 
 In addition, some possible policy options that the U.K. government could take to increase EV adoption will be derived by targeting the identified characteristics and key factors. 
