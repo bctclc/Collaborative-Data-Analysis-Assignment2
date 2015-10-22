@@ -2,7 +2,7 @@
 title: "Assignment 2"
 author: "Claire Chang Liu and Noriko Magara"
 date: "Oct. 23, 2015"
-output: pdf_document
+output: html_document
 bibliography: EV_proposal.bib
 ---
 
@@ -80,12 +80,13 @@ In this study, we will examine the micro level relationship using a recent datas
 The dataset we use in this research will be ["Opinions and Lifestyle Survey, Electric Vehicles Module, February 2014 and February 2015"](https://discover.ukdataservice.ac.uk/Catalogue/?sn=7571&type=Data%20catalogue) conducted by the Social Survey Division of Office for National Statistics of the Great Britain [@UKDATA]. 
 This module is part of the "Opinions and Lifestyle Survey" and is conducted on the behalf of the Department for Transport. 
 Population surveyed is adults, aged 16 or over, living in private households in Great Britain; and the sampling method is multi-stage stratified random sampling. 
+The total sample size is 1996, 962 cases from 2014 and 1034 cases from 2015.
 EVs mentioned in this survey refer to vehicles that run solely on electricity or are plug-in hybrids (excluding hybrids which are not plugged into an electricity supply).
 
 Note that [registration](http://ukdataservice.ac.uk/get-data/how-to-access/registration) is required to download the dataset from the U.K. Data Service website above.
 After logging in and agreeing with the terms of conditions, the dataset is available for download in CSV or other format.
 The registration process may take a few days. 
-
+However, other documents (e.g. questionnaire, brief summary) are available at the link above without registration.
 
 The survey is consisted of mainly two sets of variables, core questions (i.e. questions related to buying an electric car or van) and demographic variables. Core questions that are of our interest are:
 
@@ -115,13 +116,28 @@ Demographic variables that are of our interest are:
 
 We are interested in the potentially different attitudes and priorities of different groups and in identifying potential buyers of EVs as well as obstacles preventing EV consumption. (To better understand the regional differences, if there are, we will look closer into regional policies or aggregate-level characteristics of Great Britain.) Therefore, we will be using the three core questions as dependent variables and demographic variables as independent variables. We will also be primarily using data from 2015, and might draw on data from 2014 in case of a need for contrast or support. 
 
-As our dependent variables are all categories variables, **multinomial logistic regression** will be adopted. Therefore, we are expecting to see that different demographic groups have different probabilities of showing certain attitudes or making certain decisions. 
+As our dependent variables are all categories variables, **multinomial logistic regression** will be adopted:
 
-Specifically, based on preview literature, there are several hypotheses as following:
+$$\ln{\frac{Pr(Y_i=1)}{Pr(Y_i=K)}}=\beta_{0,1} + \beta_{1,1} x_{1,i} + \beta_{2,1} x_{2,i} + \dots = \boldsymbol{\beta_1 \cdot x_i}$$
+$$\ln{\frac{Pr(Y_i=2)}{Pr(Y_i=K)}}=\boldsymbol{\beta_2 \cdot x_i}$$
+$$\vdots$$
+$$\ln{\frac{Pr(Y_i=K-1)}{Pr(Y_i=K)}}=\boldsymbol{\beta_{K-1} \cdot x_i}$$
 
-1. Younger generations are more likely to accept EVs.
+Where $Pr(Y_i=1)$ to $Pr(Y_i=K)$ are the probabilities that the *i*th person is classified into the first category to the *K*th category, and $\boldsymbol{x_i}$ is a vector of the *i*th person's independent variables, i.e. the individual's characteristics in our study. 
+
+By converting the log odds into probabilities, we will obtain the probability of the *i*th person being classified into the *J*th category (e.g. buying an EV) depending on his/her personal characteristics. 
+
+$$Pr(Y_i=J)=\frac{e^{\boldsymbol{\beta_J \cdot x_i}}} {1 + \sum_{k=1}^{K-1} e^{\boldsymbol{\beta_k \cdot x_i}}}$$
+
+Thus, we are expecting to see different predicted probabilities of showing certain attitudes or making certain decisions for different demographic groups, which will provide some useful information for the policy makers to create efficient means to promote EVs.
+
+
+Specifically, based on previous literature, there are several hypotheses as following:
+
+1. Older generations are more likely to accept EVs.
 2. Higher education leads to higher acceptance of EVs.
-3. Households with children are more likely to buy EVs.
+3. Higher income leads to higher acceptance of EVs.
+4. Households with children are more likely to buy EVs.
 
 Unfortunately, not much research has been done on the specific barriers or drivers of people buying EVs, so we are not able to form any hypotheses with the other two dependent variables. With that part, this study will be mostly exploratory.
 
@@ -129,7 +145,7 @@ Unfortunately, not much research has been done on the specific barriers or drive
 
 ## Conclusions
 
-From the analysis described above, we will identify:
+From the analysis described above, we will identify the following two things in this study:
 
 1. Individual-level characteristics of possible EV buyers in the U.K.
 2. Key factors that makes people buy or not buy an EV
