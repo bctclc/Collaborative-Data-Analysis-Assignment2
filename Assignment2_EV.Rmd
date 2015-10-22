@@ -80,7 +80,10 @@ This module is part of the "Opinions and Lifestyle Survey" and is conducted on t
 Population surveyed is adults, aged 16 or over, living in private households in Great Britain; and the sampling method is multi-stage stratified random sampling. 
 EVs mentioned in this survey refer to vehicles that run solely on electricity or are plug-in hybrids (excluding hybrids which are not plugged into an electricity supply).
 
-(Note that [registration](http://ukdataservice.ac.uk/get-data/how-to-access/registration) is required to download the dataset from the U.K. Data Service website above.)
+Note that [registration](http://ukdataservice.ac.uk/get-data/how-to-access/registration) is required to download the dataset from the U.K. Data Service website above.
+After logging in and agreeing with the terms of conditions, the dataset is available for download in CSV or other format.
+The registration process may take a few days. 
+
 
 The survey is consisted of mainly two sets of variables, core questions (i.e. questions related to buying an electric car or van) and demographic variables. Core questions that are of our interest are:
 
@@ -110,7 +113,7 @@ Demographic variables that are of our interest are:
 
 We are interested in the potentially different attitudes and priorities of different groups and in identifying potential buyers of EVs as well as obstacles preventing EV consumption. (To better understand the regional differences, if there are, we will look closer into regional policies or aggregate-level characteristics of Great Britain.) Therefore, we will be using the three core questions as dependent variables and demographic variables as independent variables. We will also be primarily using data from 2015, and might draw on data from 2014 in case of a need for contrast or support. 
 
-As our dependent variables are all categories variables, multinomial logistic regression will be adopted. Therefore, we are expecting to see that different demographic groups have different probabilities of showing certain attitudes or making certain decisions. 
+As our dependent variables are all categories variables, **multinomial logistic regression** will be adopted. Therefore, we are expecting to see that different demographic groups have different probabilities of showing certain attitudes or making certain decisions. 
 
 Specifically, based on preview literature, there are several hypotheses as following:
 
