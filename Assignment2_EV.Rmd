@@ -58,7 +58,7 @@ to be deleted: Literature review:
 
 Previous studies have examined various factors that influence consumers' choice.
 At a macro level, the relationship between demographic characteristics and EV adoption has been analyzed. For instance, 
-@countrycomparison identify financial incentives, the prevalence of chargin stations, and the presence of a local EV manufacturer as the relevant factors,using data on 30 countries. Interestingly, however, they do not find socio-economic variables to be good predicators of a country's EV adoption level. Another macro-level study divides Finland into grids with different socioe-conomic characteristics and finds that "the income and education level, the amount of families with children and the average size of the residences" are related to the region-level or neighborhood-level adoption rate of EVs [@Finland2013].
+@countrycomparison identify financial incentives, the prevalence of chargin stations, and the presence of a local EV manufacturer as the relevant factors,using data on 30 countries. Interestingly, however, they do not find socio-economic variables to be good predicators of a country's EV adoption level. Another macro-level study divides Finland into grids with different socioe-conomic characteristics and finds that "the income and education level, the amount of families with children and the average size of the residences" (p. 459) are related to the region-level or neighborhood-level adoption rate of EVs [@Finland2013].
 
 At a micro level, motivations and individual characteristics that affect individual choice are studied. 
 @egbue2012barriers explored characteristics of potential EV buyers through a survey targeting current conventional vehicle owners, which asked their opinions, perceptions, and attitudes towards EVs, besides socio-economic attributes. 
@@ -81,9 +81,9 @@ As for the purchasing power, more credits to lower income individuals and fewer 
 As for the environmental benefit, PHEV owners in highly populated areas should have received larger credits because one unit reduction of pollution delivers larger benefits (i.e. affects more people). 
 Also, it would be ideal to promote PHEVs in the areas where the electric powers are generated from alternative sources rather than thermal powers that use fossil fuels.
 
-(Also, Lit 5)
-
+Since policies of financial incentives are the most common one, @givinggreen compare a number of policies to promote EV in different US states. Mainly focusing on the efficacy of sales tax waivers and income tax credits, they find that the former is "associated with ten-fold increase in hybrid sales" (p.1) and that tax incentives are generally more effective than non-tax incentives. 
 Thus, both to identifying the characteristics of potential buyers and to design government interventions targeting those individuals are the essential strategies to promote low emission vehicles. 
+
 Regarding electric vehicles, not many researches are made especially on the relationship between EV adoption and the micro level, individual motivations and characteristics partly due to the lack of survey data on people's attitudes towards EVs that covers both those who buy (or are willing to buy) and those who do not. 
 In this study, we will examine the micro level relationship using a recent dataset from the U.K.
 (-> continues to the dataset description in the methodology)
