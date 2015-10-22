@@ -6,11 +6,9 @@ output: html_document
 bibliography: EV_proposal.bib
 ---
 
-(a few words)
-Research Questions:
-1. Who are the potential buyers of EVs? 
-2. What makes people buy or not buy EVs? 
-(Identify potential buyers of EV in UK. Differentiated targeting strategies for EV.)
+For the collaborative research project, we will work on adoption of electric vehicles in the U.K., 
+focusing on identifying the potential buyers which hopefully helps the U.K. government to differentiate EV promoting strategies by target groups. 
+This document presents detailed proposal for our project.
 
 ## Background
 
@@ -45,7 +43,7 @@ In order to maximize the performance of those governments' efforts, and thus to 
 
 Previous studies have examined various factors that influence consumers' choice.
 At a macro level, the relationship between demographic characteristics and EV adoption has been analyzed. For instance, 
-@countrycomparison identify financial incentives, the prevalence of chargin stations, and the presence of a local EV manufacturer as the relevant factors,using data on 30 countries. Interestingly, however, they do not find socio-economic variables to be good predicators of a country's EV adoption level. Another macro-level study divides Finland into grids with different socioe-conomic characteristics and finds that "the income and education level, the amount of families with children and the average size of the residences" (p. 459) are related to the region-level or neighborhood-level adoption rate of EVs [@Finland2013].
+@countrycomparison identify financial incentives, the prevalence of charging stations, and the presence of a local EV manufacturer as the relevant factors, using data on 30 countries. Interestingly, however, they do not find socio-economic variables to be good predicators of a country's EV adoption level. Another macro-level study divides Finland into grids with different socioe-economic characteristics and finds that "the income and education level, the amount of families with children and the average size of the residences" (p. 459) are related to the region-level or neighborhood-level adoption rate of EVs [@Finland2013].
 
 At a micro level, motivations and individual characteristics that affect individual choice are studied. 
 @egbue2012barriers explored characteristics of potential EV buyers through a survey targeting current conventional vehicle owners, which asked their opinions, perceptions, and attitudes towards EVs, besides socio-economic attributes. 
@@ -76,8 +74,13 @@ Regarding electric vehicles, not many researches are made especially on the rela
 In this study, we will examine the micro level relationship using a recent dataset from the U.K.
 
 
-## Methodology (data source? independent variable/dependent variables? type of analysis? expected outcome)
-The dataset we use in this research will be "Opinions and Lifestyle Survey, Electric Vehicles Module, February 2014 and February 2015" conducted by the Social Survey Division of Office for National Statistics of the Great Britain. This module is part of the "Opinions and Lifestyle Survey" and is conducted on the behalf of the Department for Transport. Population surveyed is adults, aged 16 or over, living in private households in Great Britain; and the sampling method is multi-stage stratified random sampling. EVs mentioned in this survey refer to vehicles that run solely on electricity or are plug-in hybrids (excluding hybrids which are not plugged into an electricity supply).
+## Methodology
+The dataset we use in this research will be ["Opinions and Lifestyle Survey, Electric Vehicles Module, February 2014 and February 2015"](https://discover.ukdataservice.ac.uk/Catalogue/?sn=7571&type=Data%20catalogue) conducted by the Social Survey Division of Office for National Statistics of the Great Britain [@UKDATA]. 
+This module is part of the "Opinions and Lifestyle Survey" and is conducted on the behalf of the Department for Transport. 
+Population surveyed is adults, aged 16 or over, living in private households in Great Britain; and the sampling method is multi-stage stratified random sampling. 
+EVs mentioned in this survey refer to vehicles that run solely on electricity or are plug-in hybrids (excluding hybrids which are not plugged into an electricity supply).
+
+(Note that [registration](http://ukdataservice.ac.uk/get-data/how-to-access/registration) is required to download the dataset from the U.K. Data Service website above.)
 
 The survey is consisted of mainly two sets of variables, core questions (i.e. questions related to buying an electric car or van) and demographic variables. Core questions that are of our interest are:
 
@@ -129,5 +132,5 @@ From the analysis described above, we will identify:
 
 In addition, some possible policy options that the U.K. government could take to increase EV adoption will be derived by targeting the identified characteristics and key factors. 
 
-----------
+
 ## Reference
