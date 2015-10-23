@@ -6,8 +6,8 @@ output: pdf_document
 bibliography: EV_proposal.bib
 ---
 
-For the collaborative research project, we will work on adoption of electric vehicles in the U.K., 
-focusing on identifying the potential buyers which hopefully helps the U.K. government to differentiate EV promoting strategies by target groups. 
+For the collaborative research project, we will work on adoption of electric vehicles in the UK, 
+focusing on identifying the potential buyers which hopefully helps the UK government to differentiate EV promoting strategies by target groups. 
 This document presents detailed proposal for our project.
 
 ## Background
@@ -44,10 +44,10 @@ This study will focus on EVs, which is the most recent generation of low emissio
 
 Previous studies have examined various factors that influence consumers' choice.
 
-At a macro level, the relationship between demographic characteristics and EV adoption has been analyzed. For instance, 
+At the macro level, the relationship between demographic characteristics and EV adoption has been analyzed. For instance, 
 @countrycomparison identify financial incentives, the prevalence of charging stations, and the presence of a local EV manufacturer as the relevant factors, using data on 30 countries. Interestingly, however, they do not find socio-economic variables to be good predicators of a country's EV adoption level. Another macro-level study divides Finland into grids with different socio-economic characteristics and finds that "the income and education level, the amount of families with children and the average size of the residences" (p. 459) are related to the region-level or neighborhood-level adoption rate of EVs [@Finland2013].
 
-At a micro level, motivations and individual characteristics that affect individual choice are studied. 
+At the micro level, motivations and individual characteristics that affect individual choice are studied. 
 @egbue2012barriers explores characteristics of potential EV buyers through a survey targeting current conventional vehicle owners, which asked their opinions, perceptions, and attitudes towards EVs, besides socio-economic attributes. 
 Using 481 observations gained from the web-based survey, the authors performs chi-square analyses and find out that different groups of people have different stances towards EVs. 
 For instance, likelihood to purchase an EV ("How likely would you be to consider purchasing a vehicle that uses alternative fuel?") differs by gender, education level, age, and income of respondents. 
@@ -72,18 +72,18 @@ Since policies of financial incentives are the most common one, @givinggreen com
 Thus, both to identifying the characteristics of potential buyers and to design government interventions targeting those individuals are the essential strategies to promote low emission vehicles. 
 
 Regarding EV adoption, more detailed researches that focus on EVs are needed. 
-In particular, not many studies on the relationship between EV adoption and the micro level, individual motivations and characteristics have made partly due to the lack of survey data on people's attitudes towards EVs that covers both those who buy (or are willing to buy) and those who do not. 
-In this study, we will examine the micro level relationship using a recent dataset from the U.K.
+In particular, not many studies have been done on the relationship between EV adoption and individual-level motivations/characteristics, partly due to a lack of survey data on people's attitudes towards EVs that covers both those who buy (or are willing to buy) and those who do not. 
+In this study, we will examine the micro-level relationship using a recent dataset from the UK.
 
 
 ## Methodology
-The dataset we use in this research will be ["Opinions and Lifestyle Survey, Electric Vehicles Module, February 2014 and February 2015"](https://discover.ukdataservice.ac.uk/Catalogue/?sn=7571&type=Data%20catalogue) conducted by the Social Survey Division of Office for National Statistics of the Great Britain [@UKDATA]. 
+The dataset we use in this research will be ["Opinions and Lifestyle Survey, Electric Vehicles Module, February 2014 and February 2015"](https://discover.ukdataservice.ac.uk/Catalogue/?sn=7571&type=Data%20catalogue) conducted by the Social Survey Division of Office for National Statistics of the UK [@UKDATA]. 
 This module is part of the "Opinions and Lifestyle Survey" and is conducted on the behalf of the Department for Transport. 
-Population surveyed is adults, aged 16 or over, living in private households in Great Britain; and the sampling method is multi-stage stratified random sampling. 
+Population surveyed is adults, aged 16 or over, living in private households in THE UK; and the sampling method is multi-stage stratified random sampling. 
 The total sample size is 1996, 962 cases from 2014 and 1034 cases from 2015.
 EVs mentioned in this survey refer to vehicles that run solely on electricity or are plug-in hybrids (excluding hybrids which are not plugged into an electricity supply).
 
-Note that [registration](http://ukdataservice.ac.uk/get-data/how-to-access/registration) is required to download the dataset from the U.K. Data Service website above.
+Note that [registration](http://ukdataservice.ac.uk/get-data/how-to-access/registration) is required to download the dataset from the UK Data Service website above.
 After logging in and agreeing with the terms of conditions, the dataset is available for download in CSV or other format.
 The registration process may take a few days. 
 However, other documents (e.g. questionnaire, brief summary) are available at the link above without registration.
@@ -150,10 +150,10 @@ Unfortunately, not much research has been done on the specific barriers or drive
 
 From the analysis described above, we will identify the following two things in this study:
 
-1. Individual-level characteristics of possible EV buyers in the U.K.
+1. Individual-level characteristics of possible EV buyers in the UK
 2. Key factors that makes people buy or not buy an EV
 
-In addition, some possible policy options that the U.K. government could take to increase EV adoption will be derived by targeting the identified characteristics and key factors. 
+In addition, some possible policy options that the UK government could take to increase EV adoption will be derived by targeting the identified characteristics and key factors. 
 
 
 ## Reference
