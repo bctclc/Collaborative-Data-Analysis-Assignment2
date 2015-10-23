@@ -2,7 +2,7 @@
 title: "Assignment 2"
 author: "Claire Chang Liu and Noriko Magara"
 date: "Oct. 23, 2015"
-output: html_document
+output: pdf_document
 bibliography: EV_proposal.bib
 ---
 
@@ -126,8 +126,11 @@ $$\ln{\frac{Pr(Y_i=K-1)}{Pr(Y_i=K)}}=\boldsymbol{\beta_{K-1} \cdot x_i}$$
 Where $Pr(Y_i=1)$ to $Pr(Y_i=K)$ are the probabilities that the *i*th person is classified into the first category to the *K*th category, and $\boldsymbol{x_i}$ is a vector of the *i*th person's independent variables, i.e. the individual's characteristics in our study. 
 
 By converting the log odds into probabilities, we will obtain the probability of the *i*th person being classified into the *J*th category (e.g. buying an EV) depending on his/her personal characteristics. 
+For the *K*th category (the category used as a reference), the predicted probability is calculated by the second formula.
 
 $$Pr(Y_i=J)=\frac{e^{\boldsymbol{\beta_J \cdot x_i}}} {1 + \sum_{k=1}^{K-1} e^{\boldsymbol{\beta_k \cdot x_i}}}$$
+
+$$Pr(Y_i=K)=\frac{1} {1 + \sum_{k=1}^{K-1} e^{\boldsymbol{\beta_k \cdot x_i}}}$$
 
 Thus, we are expecting to see different predicted probabilities of showing certain attitudes or making certain decisions for different demographic groups, which will provide some useful information for the policy makers to create efficient means to promote EVs.
 
