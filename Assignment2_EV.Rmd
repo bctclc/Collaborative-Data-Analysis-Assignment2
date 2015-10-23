@@ -2,7 +2,7 @@
 title: "Assignment 2"
 author: "Claire Chang Liu and Noriko Magara"
 date: "Oct. 23, 2015"
-output: pdf_document
+output: html_document
 bibliography: EV_proposal.bib
 ---
 
@@ -23,12 +23,13 @@ Thus, HEVs have better fuel efficiency and less emission compared to the convent
 * Plug-in hybrid electric vehicles (PHEVs) are the improved version of HEVs. 
 PHEVs have a smaller inner combustion engine and more powerful batteries that can be charged by plugging into charging infrastructures, as well as the energy captured from braking and the inner combustion engine. 
 Thus, PHEVs have further better fuel efficiency and less emission compared to HEVs.
-* Electric Vehicles (EVs) are the most recent generation of the low emission vehicles, which powered only by an electric motor. 
+* Battery Electric Vehicles (BEVs) are the most recent generation of the low emission vehicles, which powered only by an electric motor. 
 The batteries that drive the motors are charged by plugging into charging infrastructures. 
 Because EVs do not use inner combustion engines at all, they make no emission when they drive.
 
-From the environmental point of view, EVs are the ideal type of vehicles. 
-However, because of many reasons, the adoption rates of EVs are not as high as the desirable level. 
+From the environmental point of view, PHEVs and BEVs are the ideal type of vehicles because they use electric powers from plugs, instead of fossil fuels. 
+In this project, we will collectively reffer to them as electric vehicles (EVs).
+In reality, however, because of many reasons, the adoption rates of EVs are not as high as the desirable level. 
 One of the biggest reasons is the costs. 
 Although some articles report that EVs are cheaper than conventional vehicles in long-term thanks to no fuel costs [e.g. @Herron2015web], people tend to refrain from buying EVs because of the high purchase prices.
 Also, current technical standards such as battery capacities (maximum driving distance with one-time charging) are pointed out to be an obstacle to the widespread EV adoption [@lieven2011will]. 
@@ -42,7 +43,7 @@ This study will focus on EVs, which is the most recent generation of low emissio
 
 ## Literature Review
 
-Previous studies have examined various factors that influence consumers' choice.
+Previous studies have examined various factors that are related to consumers' choice.
 
 At the macro level, the relationship between demographic characteristics and EV adoption has been analyzed. For instance, 
 @countrycomparison identify financial incentives, the prevalence of charging stations, and the presence of a local EV manufacturer as the relevant factors, using data on 30 countries. Interestingly, however, they do not find socio-economic variables to be good predicators of a country's EV adoption level. Another macro-level study divides Finland into grids with different socio-economic characteristics and finds that "the income and education level, the amount of families with children and the average size of the residences" (p. 459) are related to the region-level or neighborhood-level adoption rate of EVs [@Finland2013].
@@ -50,7 +51,7 @@ At the macro level, the relationship between demographic characteristics and EV 
 At the micro level, motivations and individual characteristics that affect individual choice are studied. 
 @egbue2012barriers explores characteristics of potential EV buyers through a survey targeting current conventional vehicle owners, which asked their opinions, perceptions, and attitudes towards EVs, besides socio-economic attributes. 
 Using 481 observations gained from the web-based survey, the authors performs chi-square analyses and find out that different groups of people have different stances towards EVs. 
-For instance, likelihood to purchase an EV ("How likely would you be to consider purchasing a vehicle that uses alternative fuel?") differs by gender, education level, age, and income of respondents. 
+For instance, likelihood to purchase an EV differs by gender, education level, age, and income of respondents. 
 In addition, based on the survey questions regarding the respondents' concerns, the authors reveal that more than a quarter of them were unsure about the safety of EVs. 
 Therefore, they concluds that people with better knowledge about EVs are more likely to purchase one.  
 

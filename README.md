@@ -11,11 +11,11 @@ This is a repository for the pair assignment 2 in Collaborative Social Data Anal
 
 1. .gitignore
 
-2. Assignment2_EV.html : The proposal in html formal (**will be replaced to the final version at the end**)
+2. Assignment2_EV.Rmd : The proposal in R Markdown format
 
-3. Assignment2_EV.pdf : The proposal in PDF formal (**will be replaced to the final version at the end**)
+3. Assignment2_EV.html : The proposal in html format
 
-4. Assignment2_EV.Rmd : The proposal in R Markdown formal
+4. Assignment2_EV.pdf : The proposal in PDF format
 
 5. EV_proposal.bib : The BibTex database for this project
 
