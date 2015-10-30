@@ -39,6 +39,7 @@ finaldata <- subset(data1415, select= c(MEC_6, MEC_7M01, MEC_7M02, MEC_7M03,
             MEC_3))
 
 # convert multipul choice questions into binary dummy by category
+# MEC_7 (waht would put you off...)
 values <- unique(finaldata$MEC_7M01) %>% as.character
 values <- values[!(values %in% NA)]
 for (i in values) {
@@ -55,12 +56,69 @@ for (i in values) {
                               finaldata$MEC_7M10==i] <- 1
 }
 
+# combining same categories
+#############################
+# the labels from 2014 and 2015 are unfortunately slightly different (horrible job of UK Data Service!)
+# I combine the following pairs together
+#  "Technology: doesn t work/not proven" 
+#  "Technology: doesn t work / not proven"
+#
+#  "Safety features/record" 
+#  "Safety features / record"
+#
+#  "The vehicle: performance, size/practicality, looks" 
+#  "The vehicle: performance (e.g. speed / handling), size / practicality, looks"
+#
+#  "Other (please specify)" 
+#  "Other (please specify)/"
+#
+#  "Resale/residual value"
+#  "Value:Resale/residual"
+#############################
+finaldata$`Technology: doesn t work/not proven` <- finaldata$`Technology: doesn t work/not proven`+
+                                                   finaldata$`Technology: doesn t work / not proven`
+finaldata$`Safety features/record` <- finaldata$`Safety features/record`+finaldata$`Safety features / record`
+finaldata$`The vehicle: performance, size/practicality, looks` <- finaldata$`The vehicle: performance, size/practicality, looks`+
+                                                                  finaldata$`The vehicle: performance (e.g. speed / handling), size / practicality, looks`
+finaldata$`Other (please specify)` <- finaldata$`Other (please specify)`+finaldata$`Other (please specify)/`
+finaldata$`Resale/residual value` <- finaldata$`Resale/residual value`+finaldata$`Value:Resale/residual`
+
+# rename the variables
+colnames(finaldata)[which(names(finaldata) == "Battery: distance travelled on charge")] <- "PObattery"
+colnames(finaldata)[which(names(finaldata) == "The vehicle: performance, size/practicality, looks")] <- "POchrct"
+colnames(finaldata)[which(names(finaldata) == "Other (please specify)")] <- "POother"
+colnames(finaldata)[which(names(finaldata) == "Lack of knowledge")] <- "POlknowledge"
+colnames(finaldata)[which(names(finaldata) == "Recharging")] <- "POrecharge"
+colnames(finaldata)[which(names(finaldata) == "Technology: doesn t work/not proven")] <- "POtech"
+colnames(finaldata)[which(names(finaldata) == "Limited choice (not many vehicles to choose from)")] <- "POchoice"
+colnames(finaldata)[which(names(finaldata) == "Cost")] <- "POcost"
+colnames(finaldata)[which(names(finaldata) == "Resale/residual value")] <- "POresale"
+colnames(finaldata)[which(names(finaldata) == "Safety features/record")] <- "POsafety"
+
+# drop unecessary dummies created by the loop
+#############################
+# I wanted to drop those variables that automatically created by the loop, but that we won't use
+# (such as "refusal", "don't know", and the one of the duplicated variables I combinded above).
+# However, since they contain spaces & wired charaters like "," and "(", 
+# the command you did above (select -c(columnames)) didn't work. 
+# I ended up renaming all those variables to drop.
+############################
+colnames(finaldata)[which(names(finaldata) == "Nothing")] <- "drop1"
+colnames(finaldata)[which(names(finaldata) == "Don t know")] <- "drop2"
+colnames(finaldata)[which(names(finaldata) == "Refusal")] <- "drop3"
+colnames(finaldata)[which(names(finaldata) == "Don t know (Spontaneous only)")] <- "drop4"
+colnames(finaldata)[which(names(finaldata) == "Technology: doesn t work / not proven")] <- "drop5"
+colnames(finaldata)[which(names(finaldata) == "Other (please specify)/")] <- "drop6"
+colnames(finaldata)[which(names(finaldata) == "Safety features / record")] <- "drop7"
+colnames(finaldata)[which(names(finaldata) == "The vehicle: performance (e.g. speed / handling), size / practicality, looks")] <- "drop8"
+colnames(finaldata)[which(names(finaldata) == "Refusal (Spontaneous only)")] <- "drop9"
+colnames(finaldata)[which(names(finaldata) == "Value:Resale/residual")] <- "drop10"
+finaldata <- subset(finaldata, 
+               select= -c(drop1, drop2, drop3, drop4, drop5, drop6, drop7, drop8, drop9, drop10))
+
+                          
+# continue this for other multipulchoice questions!
 
 
 # save the dataset
 save(finaldata, file="clean_dataset.rda")
-
-
-
-
-
