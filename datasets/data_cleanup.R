@@ -1,9 +1,10 @@
 ### Datasets Cleanup ###
 ### Claire & Noriko ###
 
-setwd("E:\—ßœ∞œ‡πÿ\R\Collaborative-Data-Analysis-Assignment2\datasets")
+setwd("C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/datasets")
 
 library(foreign)
+library(dplyr)
 
 # drop variables that are only available in survey 2014
 year14 <- read.dta("f1402_mec.dta")
@@ -37,5 +38,29 @@ finaldata <- subset(data1415, select= c(MEC_6, MEC_7M01, MEC_7M02, MEC_7M03,
             HighEd1, IllLim, DVILO3a, FtPtWk, NSECAC3, sumgross, NumDepCh, MEC_1,
             MEC_3))
 
+# convert multipul choice questions into binary dummy by category
+values <- unique(finaldata$MEC_7M01) %>% as.character
+values <- values[!(values %in% NA)]
+for (i in values) {
+  finaldata[, i] <- 0
+  finaldata[, i][finaldata$MEC_7M01==i|
+                              finaldata$MEC_7M02==i|
+                              finaldata$MEC_7M03==i|
+                              finaldata$MEC_7M04==i|
+                              finaldata$MEC_7M05==i|
+                              finaldata$MEC_7M06==i|
+                              finaldata$MEC_7M07==i|
+                              finaldata$MEC_7M08==i|
+                              finaldata$MEC_7M09==i|
+                              finaldata$MEC_7M10==i] <- 1
+}
+
+
+
 # save the dataset
 save(finaldata, file="clean_dataset.rda")
+
+
+
+
+
