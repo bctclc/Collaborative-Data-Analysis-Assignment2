@@ -5,11 +5,11 @@ library(stargazer)
 library(knitr)
 library(Zelig)
 
-# set working directory (change this line)
+# set working directory (change this line to your repository location)
 setwd("C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/datasets")
 
 # road the cleaned up dataframe
-load("clean_dataset_ver2.rda")
+load("clean_dataset.rda")
 
 
 ### a bit more clean up to make the output tydier ###
