@@ -1,4 +1,4 @@
-### Datasets Cleanup ###
+### Datasets Cleanup ver2 (inport data w/o variable labels) ###
 ### Claire & Noriko ###
 
 setwd("C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/datasets")
@@ -40,8 +40,7 @@ finaldata <- subset(data1415, select= c(MEC_6, MEC_7M01, MEC_7M02, MEC_7M03,
 
 # convert multipul choice questions into binary dummy by category
 # MEC_7 (waht would put you off... (PO))
-table(finaldata$MEC_7M01)
-POcategoly <- c(1:13)
+POcategoly <- c(1:9)
 for (i in POcategoly){
   finaldata[, paste("PO", as.character(i), sep = "")] <- 0
   finaldata[, paste("PO", as.character(i), sep = "")][finaldata$MEC_7M01==i|
@@ -55,9 +54,59 @@ for (i in POcategoly){
                                                       finaldata$MEC_7M09==i|
                                                       finaldata$MEC_7M10==i] <- 1
 }
-  
-                          
-# continue this for other multipulchoice questions!
+
+# MEC_8 (3 options that would put you off... (cost)) (POC)
+POCcategoly <- c(1:7)
+for (i in POCcategoly){
+  finaldata[, paste("POC", as.character(i), sep = "")] <- 0
+  finaldata[, paste("POC", as.character(i), sep = "")][finaldata$MEC_8M1==i|
+                                                       finaldata$MEC_8M2==i|
+                                                       finaldata$MEC_8M3==i] <- 1
+}
+
+# MEC_10 (what would encourage you...) (EN)
+ENcategory <- c(1:9)
+for (i in ENcategory){
+  finaldata[, paste("EN", as.character(i), sep = "")] <- 0
+  finaldata[, paste("EN", as.character(i), sep = "")][finaldata$MEC_10M01==i|
+                                                      finaldata$MEC_10M02==i|
+                                                      finaldata$MEC_10M03==i|
+                                                      finaldata$MEC_10M04==i|
+                                                      finaldata$MEC_10M05==i|
+                                                      finaldata$MEC_10M06==i|
+                                                      finaldata$MEC_10M07==i|
+                                                      finaldata$MEC_10M08==i|
+                                                      finaldata$MEC_10M09==i|
+                                                      finaldata$MEC_10M10==i] <- 1
+}
+
+# MEC_11 (3 options that would encounrage... (cost)) (ENC)
+ENCcategory <- c(1:7)
+for (i in ENCcategory){
+  finaldata[, paste("ENC", as.character(i), sep = "")] <- 0
+  finaldata[, paste("ENC", as.character(i), sep = "")][finaldata$MEC_11M1==i|
+                                                       finaldata$MEC_11M2==i|
+                                                       finaldata$MEC_11M3==i] <- 1
+}
+
+#########
+# we can rename these variables if we want...
+# actually we may have to do so, as everything's required to be human readable...
+#########
+
+# categorical income to continuous
+## mean value of each category, but 52000 for the largest one (52000+)
+INCcategorymean <- c(260, 780, 1300, 1820, 2340, 2860, 3380, 3900, 4420, 4940, 5720,
+                     6760, 7800, 8840, 9880, 10920, 11960, 13000, 14040, 15080, 16120,
+                     17160, 18200, 19240, 20280, 22100, 24700, 27300, 29900, 32500,
+                     35100, 37700, 40300, 42900, 45500, 48100, 50700, 52000)
+for (i in 1:38){
+  finaldata$income[finaldata$sumgross==i] <- INCcategorymean[i]
+}
+
+# Dependent variable into binary dummy (in case we run logit instead of mlogit)
+finaldata$EVinterest[finaldata$MEC_6<=4] <- 1
+finaldata$EVinterest[finaldata$MEC_6>4 & finaldata$MEC_6<=8] <- 0
 
 
 # save the dataset
