@@ -30,84 +30,201 @@ colnames(data14)[which(names(data14) == "NatldE6")] <- "NatID6"
 # combine the two datasets
 data1415 <- rbind(data14, data15)
 
-# drop unwanted variables
-finaldata <- subset(data1415, select= c(MEC_6, MEC_7M01, MEC_7M02, MEC_7M03,
-                                        MEC_7M04, MEC_7M05, MEC_7M06, MEC_7M07, MEC_7M08,MEC_7M09, MEC_7M10,
-                                        MEC_8M1, MEC_8M2, MEC_8M3, MEC_10M01, MEC_10M02, MEC_10M03, MEC_10M04,
-                                        MEC_10M05,MEC_10M06, MEC_10M07, MEC_10M08, MEC_10M09, MEC_10M10, 
-                                        MEC_11M1, MEC_11M2, MEC_11M3, RSEX, RAGE, GorA, DVHsize, Respmar, CAR,
-                                        HighEd1, IllLim, DVILO3a, FtPtWk, NSECAC3, sumgross, NumDepCh, MEC_1,
-                                        MEC_3))
 
 # convert multipul choice questions into binary dummy by category
 # MEC_7 (waht would put you off... (PO))
 POcategoryname <- c('POchoice', 'POknowledge', 'POcost', 'PObattery', 'POrecharge', 
                     'POresale', 'POsafety', 'POcarspec', 'POtech')
 for (i in 1:9){
-  finaldata[, POcategoryname[i]] <- 0
-  finaldata[, POcategoryname[i]][finaldata$MEC_7M01==i|
-                                 finaldata$MEC_7M02==i|
-                                 finaldata$MEC_7M03==i|
-                                 finaldata$MEC_7M04==i|
-                                 finaldata$MEC_7M05==i|
-                                 finaldata$MEC_7M06==i|
-                                 finaldata$MEC_7M07==i|
-                                 finaldata$MEC_7M08==i|
-                                 finaldata$MEC_7M09==i|
-                                 finaldata$MEC_7M10==i] <- 1
+  data1415[, POcategoryname[i]] <- 0
+  data1415[, POcategoryname[i]][data1415$MEC_7M01==i|
+                                 data1415$MEC_7M02==i|
+                                 data1415$MEC_7M03==i|
+                                 data1415$MEC_7M04==i|
+                                 data1415$MEC_7M05==i|
+                                 data1415$MEC_7M06==i|
+                                 data1415$MEC_7M07==i|
+                                 data1415$MEC_7M08==i|
+                                 data1415$MEC_7M09==i|
+                                 data1415$MEC_7M10==i] <- 1
 }
 
 # MEC_8 (3 options that would put you off... (cost)) (POC)
 POCcategoryname <- c('POCpurchase', 'POCfuel', 'POCmaintenance', 'POCresale', 
                      'POCextax', 'POCcomptax', 'POCinsurance')
 for (i in 1:7){
-  finaldata[, POCcategoryname[i]] <- 0
-  finaldata[, POCcategoryname[i]][finaldata$MEC_8M1==i|
-                                  finaldata$MEC_8M2==i|
-                                  finaldata$MEC_8M3==i] <- 1
+  data1415[, POCcategoryname[i]] <- 0
+  data1415[, POCcategoryname[i]][data1415$MEC_8M1==i|
+                                  data1415$MEC_8M2==i|
+                                  data1415$MEC_8M3==i] <- 1
 }
 
 # MEC_10 (what would encourage you...) (EN)
 ENcategoryname <- c('ENcost', 'ENbattery', 'ENrecharge', 'ENresale', 'ENsafety', 
                     'ENcarspec', 'ENchoice', 'ENtech', 'ENenv')
 for (i in 1:9){
-  finaldata[, ENcategoryname[i]] <- 0
-  finaldata[, ENcategoryname[i]][finaldata$MEC_10M01==i|
-                                 finaldata$MEC_10M02==i|
-                                 finaldata$MEC_10M03==i|
-                                 finaldata$MEC_10M04==i|
-                                 finaldata$MEC_10M05==i|
-                                 finaldata$MEC_10M06==i|
-                                 finaldata$MEC_10M07==i|
-                                 finaldata$MEC_10M08==i|
-                                 finaldata$MEC_10M09==i|
-                                 finaldata$MEC_10M10==i] <- 1
+  data1415[, ENcategoryname[i]] <- 0
+  data1415[, ENcategoryname[i]][data1415$MEC_10M01==i|
+                                 data1415$MEC_10M02==i|
+                                 data1415$MEC_10M03==i|
+                                 data1415$MEC_10M04==i|
+                                 data1415$MEC_10M05==i|
+                                 data1415$MEC_10M06==i|
+                                 data1415$MEC_10M07==i|
+                                 data1415$MEC_10M08==i|
+                                 data1415$MEC_10M09==i|
+                                 data1415$MEC_10M10==i] <- 1
 }
 
 # MEC_11 (3 options that would encounrage... (cost)) (ENC)
 ENCcategoryname <- c('ENCpurchase', 'ENCfuel', 'ENCmaintenance', 'ENCresale', 'ENCextax', 
                      'ENCcomptac', 'ENCinsurance')
 for (i in 1:7){
-  finaldata[, ENCcategoryname[i]] <- 0
-  finaldata[, ENCcategoryname[i]][finaldata$MEC_11M1==i|
-                                  finaldata$MEC_11M2==i|
-                                  finaldata$MEC_11M3==i] <- 1
+  data1415[, ENCcategoryname[i]] <- 0
+  data1415[, ENCcategoryname[i]][data1415$MEC_11M1==i|
+                                  data1415$MEC_11M2==i|
+                                  data1415$MEC_11M3==i] <- 1
 }
 
+
+### variables for our logit models ###
+# Dependent 1: interest in EV
+data1415$EVinterest[data1415$MEC_6<=4] <- 1
+data1415$EVinterest[data1415$MEC_6>4 & data1415$MEC_6<=8] <- 0
+table(data1415$EVinterest, data1415$MEC_6)
+
+# SEX dummy
+data1415$Male <- 0
+data1415$Male[data1415$RSEX==1] <- 1
+table(data1415$RSEX, data1415$Male) 
+
 # categorical income to continuous
-## mean value of each category, but 52000 for the largest one (52000+)
+# mean value of each category, but 52000 for the largest one (52000+)
 INCcategorymean <- c(260, 780, 1300, 1820, 2340, 2860, 3380, 3900, 4420, 4940, 5720,
                      6760, 7800, 8840, 9880, 10920, 11960, 13000, 14040, 15080, 16120,
                      17160, 18200, 19240, 20280, 22100, 24700, 27300, 29900, 32500,
                      35100, 37700, 40300, 42900, 45500, 48100, 50700, 52000)
 for (i in 1:38){
-  finaldata$income[finaldata$sumgross==i] <- INCcategorymean[i]
+  data1415$income[data1415$sumgross==i] <- INCcategorymean[i]
 }
+# Income in GBP1000
+data1415$inc1000 <- data1415$income/1000
 
-# Dependent variable into binary dummy (in case we run logit instead of mlogit)
-finaldata$EVinterest[finaldata$MEC_6<=4] <- 1
-finaldata$EVinterest[finaldata$MEC_6>4 & finaldata$MEC_6<=8] <- 0
+# having college degree or not
+data1415$degree[data1415$HighEd1==1] <- 1
+data1415$degree[data1415$HighEd1>=2 & data1415$HighEd1<=8] <- 0
+table(data1415$degree, data1415$HighEd1)
+
+# having a valid driver's licence
+data1415$licence[data1415$MEC_1<=2] <- 1
+data1415$licence[data1415$MEC_1==3] <- 0
+table(data1415$licence, data1415$MEC_1)
+
+# travel everyday?
+data1415$travfreq[data1415$MEC_3==1] <- 1
+data1415$travfreq[data1415$MEC_3>=2 & data1415$MEC_3<=8] <- 0
+table(data1415$travfreq, data1415$MEC_3)
+
+# employment dummy
+EmpCategory <- c('Employed', 'Unemployed', 'Inactive')
+for (i in 1:3){
+  data1415[, EmpCategory[i]] <- 0
+  data1415[, EmpCategory[i]][data1415$DVILO3a==i] <- 1
+}
+table(data1415$Employed, data1415$DVILO3a)
+table(data1415$Unemployed, data1415$DVILO3a)
+table(data1415$Inactive, data1415$DVILO3a)
+
+# Work status (full-time or part-time)
+data1415$Fulltime[data1415$FtPtWk==1] <- 1
+data1415$Fulltime[data1415$FtPtWk==2] <- 0
+data1415$Parttime[data1415$FtPtWk==2] <- 1
+data1415$Parttime[data1415$FtPtWk==1] <- 0
+table(data1415$Fulltime, data1415$FtPtWk)
+table(data1415$Parttime, data1415$FtPtWk)
+
+# Gov. Region dummy
+RegionCategory <- c('NorthEast', 'NorthWest', 'YorkshireHumber', 'EastMidlands', 
+                    'WestMidrands', 'EastofEngland', 'London', 'SouthEast', 
+                    'SouthWest', 'Wales', 'Scotland')
+for (i in 1:11){
+  data1415[, RegionCategory[i]] <- 0
+  data1415[, RegionCategory[i]][data1415$GorA==i] <- 1
+}
+table(data1415$NorthEast, data1415$GorA)
+table(data1415$NorthWest, data1415$GorA)
+table(data1415$YorkshireHumber, data1415$GorA)
+table(data1415$EastMidlands, data1415$GorA)
+table(data1415$WestMidrands, data1415$GorA)
+table(data1415$EastofEngland, data1415$GorA)
+table(data1415$London, data1415$GorA)
+table(data1415$SouthEast, data1415$GorA)
+table(data1415$SouthWest, data1415$GorA)
+table(data1415$Wales, data1415$GorA)
+table(data1415$Scotland, data1415$GorA)
+
+# marital status
+MaritalCategory <- c('Single', 'Married', 'MarriedSep', 'Divorced', 
+                     'Widowed')
+for (i in 1:5){
+  data1415[, MaritalCategory[i]] <- 0
+  data1415[, MaritalCategory[i]][data1415$Respmar==i] <- 1
+}
+table(data1415$Single, data1415$Respmar)
+table(data1415$Married, data1415$Respmar)
+table(data1415$MarriedSep, data1415$Respmar)
+table(data1415$Divorced, data1415$Respmar)
+table(data1415$Widowed, data1415$Respmar)
+
+# having Illness/disability
+data1415$illness[data1415$LSIll==1] <- 1
+data1415$illness[data1415$LSIll==2] <- 0
+table(data1415$illness, data1415$LSIll)
+
+# Limited by illness (only for those with illness/disability)
+data1415$illnesslim[data1415$IllLim==1] <- 1
+data1415$illnesslim[data1415$IllLim==2] <- 0
+table(data1415$illnesslim, data1415$IllLim)
+
+# number of cars
+data1415$NumCar[data1415$CAR==1] <- 0
+data1415$NumCar[data1415$CAR==2] <- 1
+data1415$NumCar[data1415$CAR==3] <- 2
+data1415$NumCar[data1415$CAR==4] <- 3
+table(data1415$NumCar, data1415$CAR)
 
 
-# save the dataset
-save(finaldata, file="clean_dataset.rda")
+### subset of variables for our analysis (w/o missing data)
+# base subset
+EVINTEREST <- subset(data1415, select= c(EVinterest, RAGE, Male, inc1000, degree, 
+                     licence, travfreq, Employed, Unemployed, Inactive, NorthEast, 
+                     NorthWest, YorkshireHumber, EastMidlands, WestMidrands, 
+                     EastofEngland, London, SouthEast, SouthWest, Wales, Scotland, 
+                     Single, Married, MarriedSep, Divorced, Widowed, illness,
+                     DVHsize, NumDepCh, NumCar))
+EVINTEREST <- na.omit(EVINTEREST)
+
+# base subset + full-time/part-time (fewer observations!)
+EVINTERESTemp <- subset(data1415, select= c(EVinterest, RAGE, Male, inc1000, degree, 
+                        licence, travfreq,  Employed, Unemployed, Inactive, 
+                        NorthEast, NorthWest, YorkshireHumber, EastMidlands, 
+                        WestMidrands, EastofEngland, London, SouthEast, 
+                        SouthWest, Wales, Scotland, Single, Married, MarriedSep, 
+                        Divorced, Widowed, illness, DVHsize, NumDepCh, NumCar, 
+                        Fulltime, Parttime))
+EVINTERESTemp <- na.omit(EVINTERESTemp)
+
+# subset of people w/ illness (breakdown of them by limited activity)
+EVINTERESTill <- subset(data1415, select= c(EVinterest, RAGE, Male, inc1000, degree, 
+                        licence, travfreq, Employed, Unemployed, Inactive, NorthEast, 
+                        NorthWest, YorkshireHumber, EastMidlands, WestMidrands, 
+                        EastofEngland, London, SouthEast, SouthWest, Wales, Scotland, 
+                        Single, Married, MarriedSep, Divorced, Widowed, DVHsize, 
+                        NumDepCh, NumCar, illnesslim))
+EVINTERESTill <- na.omit(EVINTERESTill)
+
+# save the subsets
+save(EVINTEREST, file="EVdata1.rda")
+save(EVINTERESTemp, file="EVdata2.rda")
+save(EVINTERESTill, file="EVdata3.rda")
+
