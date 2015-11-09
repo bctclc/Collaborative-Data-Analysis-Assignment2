@@ -201,7 +201,11 @@ EVINTEREST <- subset(data1415, select= c(EVinterest, RAGE, Male, inc1000, degree
                      NorthWest, YorkshireHumber, EastMidlands, WestMidrands, 
                      EastofEngland, London, SouthEast, SouthWest, Wales, Scotland, 
                      Single, Married, MarriedSep, Divorced, Widowed, illness,
-                     DVHsize, NumDepCh, NumCar))
+                     DVHsize, NumDepCh, NumCar, POchoice, POknowledge, POcost, PObattery, POrecharge, 
+                     POresale, POsafety, POcarspec, POtech, POCpurchase, POCfuel, POCmaintenance, POCresale, 
+                     POCextax, POCcomptax, POCinsurance, ENcost, ENbattery, ENrecharge, ENresale, ENsafety, 
+                     ENcarspec, ENchoice, ENtech, ENenv, ENCpurchase, ENCfuel, ENCmaintenance, ENCresale, ENCextax, 
+                     ENCcomptac, ENCinsurance))
 EVINTEREST <- na.omit(EVINTEREST)
 
 # base subset + full-time/part-time (fewer observations!)
@@ -211,7 +215,11 @@ EVINTERESTemp <- subset(data1415, select= c(EVinterest, RAGE, Male, inc1000, deg
                         WestMidrands, EastofEngland, London, SouthEast, 
                         SouthWest, Wales, Scotland, Single, Married, MarriedSep, 
                         Divorced, Widowed, illness, DVHsize, NumDepCh, NumCar, 
-                        Fulltime, Parttime))
+                        Fulltime, Parttime, POchoice, POknowledge, POcost, PObattery, POrecharge, 
+                        POresale, POsafety, POcarspec, POtech, POCpurchase, POCfuel, POCmaintenance, POCresale, 
+                        POCextax, POCcomptax, POCinsurance, ENcost, ENbattery, ENrecharge, ENresale, ENsafety, 
+                        ENcarspec, ENchoice, ENtech, ENenv, ENCpurchase, ENCfuel, ENCmaintenance, ENCresale, ENCextax, 
+                        ENCcomptac, ENCinsurance))
 EVINTERESTemp <- na.omit(EVINTERESTemp)
 
 # subset of people w/ illness (breakdown of them by limited activity)
@@ -220,7 +228,11 @@ EVINTERESTill <- subset(data1415, select= c(EVinterest, RAGE, Male, inc1000, deg
                         NorthWest, YorkshireHumber, EastMidlands, WestMidrands, 
                         EastofEngland, London, SouthEast, SouthWest, Wales, Scotland, 
                         Single, Married, MarriedSep, Divorced, Widowed, DVHsize, 
-                        NumDepCh, NumCar, illnesslim))
+                        NumDepCh, NumCar, illnesslim, POchoice, POknowledge, POcost, PObattery, POrecharge, 
+                        POresale, POsafety, POcarspec, POtech, POCpurchase, POCfuel, POCmaintenance, POCresale, 
+                        POCextax, POCcomptax, POCinsurance, ENcost, ENbattery, ENrecharge, ENresale, ENsafety, 
+                        ENcarspec, ENchoice, ENtech, ENenv, ENCpurchase, ENCfuel, ENCmaintenance, ENCresale, ENCextax, 
+                        ENCcomptac, ENCinsurance))
 EVINTERESTill <- na.omit(EVINTERESTill)
 
 # save the subsets
