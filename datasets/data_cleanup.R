@@ -110,6 +110,18 @@ for (i in 1:38){
 # Income in GBP1000
 data1415$inc1000 <- data1415$income/1000
 
+# categorical income
+data1415$low <- 0
+data1415$low[data1415$sumgross>=1 & data1415$sumgross<20] <- 1
+table(data1415$sumgross, data1415$low)
+
+data1415$lowermiddle <- 0
+data1415$lowermiddle[data1415$sumgross>=20 & data1415$sumgross<26] <- 1
+data1415$highermiddle <- 0
+data1415$highermiddle[data1415$sumgross==26 | data1415$sumgross==27] <- 1
+data1415$high <- 0
+data1415$high[data1415$sumgross>27 & data1415$sumgross<=38] <- 1
+
 # having college degree or not
 data1415$degree[data1415$HighEd1==1] <- 1
 data1415$degree[data1415$HighEd1>=2 & data1415$HighEd1<=8] <- 0
@@ -205,7 +217,7 @@ EVINTEREST <- subset(data1415, select= c(EVinterest, RAGE, Male, inc1000, degree
                      POresale, POsafety, POcarspec, POtech, POCpurchase, POCfuel, POCmaintenance, POCresale, 
                      POCextax, POCcomptax, POCinsurance, ENcost, ENbattery, ENrecharge, ENresale, ENsafety, 
                      ENcarspec, ENchoice, ENtech, ENenv, ENCpurchase, ENCfuel, ENCmaintenance, ENCresale, ENCextax, 
-                     ENCcomptac, ENCinsurance))
+                     ENCcomptac, ENCinsurance, high, highermiddle, lowermiddle, low))
 EVINTEREST <- na.omit(EVINTEREST)
 
 # base subset + full-time/part-time (fewer observations!)
@@ -219,7 +231,7 @@ EVINTERESTemp <- subset(data1415, select= c(EVinterest, RAGE, Male, inc1000, deg
                         POresale, POsafety, POcarspec, POtech, POCpurchase, POCfuel, POCmaintenance, POCresale, 
                         POCextax, POCcomptax, POCinsurance, ENcost, ENbattery, ENrecharge, ENresale, ENsafety, 
                         ENcarspec, ENchoice, ENtech, ENenv, ENCpurchase, ENCfuel, ENCmaintenance, ENCresale, ENCextax, 
-                        ENCcomptac, ENCinsurance))
+                        ENCcomptac, ENCinsurance, high, highermiddle, lowermiddle, low))
 EVINTERESTemp <- na.omit(EVINTERESTemp)
 
 # subset of people w/ illness (breakdown of them by limited activity)
@@ -232,7 +244,7 @@ EVINTERESTill <- subset(data1415, select= c(EVinterest, RAGE, Male, inc1000, deg
                         POresale, POsafety, POcarspec, POtech, POCpurchase, POCfuel, POCmaintenance, POCresale, 
                         POCextax, POCcomptax, POCinsurance, ENcost, ENbattery, ENrecharge, ENresale, ENsafety, 
                         ENcarspec, ENchoice, ENtech, ENenv, ENCpurchase, ENCfuel, ENCmaintenance, ENCresale, ENCextax, 
-                        ENCcomptac, ENCinsurance))
+                        ENCcomptac, ENCinsurance, high, highermiddle, lowermiddle, low))
 EVINTERESTill <- na.omit(EVINTERESTill)
 
 # save the subsets
