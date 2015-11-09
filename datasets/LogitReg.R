@@ -16,127 +16,37 @@ load("EVdata3.rda")
 
 ### step-wise logistic regression ###
 # Estimate model-1 (AGE & SEX & INCOME & Education & LICENCE)
-L1 <- glm(EVinterest ~ RAGE + Male + inc1000 + degree + licence,
-              data = EVINTEREST, family = 'binomial')
-summary(L1)
+L1 <- lrm(EVinterest ~ RAGE + Male + inc1000 +  degree, EVINTEREST)
+lrm(L1)
+
+L11 <- lrm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle +high + degree, 
+           EVINTEREST)
+lrm(L11)
+
+stargazer::stargazer(L1, L11, 
+                     title = 'Interests in EVs: base models',
+                     digits = 2, type = 'text')
 
 # Estimate model-2 (AGE & SEX & INCOME & Education & LICENCE & Employment)
-# Unemployed is the reference category for employment
-L2 <- glm(EVinterest ~ RAGE + Male + inc1000 + degree + licence + Employed 
-          + Inactive,
-          data = EVINTEREST, family = 'binomial')
-summary(L2)
+L2 <- lrm(EVinterest ~ RAGE + Male + inc1000 + degree + licence + NumCar, EVINTEREST)
+lrm(L2)
 
 # Estimate model-3 (AGE & SEX & INCOME & Education & LICENCE & Employment 
 #                   & HHsize & Child)
-L3 <- glm(EVinterest ~ RAGE + Male + inc1000 + degree + licence + Employed 
-          + Inactive + DVHsize + NumDepCh,
-          data = EVINTEREST, family = 'binomial')
-summary(L3)
+L3 <- lrm(EVinterest ~ RAGE + Male + inc1000 + degree + licence + NumCar + NumDepCh,
+          EVINTEREST)
+lrm(L3)
 
 # Estimate model-4 (AGE & SEX & INCOME & Education & LICENCE & Employment 
 #                   & HHsize & Child & travel freq)
-L4 <- glm(EVinterest ~ RAGE + Male + inc1000 + degree + licence + Employed 
-          + Inactive + DVHsize + NumDepCh + travfreq,
-          data = EVINTEREST, family = 'binomial')
-summary(L4)
-
-# Estimate model-5 (AGE & SEX & INCOME & Education & LICENCE & Employment 
-#                   & HHsize & Child & travel freq & REGION)
-# NorthEast is the reference category for region
-L5 <- glm(EVinterest ~ RAGE + Male + inc1000 + degree + licence + Employed 
-          + Inactive + DVHsize + NumDepCh + travfreq + NorthWest 
-          + YorkshireHumber + EastMidlands + WestMidrands + EastofEngland 
-          + London + SouthEast + SouthWest + Wales + Scotland,
-          data = EVINTEREST, family = 'binomial')
-summary(L5)
-
-# Estimate model-6 (AGE & SEX & INCOME & Education & LICENCE & Employment 
-#                   & HHsize & Child & travel freq & REGION & marital)
-# single is the reference category for marital status
-L6 <- glm(EVinterest ~ RAGE + Male + inc1000 + degree + licence + Employed 
-          + Inactive + DVHsize + NumDepCh + travfreq + NorthWest 
-          + YorkshireHumber + EastMidlands + WestMidrands + EastofEngland 
-          + London + SouthEast + SouthWest + Wales + Scotland + Married 
-          + MarriedSep + Divorced + Widowed,
-          data = EVINTEREST, family = 'binomial')
-summary(L6)
-
-# Estimate model-7 (AGE & SEX & INCOME & Education & LICENCE & Employment 
-#                   & HHsize & Child & travel freq & REGION & marital & NumCar)
-L7 <- glm(EVinterest ~ RAGE + Male + inc1000 + degree + licence + Employed 
-          + Inactive + DVHsize + NumDepCh + travfreq + NorthWest 
-          + YorkshireHumber + EastMidlands + WestMidrands + EastofEngland 
-          + London + SouthEast + SouthWest + Wales + Scotland + Married 
-          + MarriedSep + Divorced + Widowed + NumCar,
-          data = EVINTEREST, family = 'binomial')
-summary(L7)
-
-# Estimate model-8 (AGE & SEX & INCOME & Education & LICENCE & Employment 
-#                   & HHsize & Child & travel freq & REGION & marital & NumCar 
-#                   & illness/disability)
-L8 <- glm(EVinterest ~ RAGE + Male + inc1000 + degree + licence + Employed 
-          + Inactive + DVHsize + NumDepCh + travfreq + NorthWest 
-          + YorkshireHumber + EastMidlands + WestMidrands + EastofEngland 
-          + London + SouthEast + SouthWest + Wales + Scotland + Married 
-          + MarriedSep + Divorced + Widowed + NumCar + illness,
-          data = EVINTEREST, family = 'binomial')
-summary(L8)
-
-### displaying the results ###
-# Create cleaner covariate labels
-labels <- c('Age', 'Male', 'Income (in 1000 GBP)', 'College degree', 'Valid licence', 
-            'Eemployed', 'Economically Inactive', 'Household size', '# of Dependen Child', 
-            'Travel everyday', 'North West', 'Yorkshire and the Humber', 'East Midlands', 
-            'West Midrands', 'East of England', 'London', 'South East', 'South West', 
-            'Wales', 'Scotland', 'Married', 'Married-separated', 'Divorced', 
-            'Widowed', '# of cars', 'illness/disability', '(Intercept)') 
-
-stargazer::stargazer(L1, L2, L3, L4, L5, L6, L7, L8, covariate.labels = labels,
-                     title = 'Interests in EVs',
-                     digits = 2, type = 'text')
+L4 <- lrm(EVinterest ~ RAGE + Male + inc1000 + degree + licence + NumCar + NumDepCh
+          + Scotland,
+          EVINTEREST)
+lrm(L4)
 
 
-### more models with other subsets
-# Estimate model-9 (AGE & SEX & INCOME & Education & LICENCE & Employment 
-#                   & HHsize & Child & travel freq & REGION & marital & NumCar 
-#                   & illness/disability & Full-time)
-# Part-time is the reference category for work status
-L9 <- glm(EVinterest ~ RAGE + Male + inc1000 + degree + licence + Employed 
-          + Inactive + DVHsize + NumDepCh + travfreq + NorthWest 
-          + YorkshireHumber + EastMidlands + WestMidrands + EastofEngland 
-          + London + SouthEast + SouthWest + Wales + Scotland + Married 
-          + MarriedSep + Divorced + Widowed + NumCar + illness + Fulltime,
-          data = EVINTERESTemp, family = 'binomial')
-summary(L9)
-labels2 <- c('Age', 'Male', 'Income (in 1000 GBP)', 'College degree', 'Valid licence', 
-             'Eemployed', 'Economically Inactive', 'Household size', '# of Dependen Child', 
-             'Travel everyday', 'North West', 'Yorkshire and the Humber', 'East Midlands', 
-             'West Midrands', 'East of England', 'London', 'South East', 'South West', 
-             'Wales', 'Scotland', 'Married', 'Married-separated', 'Divorced', 
-             'Widowed', '# of cars', 'illness/disability', 'Full-time', '(Intercept)') 
-stargazer::stargazer(L1, L2, L3, L4, L5, L6, L7, L8, L9, covariate.labels = labels2,
-                     title = 'Interests in EVs',
-                     digits = 2, type = 'text')
-
-# Estimate model-10 (AGE & SEX & INCOME & Education & LICENCE & Employment 
-#                   & HHsize & Child & travel freq & REGION & marital & NumCar 
-#                   & limiting illness/disability)
-# Part-time is the reference category for work status
-L10 <- glm(EVinterest ~ RAGE + Male + inc1000 + degree + licence + Employed 
-           + Inactive + DVHsize + NumDepCh + travfreq + NorthWest 
-           + YorkshireHumber + EastMidlands + WestMidrands + EastofEngland 
-           + London + SouthEast + SouthWest + Wales + Scotland + Married 
-           + MarriedSep + Divorced + Widowed + NumCar + illnesslim,
-           data = EVINTERESTill, family = 'binomial')
-summary(L10)
-labels3 <- c('Age', 'Male', 'Income (in 1000 GBP)', 'College degree', 'Valid licence', 
-             'Eemployed', 'Economically Inactive', 'Household size', '# of Dependen Child', 
-             'Travel everyday', 'North West', 'Yorkshire and the Humber', 'East Midlands', 
-             'West Midrands', 'East of England', 'London', 'South East', 'South West', 
-             'Wales', 'Scotland', 'Married', 'Married-separated', 'Divorced', 
-             'Widowed', '# of cars', 'limiting illness/disability', '(Intercept)') 
-stargazer::stargazer(L10, covariate.labels = labels3,
+### present results
+stargazer::stargazer(L1, L11, L2, L3, L4, 
                      title = 'Interests in EVs',
                      digits = 2, type = 'text')
 
@@ -178,12 +88,32 @@ kable(fittedPselected, align = 'c', digits = 2,
 
 
 ### Zelig plot
-ZP <- zelig(EVinterest ~ RAGE + Male + inc1000 + degree + licence + NorthWest 
-            + YorkshireHumber + EastMidlands + WestMidrands + EastofEngland 
-            + London + SouthEast + SouthWest + Wales + Scotland + Married 
-            + MarriedSep + Divorced + Widowed + NumCar,
-            cite = FALSE, data = EVINTEREST, model = 'logit')
-setZP <- setx(ZP, RAGE = 20:80)
-simZP <- sim(ZP, x = setZP)
-plot(simZP)
+ZP1 <- zelig(EVinterest ~ RAGE + Male + inc1000 + degree + licence + NumCar + NumDepCh
+             + Scotland, 
+             cite = FALSE, data = EVINTEREST, model = 'logit')
+setZP1 <- setx(ZP1, RAGE = 20:80)
+simZP1 <- sim(ZP1, x = setZP1)
+plot(simZP1, xlab="Age", ylab="Predicted Probability", 
+     main="Predicted Probability of Having an Interest in EV by Age")
+
+ZP2 <- zelig(EVinterest ~ RAGE + Male + inc1000 + degree + licence + NumCar + NumDepCh
+             + Scotland, 
+             cite = FALSE, data = EVINTEREST, model = 'logit')
+setZP2 <- setx(ZP2, inc1000 = 0:55)
+simZP2 <- sim(ZP2, x = setZP2)
+plot(simZP2)
+
+ZP3 <- zelig(EVinterest ~ RAGE + Male + inc1000 + degree + licence + NumCar + NumDepCh
+             + Scotland, 
+             cite = FALSE, data = EVINTEREST, model = 'logit')
+setZP3 <- setx(ZP3, NumCar = 0:3)
+simZP3 <- sim(ZP3, x = setZP3)
+plot(simZP3)
+
+ZP4 <- zelig(EVinterest ~ RAGE + Male + inc1000 + degree + licence + NumCar + NumDepCh
+             + Scotland, 
+             cite = FALSE, data = EVINTEREST, model = 'logit')
+setZP4 <- setx(ZP4, NumDepCh = 0:7)
+simZP4 <- sim(ZP4, x = setZP4)
+plot(simZP4)
 
