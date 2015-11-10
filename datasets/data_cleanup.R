@@ -205,6 +205,12 @@ data1415$NumCar[data1415$CAR==3] <- 2
 data1415$NumCar[data1415$CAR==4] <- 3
 table(data1415$NumCar, data1415$CAR)
 
+###categorical variable for income
+EVINTEREST$inccat <- 0
+EVINTEREST$inccat[EVINTEREST$low==1] <- 1
+EVINTEREST$inccat[EVINTEREST$lowermiddle==1] <- 2
+EVINTEREST$inccat[EVINTEREST$highermidde==1] <- 3
+EVINTEREST$inccat[EVINTEREST$high==1] <- 
 
 ### subset of variables for our analysis (w/o missing data)
 # base subset

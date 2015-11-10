@@ -4,6 +4,7 @@
 library(stargazer)
 library(knitr)
 library(Zelig)
+library(rms)
 
 # set working directory (change this line to your repository location)
 setwd("C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/datasets")
@@ -19,7 +20,7 @@ load("EVdata3.rda")
 L1 <- lrm(EVinterest ~ RAGE + Male + inc1000 +  degree, EVINTEREST)
 lrm(L1)
 
-L11 <- lrm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle +high + degree, 
+L11 <- lrm(EVinterest ~ RAGE + Male + as.factor(inccat) + degree, 
            EVINTEREST)
 lrm(L11)
 
@@ -110,7 +111,7 @@ setZP3 <- setx(ZP3, NumCar = 0:3)
 simZP3 <- sim(ZP3, x = setZP3)
 plot(simZP3)
 
-ZP4 <- zelig(EVinterest ~ RAGE + Male + inc1000 + degree + licence + NumCar + NumDepCh
+ZP4 <- zelig(EVinterest ~ RAGE + Male + high + lowermiddle + highermiddle + degree + licence + NumCar + NumDepCh
              + Scotland, 
              cite = FALSE, data = EVINTEREST, model = 'logit')
 setZP4 <- setx(ZP4, NumDepCh = 0:7)
