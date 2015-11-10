@@ -13,4 +13,4 @@ vignettes/*.html
 vignettes/*.pdf
 
 # Original Dataset (stata)
-.dta
+*.dta
