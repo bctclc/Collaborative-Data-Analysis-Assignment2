@@ -1,0 +1,19 @@
+---
+title: "Interest in the EVs in the UK"
+author: "Claire Chang Liu & Noriko Magara"
+date: "2015Äê11ÔÂ10ÈÕ"
+output: html_document
+bibliography: Package_Citation.bib
+---
+
+This paper looks at the interest in the Electric Vehicles in the UK. First, we will describe the process of data gathering. Then we descriptively analyze the dependent variable and independent variables. Last part will be a preliminary analysis using logistic regression models.
+
+##Data Gathering
+
+##Descriptive Analysis
+
+##Logistic Regression
+
+##Discussion
+
+##Reference
