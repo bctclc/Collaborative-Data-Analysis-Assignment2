@@ -2,7 +2,7 @@
 ### Claire & Noriko ###
 
 # set working directory (change this line to your repository location)
-setwd("C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/datasets")
+setwd("C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/Assignment3")
 
 library(foreign)
 library(dplyr)
@@ -110,17 +110,23 @@ for (i in 1:38){
 # Income in GBP1000
 data1415$inc1000 <- data1415$income/1000
 
-# categorical income
+# categorical income (dummy)
 data1415$low <- 0
 data1415$low[data1415$sumgross>=1 & data1415$sumgross<20] <- 1
 table(data1415$sumgross, data1415$low)
-
 data1415$lowermiddle <- 0
 data1415$lowermiddle[data1415$sumgross>=20 & data1415$sumgross<26] <- 1
 data1415$highermiddle <- 0
 data1415$highermiddle[data1415$sumgross==26 | data1415$sumgross==27] <- 1
 data1415$high <- 0
 data1415$high[data1415$sumgross>27 & data1415$sumgross<=38] <- 1
+
+### categorical variable for income
+data1415$inccat <- 0
+data1415$inccat[data1415$low==1] <- 1
+data1415$inccat[data1415$lowermiddle==1] <- 2
+data1415$inccat[data1415$highermidde==1] <- 3
+data1415$inccat[data1415$high==1] <- 4
 
 # having college degree or not
 data1415$degree[data1415$HighEd1==1] <- 1
@@ -205,12 +211,6 @@ data1415$NumCar[data1415$CAR==3] <- 2
 data1415$NumCar[data1415$CAR==4] <- 3
 table(data1415$NumCar, data1415$CAR)
 
-###categorical variable for income
-EVINTEREST$inccat <- 0
-EVINTEREST$inccat[EVINTEREST$low==1] <- 1
-EVINTEREST$inccat[EVINTEREST$lowermiddle==1] <- 2
-EVINTEREST$inccat[EVINTEREST$highermidde==1] <- 3
-EVINTEREST$inccat[EVINTEREST$high==1] <- 
 
 ### subset of variables for our analysis (w/o missing data)
 # base subset
@@ -219,11 +219,14 @@ EVINTEREST <- subset(data1415, select= c(EVinterest, RAGE, Male, inc1000, degree
                      NorthWest, YorkshireHumber, EastMidlands, WestMidrands, 
                      EastofEngland, London, SouthEast, SouthWest, Wales, Scotland, 
                      Single, Married, MarriedSep, Divorced, Widowed, illness,
-                     DVHsize, NumDepCh, NumCar, POchoice, POknowledge, POcost, PObattery, POrecharge, 
-                     POresale, POsafety, POcarspec, POtech, POCpurchase, POCfuel, POCmaintenance, POCresale, 
-                     POCextax, POCcomptax, POCinsurance, ENcost, ENbattery, ENrecharge, ENresale, ENsafety, 
-                     ENcarspec, ENchoice, ENtech, ENenv, ENCpurchase, ENCfuel, ENCmaintenance, ENCresale, ENCextax, 
-                     ENCcomptac, ENCinsurance, high, highermiddle, lowermiddle, low))
+                     DVHsize, NumDepCh, NumCar, POchoice, POknowledge, POcost, 
+                     PObattery, POrecharge, POresale, POsafety, POcarspec, POtech, 
+                     POCpurchase, POCfuel, POCmaintenance, POCresale, POCextax, 
+                     POCcomptax, POCinsurance, ENcost, ENbattery, ENrecharge, 
+                     ENresale, ENsafety, ENcarspec, ENchoice, ENtech, ENenv, 
+                     ENCpurchase, ENCfuel, ENCmaintenance, ENCresale, ENCextax, 
+                     ENCcomptac, ENCinsurance, high, highermiddle, lowermiddle, 
+                     low, inccat))
 EVINTEREST <- na.omit(EVINTEREST)
 
 # base subset + full-time/part-time (fewer observations!)
@@ -233,11 +236,14 @@ EVINTERESTemp <- subset(data1415, select= c(EVinterest, RAGE, Male, inc1000, deg
                         WestMidrands, EastofEngland, London, SouthEast, 
                         SouthWest, Wales, Scotland, Single, Married, MarriedSep, 
                         Divorced, Widowed, illness, DVHsize, NumDepCh, NumCar, 
-                        Fulltime, Parttime, POchoice, POknowledge, POcost, PObattery, POrecharge, 
-                        POresale, POsafety, POcarspec, POtech, POCpurchase, POCfuel, POCmaintenance, POCresale, 
-                        POCextax, POCcomptax, POCinsurance, ENcost, ENbattery, ENrecharge, ENresale, ENsafety, 
-                        ENcarspec, ENchoice, ENtech, ENenv, ENCpurchase, ENCfuel, ENCmaintenance, ENCresale, ENCextax, 
-                        ENCcomptac, ENCinsurance, high, highermiddle, lowermiddle, low))
+                        Fulltime, Parttime, POchoice, POknowledge, POcost, 
+                        PObattery, POrecharge, POresale, POsafety, POcarspec, 
+                        POtech, POCpurchase, POCfuel, POCmaintenance, POCresale, 
+                        POCextax, POCcomptax, POCinsurance, ENcost, ENbattery, 
+                        ENrecharge, ENresale, ENsafety, ENcarspec, ENchoice, 
+                        ENtech, ENenv, ENCpurchase, ENCfuel, ENCmaintenance, 
+                        ENCresale, ENCextax, ENCcomptac, ENCinsurance, high, 
+                        highermiddle, lowermiddle, low, inccat))
 EVINTERESTemp <- na.omit(EVINTERESTemp)
 
 # subset of people w/ illness (breakdown of them by limited activity)
@@ -246,11 +252,14 @@ EVINTERESTill <- subset(data1415, select= c(EVinterest, RAGE, Male, inc1000, deg
                         NorthWest, YorkshireHumber, EastMidlands, WestMidrands, 
                         EastofEngland, London, SouthEast, SouthWest, Wales, Scotland, 
                         Single, Married, MarriedSep, Divorced, Widowed, DVHsize, 
-                        NumDepCh, NumCar, illnesslim, POchoice, POknowledge, POcost, PObattery, POrecharge, 
-                        POresale, POsafety, POcarspec, POtech, POCpurchase, POCfuel, POCmaintenance, POCresale, 
-                        POCextax, POCcomptax, POCinsurance, ENcost, ENbattery, ENrecharge, ENresale, ENsafety, 
-                        ENcarspec, ENchoice, ENtech, ENenv, ENCpurchase, ENCfuel, ENCmaintenance, ENCresale, ENCextax, 
-                        ENCcomptac, ENCinsurance, high, highermiddle, lowermiddle, low))
+                        NumDepCh, NumCar, illnesslim, POchoice, POknowledge, POcost, 
+                        PObattery, POrecharge, POresale, POsafety, POcarspec, POtech, 
+                        POCpurchase, POCfuel, POCmaintenance, POCresale, POCextax, 
+                        POCcomptax, POCinsurance, ENcost, ENbattery, ENrecharge, 
+                        ENresale, ENsafety, ENcarspec, ENchoice, ENtech, ENenv, 
+                        ENCpurchase, ENCfuel, ENCmaintenance, ENCresale, ENCextax, 
+                        ENCcomptac, ENCinsurance, high, highermiddle, lowermiddle, 
+                        low, inccat))
 EVINTERESTill <- na.omit(EVINTERESTill)
 
 # save the subsets
