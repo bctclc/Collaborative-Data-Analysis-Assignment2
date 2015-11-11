@@ -211,6 +211,9 @@ data1415$NumCar[data1415$CAR==3] <- 2
 data1415$NumCar[data1415$CAR==4] <- 3
 table(data1415$NumCar, data1415$CAR)
 
+###dummy for having children or not
+EVINTEREST$havechildren <-1
+EVINTEREST$havechildren[EVINTEREST$NumDepCh==0] <- 0
 
 ### subset of variables for our analysis (w/o missing data)
 # base subset
