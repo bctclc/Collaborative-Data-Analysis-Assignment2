@@ -48,7 +48,10 @@ lrm(L4)
 
 
 ### present results
-stargazer::stargazer(L1, L2, L3, L4, 
+labels <- c('Age', 'Male', 'Income: low-middle', 'Income: high-middle', 'Income: high', 
+            'College degree', 'Drivers licence', '# of cars', '# of dependent children', 
+            'Scotland', '(Intercept)') 
+stargazer::stargazer(L1, L2, L3, L4, covariate.labels = labels,
                      title = 'Interests in EVs',
                      digits = 2, type = 'text')
 ```
