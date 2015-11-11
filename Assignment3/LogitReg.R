@@ -17,18 +17,11 @@ load("EVdata3.rda")
 
 ### step-wise logistic regression ###
 # Estimate model-1 (AGE & SEX & INCOME & Education)
-# Continuous income
-L1 <- lrm(EVinterest ~ RAGE + Male + inc1000 +  degree, EVINTEREST)
+# Categorical income (4 classes, low is the reference)
+L1 <- lrm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle + high + degree, 
+           EVINTEREST)
 lrm(L1)
 
-# Categorical income (4 classes, low is the reference)
-L11 <- lrm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle + high + degree, 
-           EVINTEREST)
-lrm(L11)
-
-stargazer::stargazer(L1, L11, 
-                     title = 'Interests in EVs: base models',
-                     digits = 2, type = 'text')
 
 # Estimate model-2 (AGE & SEX & INCOME & Education & Licence & # of Cars)
 L2 <- lrm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle + high + degree 
@@ -37,21 +30,21 @@ lrm(L2)
 
 # Estimate model-3 (AGE & SEX & INCOME & Education & Licence & # of Cars & # of children)
 L3 <- lrm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle + high + degree 
-          + licence + NumCar + NumDepCh, EVINTEREST)
+          + licence + NumCar + DVHsize + havingchildren, EVINTEREST)
 lrm(L3)
 
 # Estimate model-4 (AGE & SEX & INCOME & Education & Licence & # of Cars & # of children & Region)
 L4 <- lrm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle + high + degree
-          + licence + NumCar + NumDepCh + Scotland, EVINTEREST)
+          + licence + NumCar + DVHsize + havingchildren + Scotland, EVINTEREST)
 lrm(L4)
 
 
 ### present results
 # Create cleaner covariate labels
 labels <- c('Age', 'Male', 'Income: low-middle', 'Income: high-middle', 'Income: high', 
-            'College degree', 'Drivers licence', '# of cars', '# of dependent children', 
+            'College degree', 'Drivers licence', '# of cars', "Size of household", 'Having dependent children', 
             'Scotland', '(Intercept)') 
-stargazer::stargazer(L11, L2, L3, L4, covariate.labels = labels,
+stargazer::stargazer(L1, L2, L3, L4, covariate.labels = labels,
                      title = 'Interests in EVs',
                      digits = 2, type = 'text')
 
