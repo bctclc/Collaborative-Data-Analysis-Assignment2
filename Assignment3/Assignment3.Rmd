@@ -1,19 +1,57 @@
 ---
 title: "Interest in the EVs in the UK"
 author: "Claire Chang Liu & Noriko Magara"
-date: "2015Äê11ÔÂ10ÈÕ"
+date: "2015Ã„Ãª11Ã”Ã‚10ÃˆÃ•"
 output: html_document
 bibliography: Package_Citation.bib
 ---
 
 This paper looks at the interest in the Electric Vehicles in the UK. First, we will describe the process of data gathering. Then we descriptively analyze the dependent variable and independent variables. Last part will be a preliminary analysis using logistic regression models.
 
+```{r}
+library(stargazer)
+library(knitr)
+library(Zelig)
+library(rms)
+load("EVdata1.rda")
+```
+
 ##Data Gathering
 
 ##Descriptive Analysis
 
 ##Logistic Regression
+In this section presents our efforts to answer the question, "Who are more/less likely to be interested in the EVs". Since the dependent variable is a binary variable, respondents having an interest in the EVs or not, we adopt logistic regression models here.
 
+Nine independent variables are categorized into four groups. Socio-economic variables include age, sex, gross annual income level, and education level. The second group includes having driver's license or not, and the number of cars available to the household, which to some extent describe the respondents' potential to buy a new car.The third one is the household-level variables, including household size and whether or not having depedent children. The last one is region. 
+
+```{r}
+# Estimate model-1 (AGE & SEX & INCOME & Education)
+L1 <- lrm(EVinterest ~ RAGE + Male + as.factor(inccat) + degree, 
+           EVINTEREST)
+lrm(L1)
+
+
+# Estimate model-2 (AGE & SEX & INCOME & Education & LICENCE & Number of Cars)
+L2 <- lrm(EVinterest ~ RAGE + Male + as.factor(inccat) + degree + licence + NumCar, EVINTEREST)
+lrm(L2)
+
+# Estimate model-3 (AGE & SEX & INCOME & Education & LICENCE & Number of Cars % Number of Children)
+L3 <- lrm(EVinterest ~ RAGE + Male + as.factor(inccat) + degree + licence + NumCar + DVHsize + havechildren,
+          EVINTEREST)
+lrm(L3)
+
+# Estimate model-4 (AGE & SEX & INCOME & Education & LICENCE & Number of Cars & Number of Children & Scotland)
+L4 <- lrm(EVinterest ~ RAGE + Male + as.factor(inccat) + degree + licence + NumCar + DVHsize + havechildren + Scotland,
+          EVINTEREST)
+lrm(L4)
+
+
+### present results
+stargazer::stargazer(L1, L2, L3, L4, 
+                     title = 'Interests in EVs',
+                     digits = 2, type = 'text')
+```
 ##Discussion
 
 ##Reference
