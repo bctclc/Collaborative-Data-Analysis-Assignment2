@@ -2,27 +2,32 @@
 title: "Interest in the EVs in the UK"
 author: "Claire Chang Liu & Noriko Magara"
 date: "Nov. 11th, 2015"
-output: html_document
-fig_caption: true
+output: 
+  html_document:
+    fig_caption: true
+    number_sections: true
 bibliography: Package_Citation.bib
 ---
 
 This paper looks at the interest in the Electric Vehicles in the UK. First, we will describe the process of data gathering. Then we descriptively analyze the dependent variable and independent variables. Last part will be a preliminary analysis using logistic regression models.
 
-```{r results='hide',message=FALSE}
+```{r results='hide',echo=F, warning=F, message=F, error=F}
 library(stargazer)
 library(knitr)
 library(Zelig)
 library(rms)
-library(apsrtable)
+library(captioner)
 load("EVdata1.rda")
+figcap <- captioner(prefix = "Figure", auto_space = TRUE, levels = 1, type = NULL)
+tablecap <-captioner(prefix = "Table", auto_space = TRUE, levels = 1, type = NULL)
 ```
 
-##Data Gathering
+#Data Gathering
 
-##Descriptive Analysis
+#Descriptive Analysis
 
-##Logistic Regression
+#Logistic Regression
+##Modelling
 In this section presents our efforts to answer the question, "Who are more/less likely to be interested in the EVs". Since the dependent variable is a binary variable, i.e. respondents having an interest in the EVs or not, we adopt logistic regression models here.
 
 Nine independent variables are categorized into four groups. Socio-economic variables include age, sex, gross annual income level, and education level. The second group includes having driver's license or not, and the number of cars available to the household, which to some extent describe the respondents' potential to buy a new car.The third one is household-level variables, including household size and whether or not having depedent children. The last one is region. (The UK has 11 regions in total. However, our preliminary analysis suggests that, using London as the baseline, only Scotland is significantly different. Therefore, we only include "Scotland" in the regression.)
@@ -50,7 +55,7 @@ L4 <- lrm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle +high + degree +
 labels <- c('Age', 'Male', 'Income: low-middle', 'Income: high-middle', 'Income: high', 
             'College degree', 'Drivers licence', '# of cars', "Size of household", 'Having dependent children', 'Scotland', '(Intercept)') 
 stargazer::stargazer(L1, L2, L3, L4,  type="text", covariate.labels = labels,
-                     digits = 2, title ="Step-wise Modelling")
+                     digits = 2, title =tablecap("step-wise", "Step-wise Modelling"))
 ```
 
 As the table above shows, all models are significant at 99% level. Except for the two variables, size of household and having dependent children or not, all other variables are statistically signifcant as well. The fact that household-related variables are effective predictors at macro level, but not at micro level, may suggest a neighborhood effect, but it is beyond the scope of this paper.
@@ -60,16 +65,33 @@ Based on this analysis, we leave out the two household-related variables and use
 $$Prob(Interested-in-EVs)= \beta_{0}+\beta_{1}Age+\beta_{2}Male+\beta_{3}Lowmid$$
 
 $$+\beta_{4}Highmid+\beta_{5}High+\beta_{6}College+\beta_{7}License+\beta_{8}Numcar+\beta_{9}Scotland$$
+
 ```{r echo=F, warning=F, message=F, error=F}
+finallabels <- c('Age', 'Male', 'Income: low-middle', 'Income: high-middle', 'Income: high', 
+            'College degree', 'Drivers licence', '# of cars', 'Scotland', '(Intercept)') 
 L5 <- lrm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
           + licence + NumCar + Scotland,
           EVINTEREST)
-stargazer::stargazer(L5,  type="text", covariate.labels = labels,
-                     digits = 2, title ="Interests in EVs")
+stargazer::stargazer(L5,  type="text", covariate.labels = finallabels,
+                     digits = 2, title =tablecap("final-model", "Interests in EVs"))
 ```
 
+The model is statistically significant at 99% level and five out of the seven variables are significant at 95% level. On average, males are more likely to be interested in electric vehicles. Having a college degree or driver's license also increases the likelihood of being interested. The number of cars is positively relative to the likelihood, suggesting that people who already have the "basics" are more likely to consider electric vehicles. However, being in Scotland reduces this likelihood. 
 
+The less significant variables are age and income level. Age is negatively relative to the likelihood of being interested, meaning that younger people are more likely to have an interest in electric vehicles. Interestingly, income level seems not to matter much. Using the lowest quartile group as the baseline, only the highest quartile group is significantly different at 90% level. Nevertheless, results from regression 1 shows that income level (at least when comparing the highest quartile to the lowest quartile) is statistically significant at 99% level. The decrease in significance is due to the correlation between income level, and having driver's license and number of cars available. 
 
-##Discussion
+##Prediction
+In addition to the odds ratio provided in the regression output, we want to be more specific with the size of effects of the seven independent variables. Therefore, the ranges of predicted probability based on the variation of different variables are provided as following.
 
-##Reference
+```{r echo=F, warning=F, message=F, error=F, fig.cap=figcap("predict-by-age", "Predicted Probability of Having an Interest in EVs by Age")}
+ZP <- zelig(EVinterest ~ RAGE + Male + lowermiddle + highermiddle + high 
+             + degree + licence + NumCar + NumDepCh + Scotland, 
+             cite = FALSE, data = EVINTEREST, model = 'logit')
+setZP1 <- setx(ZP, RAGE = 20:80)
+simZP1 <- sim(ZP, x = setZP1)
+plot(simZP1, xlab="Age", ylab="Predicted Probability")
+```
+
+#Discussion
+
+#Reference
