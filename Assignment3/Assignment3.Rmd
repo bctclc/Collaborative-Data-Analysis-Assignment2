@@ -1,14 +1,14 @@
 ---
 title: "Interest in the EVs in the UK"
 author: "Claire Chang Liu & Noriko Magara"
-date: "2015Äê11ÔÂ10ÈÕ"
+date: "Nov. 11th, 2015"
 output: html_document
 bibliography: Package_Citation.bib
 ---
 
 This paper looks at the interest in the Electric Vehicles in the UK. First, we will describe the process of data gathering. Then we descriptively analyze the dependent variable and independent variables. Last part will be a preliminary analysis using logistic regression models.
 
-```{r}
+```{r results='hide',message=FALSE}
 library(stargazer)
 library(knitr)
 library(Zelig)
@@ -29,27 +29,21 @@ Nine independent variables are categorized into four groups. Socio-economic vari
 # Estimate model-1 (AGE & SEX & INCOME & Education)
 L1 <- lrm(EVinterest ~ RAGE + Male + as.factor(inccat) + degree, 
            EVINTEREST)
-lrm(L1)
-
 
 # Estimate model-2 (AGE & SEX & INCOME & Education & LICENCE & Number of Cars)
 L2 <- lrm(EVinterest ~ RAGE + Male + as.factor(inccat) + degree + licence + NumCar, EVINTEREST)
-lrm(L2)
 
 # Estimate model-3 (AGE & SEX & INCOME & Education & LICENCE & Number of Cars % Number of Children)
 L3 <- lrm(EVinterest ~ RAGE + Male + as.factor(inccat) + degree + licence + NumCar + DVHsize + havechildren,
           EVINTEREST)
-lrm(L3)
 
 # Estimate model-4 (AGE & SEX & INCOME & Education & LICENCE & Number of Cars & Number of Children & Scotland)
 L4 <- lrm(EVinterest ~ RAGE + Male + as.factor(inccat) + degree + licence + NumCar + DVHsize + havechildren + Scotland,
           EVINTEREST)
-lrm(L4)
-
 
 ### present results
 labels <- c('Age', 'Male', 'Income: low-middle', 'Income: high-middle', 'Income: high', 
-            'College degree', 'Drivers licence', '# of cars', '# of dependent children', 
+            'College degree', 'Drivers licence', '# of cars', "Size of household", 'Having ependent children', 
             'Scotland', '(Intercept)') 
 stargazer::stargazer(L1, L2, L3, L4, covariate.labels = labels,
                      title = 'Interests in EVs',
