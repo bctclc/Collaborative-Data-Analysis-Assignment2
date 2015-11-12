@@ -6,7 +6,9 @@ output:
   pdf_document: 
     fig_caption: yes
     number_sections: yes
-bibliography: Package_Citation.bib
+bibliography: 
+  - Package_Citation.bib
+  - Other_Citation.bib
 ---
 
 This paper examines the determinants of interest in electric vehicles (EVs) in the UK. 
@@ -37,7 +39,7 @@ After logging in and agreeing with the terms of conditions, the datasets are ava
 The registration process may take a few days. 
 However, other documents (e.g. questionnaire, brief summary) are available at the link above without registration.
 This module comes with two datasets: survey results from 2014 and 2015. 
-For our study, we use both survey years by combining both datasets together. 
+For our study, we use both survey years by combining both datasets together [@UKincome]. 
 
 ```{r echo=F, warning=F, message=F, error=F}
 source("data_cleanup.R")
@@ -258,3 +260,13 @@ Lastly, $R^2$ of the model is only 0.12, meaning that these variables only expla
 
 
 #Reference
+
+@CiteR
+@R-captioner
+@R-dplyr
+@R-foreign
+@R-knitr
+@R-repmis
+@R-rms
+@R-stargazer
+@R-Zelig
