@@ -1,7 +1,7 @@
 ---
-title: "Interest in the EVs in the UK"
+title: "Determinants of Interest in the EVs in the UK"
 author: "Claire Chang Liu & Noriko Magara"
-date: "Nov. 11th, 2015"
+date: "Nov. 13th, 2015"
 output: 
   html_document:
     fig_caption: true
@@ -9,22 +9,40 @@ output:
 bibliography: Package_Citation.bib
 ---
 
-This paper looks at the interest in the Electric Vehicles in the UK. First, we will describe the process of data gathering. Then we descriptively analyze the dependent variable and independent variables. Last part will be a preliminary analysis using logistic regression models.
+This paper examine the determinants of interest in the Electric Vehicles in the UK. 
+First, we will describe the process of data gathering. 
+Then we descriptively analyze the dependent variable and independent variables. 
+Last part will be a preliminary analysis using logistic regression models.
 
 ```{r results='hide',echo=F, warning=F, message=F, error=F}
+# set working directry (# change this line)
+setwd("C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/Assignment3")
 library(stargazer)
 library(knitr)
 library(Zelig)
 library(rms)
 library(captioner)
-load("EVdata1.rda")
+library(foreign)
+library(dplyr)
 figcap <- captioner(prefix = "Figure", auto_space = TRUE, levels = 1, type = NULL)
 tablecap <-captioner(prefix = "Table", auto_space = TRUE, levels = 1, type = NULL)
 ```
 
-#Data Gathering
+# Data Gathering
+This analysis is based on survey data in the UK called ["Opinions and Lifestyle Survey, Electric Vehicles Module, February 2014 and February 2015"](https://discover.ukdataservice.ac.uk/Catalogue/?sn=7571&type=Data%20catalogue) [@UKDATA]. 
+Note that [registration](http://ukdataservice.ac.uk/get-data/how-to-access/registration) is required to download the dataset from the UK Data Service website above.
+After logging in and agreeing with the terms of conditions, the datasets are available for download in STATA or other format.
+The registration process may take a few days. 
+However, other documents (e.g. questionnaire, brief summary) are available at the link above without registration.
+This module comes with two datasets: survey results from 2014 and 2015. 
+For our study, we use both survey years by combining both datasets together. 
 
-#Descriptive Analysis
+```{r echo=F, warning=F, message=F, error=F}
+source("data_cleanup.R")
+```
+
+
+# Descriptive Analysis
 
 #Logistic Regression
 ##Modelling

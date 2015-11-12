@@ -212,8 +212,8 @@ data1415$NumCar[data1415$CAR==4] <- 3
 table(data1415$NumCar, data1415$CAR)
 
 ###dummy for having children or not
-EVINTEREST$havechildren <-1
-EVINTEREST$havechildren[EVINTEREST$NumDepCh==0] <- 0
+data1415$havechildren <-1
+data1415$havechildren[data1415$NumDepCh==0] <- 0
 
 ### subset of variables for our analysis (w/o missing data)
 # base subset
@@ -229,7 +229,7 @@ EVINTEREST <- subset(data1415, select= c(EVinterest, RAGE, Male, inc1000, degree
                      ENresale, ENsafety, ENcarspec, ENchoice, ENtech, ENenv, 
                      ENCpurchase, ENCfuel, ENCmaintenance, ENCresale, ENCextax, 
                      ENCcomptac, ENCinsurance, high, highermiddle, lowermiddle, 
-                     low, inccat))
+                     low, inccat, havechildren))
 EVINTEREST <- na.omit(EVINTEREST)
 
 # base subset + full-time/part-time (fewer observations!)
@@ -246,7 +246,7 @@ EVINTERESTemp <- subset(data1415, select= c(EVinterest, RAGE, Male, inc1000, deg
                         ENrecharge, ENresale, ENsafety, ENcarspec, ENchoice, 
                         ENtech, ENenv, ENCpurchase, ENCfuel, ENCmaintenance, 
                         ENCresale, ENCextax, ENCcomptac, ENCinsurance, high, 
-                        highermiddle, lowermiddle, low, inccat))
+                        highermiddle, lowermiddle, low, inccat, havechildren))
 EVINTERESTemp <- na.omit(EVINTERESTemp)
 
 # subset of people w/ illness (breakdown of them by limited activity)
@@ -262,7 +262,7 @@ EVINTERESTill <- subset(data1415, select= c(EVinterest, RAGE, Male, inc1000, deg
                         ENresale, ENsafety, ENcarspec, ENchoice, ENtech, ENenv, 
                         ENCpurchase, ENCfuel, ENCmaintenance, ENCresale, ENCextax, 
                         ENCcomptac, ENCinsurance, high, highermiddle, lowermiddle, 
-                        low, inccat))
+                        low, inccat, havechildren))
 EVINTERESTill <- na.omit(EVINTERESTill)
 
 # save the subsets

@@ -1,7 +1,7 @@
 ### Claire & Noriko ###
 ### descriptive analysis ###
 
-setwd("E:\\—ßœ∞œ‡πÿ\\R\\Collaborative-Data-Analysis-Assignment2\\datasets")
+setwd("C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/Assignment3")
 
 load("EVdata1.rda")
 
@@ -20,10 +20,10 @@ inctable <-table(EVINTEREST$inccat)
 barplot(inctable, main="Income Distribtion",ylab="Frequnecy", 
         names.arg=c("Low", "Low-Mid", "High-Mid", "High"))
 mtext(side=1, "Gross Annual Income", line=2)
-mtext(side=1, "Low: income below °Í14,559", line=4)
-mtext(side=1, "Low-Mid: income between °Í14,560 and °Í20,799", line=5)
-mtext(side=1, "High-Mid: income between °Í20,800 and °Í25,999", line=6)     
-mtext(side=1, "High: income above °Í26,000", line=7)
+mtext(side=1, "Low: income below °?14,559", line=4)
+mtext(side=1, "Low-Mid: income between °?14,560 and °?20,799", line=5)
+mtext(side=1, "High-Mid: income between °?20,800 and °?25,999", line=6)     
+mtext(side=1, "High: income above °?26,000", line=7)
 
 mean(degree)
 
