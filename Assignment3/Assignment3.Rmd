@@ -17,6 +17,7 @@ Last part will be a preliminary analysis using logistic regression models.
 ```{r results='hide',echo=F, warning=F, message=F, error=F}
 # set working directry (# change this line)
 setwd("C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/Assignment3")
+
 library(stargazer)
 library(knitr)
 library(Zelig)
@@ -41,8 +42,24 @@ For our study, we use both survey years by combining both datasets together.
 source("data_cleanup.R")
 ```
 
+The list of variables are shown in the table below.
+
+|Name|Type|Description|
+|----|----|-----------|
+|EVinterest|dummy|Whether the respondent is interested in EVs or not|
+|RAGE|continuous|Respondent's age|
+|Male|dummy|Respondent's sex|
+|inccat|categorical|Respondent's income in 4 categories (low, low-mid, high-mid, high)|
+|degree|dummy|Whether the respondent is a college graduate or not|
+|licence|dummy|Whether the respondent has a valid drivers licence or not|
+|NumCar|continuous|Number of cars in the respondent's household|
+|DVHsize|continuous|Respondent's household size|
+|havechildren|dummy|Whether the Respondent has children or not|
+|Scotland|dummy|Whether the Respondent lives in Scotland or not|
+
+
 # Descriptive Analysis
-Variables 
+
 
 
 #Logistic Regression
