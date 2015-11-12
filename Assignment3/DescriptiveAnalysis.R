@@ -17,13 +17,11 @@ mean(EVINTEREST$Male)
 
 summary(EVINTEREST$inccat)
 inctable <-table(EVINTEREST$inccat)
-barplot(inctable, main="Income Distribtion",ylab="Frequnecy", 
+barplot(inctable, main="Income Distribtion",ylab="Frequnecy",
         names.arg=c("Low", "Low-Mid", "High-Mid", "High"))
 mtext(side=1, "Gross Annual Income", line=2)
-mtext(side=1, "Low: income below ¡?14,559", line=4)
-mtext(side=1, "Low-Mid: income between ¡?14,560 and ¡?20,799", line=5)
-mtext(side=1, "High-Mid: income between ¡?20,800 and ¡?25,999", line=6)     
-mtext(side=1, "High: income above ¡?26,000", line=7)
+mtext(side=1, "(Low:~14,559 / Low-Mid:14,560~20,799 / High-Mid:20,800~25,999 / High: 26,000+)", line=3)
+
 
 mean(degree)
 
@@ -39,4 +37,11 @@ childtable <- table(EVINTEREST$NumDepCh)
 barplot(childtable, main="Number of Dependent Children in Each Household", 
         xlab="Number of Children", ylab="Frequency")
 
+summary(EVINTEREST$DVHsize)
+Hsizetable <- table(EVINTEREST$DVHsize)
+barplot(Hsizetable, main="Household size", 
+        xlab="Household size", ylab="Frequency")
+
 mean(EVINTEREST$Scotland)
+
+mean(EVINTEREST$havechildren)

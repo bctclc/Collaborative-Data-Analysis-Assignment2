@@ -42,24 +42,70 @@ For our study, we use both survey years by combining both datasets together.
 source("data_cleanup.R")
 ```
 
+# Descriptive Analysis
+## Variables
 The list of variables are shown in the table below.
 
-|Name|Type|Description|
-|----|----|-----------|
-|EVinterest|dummy|Whether the respondent is interested in EVs or not|
-|RAGE|continuous|Respondent's age|
-|Male|dummy|Respondent's sex|
-|inccat|categorical|Respondent's income in 4 categories (low, low-mid, high-mid, high)|
-|degree|dummy|Whether the respondent is a college graduate or not|
-|licence|dummy|Whether the respondent has a valid drivers licence or not|
-|NumCar|continuous|Number of cars in the respondent's household|
-|DVHsize|continuous|Respondent's household size|
-|havechildren|dummy|Whether the Respondent has children or not|
-|Scotland|dummy|Whether the Respondent lives in Scotland or not|
+|Name        |Type       |Description                                                       |
+|------------|-----------|------------------------------------------------------------------|
+|EVinterest  |dummy      |Whether the respondent is interested in EVs or not                |
+|RAGE        |continuous |Respondent's age                                                  |
+|Male        |dummy      |Respondent's sex                                                  |
+|inccat      |categorical|Respondent's income in 4 categories (low, low-mid, high-mid, high)|
+|degree      |dummy      |Whether the respondent is a college graduate or not               |
+|licence     |dummy      |Whether the respondent has a valid drivers licence or not         |
+|NumCar      |continuous |Number of cars in the respondent's household                      |
+|DVHsize     |continuous |Respondent's household size                                       |
+|havechildren|dummy      |Whether the Respondent has children or not                        |
+|Scotland    |dummy      |Whether the Respondent lives in Scotland or not                   |
 
+## Summary statistics
+* **EVinterest**: `r round(mean(EVINTEREST$EVinterest)*100, digits=2)` % of respondents are interested in EVs
 
-# Descriptive Analysis
+* **RAGE**: Mean=`r round(mean(EVINTEREST$RAGE), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$RAGE), digits=2)`
 
+```{r echo=F, warning=F, message=F, error=F, fig.cap=figcap("age", "Distribution of respondent's age")}
+hist(EVINTEREST$RAGE,
+     main="Age Distribution", xlab="Age", ylab="Frequency", 
+     xlim=c(10,100))
+axis(side=1, at=seq(0,100, 10))
+```
+
+* **Male**: `r round(mean(EVINTEREST$Male)*100, digits=2)` % of respondents are male
+
+* **inccat**: distribution is shown in the graph below.
+
+```{r echo=F, warning=F, message=F, error=F, fig.cap=figcap("inccat", "Distribution of respondent's income")}
+inctable <-table(EVINTEREST$inccat)
+barplot(inctable, main="Income Distribtion",ylab="Frequnecy",
+        names.arg=c("Low", "Low-Mid", "High-Mid", "High"))
+mtext(side=1, "Gross Annual Income", line=2)
+mtext(side=1, "(Low:~14,559 / Low-Mid:14,560~20,799 / High-Mid:20,800~25,999 / High: 26,000+)", line=3)
+```
+
+* **degree**: `r round(mean(EVINTEREST$degree)*100, digits=2)` % of respondents have college degree
+
+* **licence**: `r round(mean(EVINTEREST$licence)*100, digits=2)` % of respondents have valid drivers licence
+
+* **NumCar**: Mean=`r round(mean(EVINTEREST$NumCar), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$NumCar), digits=2)`
+
+```{r echo=F, warning=F, message=F, error=F, fig.cap=figcap("NumCar", "Distribution of number of cars")}
+cartable <-table(EVINTEREST$NumCar)
+barplot(cartable, main="Number of Cars in Each Household", 
+     xlab="Number of Cars", ylab="Frequency")
+```
+
+* **DVHsize**: Mean=`r round(mean(EVINTEREST$DVHsize), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$DVHsize), digits=2)`
+
+```{r echo=F, warning=F, message=F, error=F, fig.cap=figcap("DVHsize", "Distribution of household size")}
+Hsizetable <- table(EVINTEREST$DVHsize)
+barplot(Hsizetable, main="Household size", 
+        xlab="Household size", ylab="Frequency")
+```
+
+* **havechildren**: `r round(mean(EVINTEREST$havechildren)*100, digits=2)` % of respondents have children
+
+* **Scotland**: `r round(mean(EVINTEREST$Scotland)*100, digits=2)` % of respondents lives in Scotland
 
 
 #Logistic Regression
