@@ -46,25 +46,32 @@ source("data_cleanup.R")
 ## Variables
 The list of variables are shown in the table below.
 
-|Name        |Type       |Description                                                       |
-|------------|-----------|------------------------------------------------------------------|
-|EVinterest  |dummy      |Whether the respondent is interested in EVs or not                |
-|RAGE        |continuous |Respondent's age                                                  |
-|Male        |dummy      |Respondent's sex                                                  |
-|inccat      |categorical|Respondent's income in 4 categories (low, low-mid, high-mid, high)|
-|degree      |dummy      |Whether the respondent is a college graduate or not               |
-|licence     |dummy      |Whether the respondent has a valid drivers licence or not         |
-|NumCar      |continuous |Number of cars in the respondent's household                      |
-|DVHsize     |continuous |Respondent's household size                                       |
-|havechildren|dummy      |Whether the Respondent has children or not                        |
-|Scotland    |dummy      |Whether the Respondent lives in Scotland or not                   |
+```{r echo=F, warning=F, message=F, error=F}
+Names <- c("EVinterest", "RAGE", "Male", "inccat", "degree", "licence", 
+           "NumCar", "DVHsize", "havechildren", "Scotland")
+Types <- c("dummy", "continuous", "dummy", "categorical", "dummy", 
+           "dummy", "continuous", "continuous", "dummy", "dummy")
+Descriptions <- c("Whether the respondent is interested in EVs or not", 
+                  "Respondent's age",
+                  "Respondent's sex",
+                  "Respondent's income in 4 categories (low, low-mid, high-mid, high)",
+                  "Whether the respondent is a college graduate or not",
+                  "Whether the respondent has a valid drivers licence or not",
+                  "Number of cars in the respondent's household",
+                  "Respondent's household size",
+                  "Whether the Respondent has children or not",
+                  "Whether the Respondent lives in Scotland or not")
+vartable <- cbind(Names, Types, Descriptions)
+kable(vartable, caption="List of Variables")
+```
+
 
 ## Summary statistics
 * **EVinterest**: `r round(mean(EVINTEREST$EVinterest)*100, digits=2)` % of respondents are interested in EVs
 
 * **RAGE**: Mean=`r round(mean(EVINTEREST$RAGE), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$RAGE), digits=2)`
 
-```{r echo=F, warning=F, message=F, error=F, fig.cap=figcap("age", "Distribution of respondent's age")}
+```{r echo=F, warning=F, message=F, error=F, fig.cap="Distribution of respondent's age"}
 hist(EVINTEREST$RAGE,
      main="Age Distribution", xlab="Age", ylab="Frequency", 
      xlim=c(10,100))
@@ -75,7 +82,7 @@ axis(side=1, at=seq(0,100, 10))
 
 * **inccat**: distribution is shown in the graph below.
 
-```{r echo=F, warning=F, message=F, error=F, fig.cap=figcap("inccat", "Distribution of respondent's income")}
+```{r echo=F, warning=F, message=F, error=F, fig.cap="Distribution of respondent's income"}
 inctable <-table(EVINTEREST$inccat)
 barplot(inctable, main="Income Distribtion",ylab="Frequnecy",
         names.arg=c("Low", "Low-Mid", "High-Mid", "High"))
@@ -89,7 +96,7 @@ mtext(side=1, "(Low:~14,559 / Low-Mid:14,560~20,799 / High-Mid:20,800~25,999 / H
 
 * **NumCar**: Mean=`r round(mean(EVINTEREST$NumCar), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$NumCar), digits=2)`
 
-```{r echo=F, warning=F, message=F, error=F, fig.cap=figcap("NumCar", "Distribution of number of cars")}
+```{r echo=F, warning=F, message=F, error=F, fig.cap="Distribution of number of cars"}
 cartable <-table(EVINTEREST$NumCar)
 barplot(cartable, main="Number of Cars in Each Household", 
      xlab="Number of Cars", ylab="Frequency")
@@ -97,7 +104,7 @@ barplot(cartable, main="Number of Cars in Each Household",
 
 * **DVHsize**: Mean=`r round(mean(EVINTEREST$DVHsize), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$DVHsize), digits=2)`
 
-```{r echo=F, warning=F, message=F, error=F, fig.cap=figcap("DVHsize", "Distribution of household size")}
+```{r echo=F, warning=F, message=F, error=F, fig.cap="Distribution of household size"}
 Hsizetable <- table(EVINTEREST$DVHsize)
 barplot(Hsizetable, main="Household size", 
         xlab="Household size", ylab="Frequency")
@@ -137,7 +144,7 @@ L4 <- lrm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle +high + degree +
 labels <- c('Age', 'Male', 'Income: low-middle', 'Income: high-middle', 'Income: high', 
             'College degree', 'Drivers licence', 'Number of cars', "Size of household", 'Having dependent children', 'Scotland', '(Intercept)') 
 stargazer::stargazer(L1, L2, L3, L4,  type="latex", header=F, covariate.labels = labels,
-                     digits = 2, title =tablecap("step-wise", "Step-wise Modelling"))
+                     digits = 2, title="Step-wise Modelling")
 ```
 
 As the table above shows, all models are significant at 99% level. Except for the two variables, size of household and having dependent children or not, all other variables are statistically signifcant as well. The fact that household-related variables are effective predictors at macro level, but not at micro level, may suggest a neighborhood effect, but it is beyond the scope of this paper.
@@ -155,7 +162,7 @@ L5 <- lrm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle +high + degree
           + licence + NumCar + Scotland,
           EVINTEREST)
 stargazer::stargazer(L5, type="latex", header=F, covariate.labels = finallabels,
-                     digits = 2, title =tablecap("final-model", "Interests in EVs"))
+                     digits = 2, title="Interests in EVs")
 ```
 
 The model is statistically significant at 99% level and five out of the seven variables are significant at 95% level. On average, males are more likely to be interested in electric vehicles. Having a college degree or driver's license also increases the likelihood of being interested. The number of cars is positively relative to the likelihood, suggesting that people who already have the "basics" are more likely to consider electric vehicles. However, being in Scotland reduces this likelihood. 
@@ -165,7 +172,7 @@ The less significant variables are age and income level. Age is negatively relat
 ##Prediction
 In addition to the odds ratio provided in the regression output, we want to be more specific with the size of effects of the seven independent variables. Therefore, the ranges of predicted probability based on the variation of different variables are provided as following.
 
-```{r echo=F, warning=F, message=F, error=F, fig.cap=figcap("predict-by-age", "Predicted Probability of Having an Interest in EVs by Age and Sex"), fig.height=6}
+```{r echo=F, warning=F, message=F, error=F, fig.cap="Predicted Probability of Having an Interest in EVs by Age and Sex", fig.height=6}
 ZP <- zelig(EVinterest ~ RAGE + Male + lowermiddle + highermiddle + high 
              + degree + licence + NumCar + NumDepCh + Scotland, 
              cite = FALSE, data = EVINTEREST, model = 'logit')
