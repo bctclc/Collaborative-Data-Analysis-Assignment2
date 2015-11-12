@@ -2,10 +2,10 @@
 title: "Determinants of Interest in the EVs in the UK"
 author: "Claire Chang Liu & Noriko Magara"
 date: "Nov. 13th, 2015"
-output: 
-  html_document:
-    fig_caption: true
-    number_sections: true
+output:
+  pdf_document: 
+    fig_caption: yes
+    number_sections: yes  
 bibliography: Package_Citation.bib
 ---
 
@@ -135,8 +135,8 @@ L4 <- lrm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle +high + degree +
 
 ```{r echo=F, warning=F, message=F, error=F, results='asis'}
 labels <- c('Age', 'Male', 'Income: low-middle', 'Income: high-middle', 'Income: high', 
-            'College degree', 'Drivers licence', '# of cars', "Size of household", 'Having dependent children', 'Scotland', '(Intercept)') 
-stargazer::stargazer(L1, L2, L3, L4,  type="html", covariate.labels = labels,
+            'College degree', 'Drivers licence', 'Number of cars', "Size of household", 'Having dependent children', 'Scotland', '(Intercept)') 
+stargazer::stargazer(L1, L2, L3, L4,  type="latex", header=F, covariate.labels = labels,
                      digits = 2, title =tablecap("step-wise", "Step-wise Modelling"))
 ```
 
@@ -150,11 +150,11 @@ $$+\beta_{4}Highmid+\beta_{5}High+\beta_{6}College+\beta_{7}License+\beta_{8}Num
 
 ```{r echo=F, warning=F, message=F, error=F, results='asis'}
 finallabels <- c('Age', 'Male', 'Income: low-middle', 'Income: high-middle', 'Income: high', 
-            'College degree', 'Drivers licence', '# of cars', 'Scotland', '(Intercept)') 
+            'College degree', 'Drivers licence', 'Number of cars', 'Scotland', '(Intercept)') 
 L5 <- lrm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
           + licence + NumCar + Scotland,
           EVINTEREST)
-stargazer::stargazer(L5, type="html", covariate.labels = finallabels,
+stargazer::stargazer(L5, type="latex", header=F, covariate.labels = finallabels,
                      digits = 2, title =tablecap("final-model", "Interests in EVs"))
 ```
 
