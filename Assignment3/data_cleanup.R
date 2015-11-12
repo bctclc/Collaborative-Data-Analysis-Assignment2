@@ -267,6 +267,5 @@ EVINTERESTill <- na.omit(EVINTERESTill)
 
 # save the subsets
 save(EVINTEREST, file="EVdata1.rda")
-save(EVINTERESTemp, file="EVdata2.rda")
-save(EVINTERESTill, file="EVdata3.rda")
+
 
