@@ -1,5 +1,5 @@
-# Pair Assignment
-## Interest in Electric Vehicles in the UK
+# Pair Assignments
+## Determinants of Interest in Electric Vehicles in the UK
 
 This is a repository for the pair assignments in Collaborative Social Data Analysis class in Hertie School of Governance (MPP-E1180).
 
