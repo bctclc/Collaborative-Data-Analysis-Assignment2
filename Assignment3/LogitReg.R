@@ -6,8 +6,7 @@ library(knitr)
 library(Zelig)
 library(rms)
 
-# set working directory (change this line to your repository location)
-setwd("C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/Assignment3")
+
 
 # road the cleaned up dataframe
 load("EVdata1.rda")

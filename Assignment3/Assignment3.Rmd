@@ -15,8 +15,8 @@ Then we descriptively analyze the dependent variable and independent variables.
 Last part will be a preliminary analysis using logistic regression models.
 
 ```{r results='hide',echo=F, warning=F, message=F, error=F}
-# set working directry (# change this line)
-setwd("C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/Assignment3")
+### set working directory
+setwd("E:\\—ßœ∞œ‡πÿ\\R\\Introduction-to-Collaborative-Social-Science-Data-Analysis\\Collaborative-Data-Analysis-Assignment2\\Assignment3")
 
 library(stargazer)
 library(knitr)
@@ -25,6 +25,7 @@ library(rms)
 library(captioner)
 library(foreign)
 library(dplyr)
+
 figcap <- captioner(prefix = "Figure", auto_space = TRUE, levels = 1, type = NULL)
 tablecap <-captioner(prefix = "Table", auto_space = TRUE, levels = 1, type = NULL)
 ```
@@ -169,12 +170,12 @@ The model is statistically significant at 99% level and five out of the seven va
 
 The less significant variables are age and income level. Age is negatively relative to the likelihood of being interested, meaning that younger people are more likely to have an interest in electric vehicles. Interestingly, income level seems not to matter much. Using the lowest quartile group as the baseline, only the highest quartile group is significantly different at 90% level. Nevertheless, results from regression 1 shows that income level (at least when comparing the highest quartile to the lowest quartile) is statistically significant at 99% level. The decrease in significance is due to the correlation between income level, and having driver's license and number of cars available. 
 
-##Prediction
-In addition to the odds ratio provided in the regression output, we want to be more specific with the size of effects of the seven independent variables. Therefore, the ranges of predicted probability based on the variation of different variables are provided as following.
+##Comparison of probabilities by Group
+In addition to the odds ratio provided in the regression output, we want to be more specific with the size of effects of the seven independent variables. Therefore, the ranges of probability based on the variation of different variables are provided as following.
 
 ```{r echo=F, warning=F, message=F, error=F, fig.cap="Predicted Probability of Having an Interest in EVs by Age and Sex", fig.height=6}
 ZP <- zelig(EVinterest ~ RAGE + Male + lowermiddle + highermiddle + high 
-             + degree + licence + NumCar + NumDepCh + Scotland, 
+             + degree + licence + NumCar  + Scotland, 
              cite = FALSE, data = EVINTEREST, model = 'logit')
 setZP1 <- setx(ZP, RAGE = 20:95, Male=0)
 simZP1 <- sim(ZP, x = setZP1)
@@ -189,6 +190,17 @@ legend("topright", c("Male","Female"),lwd=1, col=c("blue","red"))
 ```
 
 `r figcap("predict-by-age", display="cite")` shows the predicted probability of having an interest in EVs by age and sex. Regardless of age, males show a greater interest than females. Even though the variation among males is larger too, the difference in probability is on average about 5 percentage points. The linear relationship between age and this probability is clearly demostrated here as well. Younger people are more likely to be interested than older people.
+
+**`r tablecap("by-income", "Probability by Income Level")`**
+
+|Income Level |Mean Probability|
+|-------------|-----------------|
+|Highest quartile |`r round(mean(EVINTEREST$EVinterest[EVINTEREST$high==1]),4)*100`%|`r round(ci(EVINTEREST$EVinterest[EVINTEREST$high==1]),4)*100`%|
+|Second highest quartile|`r round(mean(EVINTEREST$EVinterest[EVINTEREST$highermiddle==1]),4)*100`%|
+|Second lowest quartile|`r round(mean(EVINTEREST$EVinterest[EVINTEREST$lowermiddle==1]),4)*100`%|
+|Lowest quartile|`r round(mean(EVINTEREST$EVinterest[EVINTEREST$low==1]),4)*100`%|
+
+Probabilities of different income groups comfirms our previous interpretation of the regression results that only the highest quartile group has a significantly higher interest, though the genereal 
 
 #Discussion
 
