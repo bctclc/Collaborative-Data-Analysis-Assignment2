@@ -47,7 +47,7 @@ source("data_cleanup.R")
 ## Variables
 The list of variables are shown in the table below.
 
-```{r echo=F, warning=F, message=F, error=F}
+```{r echo=F, warning=F, message=F, error=F, results='asis'}
 Names <- c("EVinterest", "RAGE", "Male", "inccat", "degree", "licence", 
            "NumCar", "DVHsize", "havechildren", "Scotland")
 Types <- c("dummy", "continuous", "dummy", "categorical", "dummy", 
@@ -72,23 +72,17 @@ kable(vartable, caption="List of Variables")
 
 * **RAGE**: Mean=`r round(mean(EVINTEREST$RAGE), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$RAGE), digits=2)`
 
-```{r echo=F, warning=F, message=F, error=F, fig.cap="Distribution of respondent's age"}
-hist(EVINTEREST$RAGE,
-     main="Age Distribution", xlab="Age", ylab="Frequency", 
-     xlim=c(10,100))
-axis(side=1, at=seq(0,100, 10))
-```
-
 * **Male**: `r round(mean(EVINTEREST$Male)*100, digits=2)` % of respondents are male
 
-* **inccat**: distribution is shown in the graph below.
+* **inccat**: distribution is shown in the table below.
 
-```{r echo=F, warning=F, message=F, error=F, fig.cap="Distribution of respondent's income"}
-inctable <-table(EVINTEREST$inccat)
-barplot(inctable, main="Income Distribtion",ylab="Frequnecy",
-        names.arg=c("Low", "Low-Mid", "High-Mid", "High"))
-mtext(side=1, "Gross Annual Income", line=2)
-mtext(side=1, "(Low:~14,559 / Low-Mid:14,560~20,799 / High-Mid:20,800~25,999 / High: 26,000+)", line=3)
+```{r echo=F, warning=F, message=F, error=F, results='asis'}
+inccatcount <- table(EVINTEREST$inccat)
+Percentage <- round(inccatcount/length(EVINTEREST$inccat)*100, digits=2)
+Income <- c('Low', 'Low-Mid', 'High-Mid', 'High')
+Range <- c('Below 14,559GDP', '14,560GBP~20,799GBP', '20,800GBP~25,999GBP', '26,000GBP and more')
+inccatsummary <- cbind(Income, Range, Percentage)
+kable(inccatsummary, caption="Distribution of Income")
 ```
 
 * **degree**: `r round(mean(EVINTEREST$degree)*100, digits=2)` % of respondents have college degree
@@ -97,24 +91,40 @@ mtext(side=1, "(Low:~14,559 / Low-Mid:14,560~20,799 / High-Mid:20,800~25,999 / H
 
 * **NumCar**: Mean=`r round(mean(EVINTEREST$NumCar), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$NumCar), digits=2)`
 
-```{r echo=F, warning=F, message=F, error=F, fig.cap="Distribution of number of cars"}
-cartable <-table(EVINTEREST$NumCar)
-barplot(cartable, main="Number of Cars in Each Household", 
-     xlab="Number of Cars", ylab="Frequency")
-```
-
 * **DVHsize**: Mean=`r round(mean(EVINTEREST$DVHsize), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$DVHsize), digits=2)`
-
-```{r echo=F, warning=F, message=F, error=F, fig.cap="Distribution of household size"}
-Hsizetable <- table(EVINTEREST$DVHsize)
-barplot(Hsizetable, main="Household size", 
-        xlab="Household size", ylab="Frequency")
-```
 
 * **havechildren**: `r round(mean(EVINTEREST$havechildren)*100, digits=2)` % of respondents have children
 
 * **Scotland**: `r round(mean(EVINTEREST$Scotland)*100, digits=2)` % of respondents lives in Scotland
 
+```{r echo=F, warning=F, message=F, error=F, fig.cap="Distribution of respondent's age", fig.height=4}
+hist(EVINTEREST$RAGE,
+     main="Age Distribution", xlab="Age", ylab="Frequency", 
+     xlim=c(10,100))
+axis(side=1, at=seq(0,100, 10))
+```
+
+```{r echo=F, warning=F, message=F, error=F, fig.cap="Distribution of respondent's income", fig.height=4}
+inctable <-table(EVINTEREST$inccat)
+barplot(inctable, main="Income Distribtion",ylab="Frequnecy",
+        names.arg=c("Low", "Low-Mid", "High-Mid", "High"))
+mtext(side=1, "Gross Annual Income", line=2)
+mtext(side=1, "(Low:~14,559 / Low-Mid:14,560~20,799 / High-Mid:20,800~25,999 / High: 26,000+)", line=3)
+```
+
+```{r echo=F, warning=F, message=F, error=F, fig.cap="Distribution of number of cars", fig.height=4}
+cartable <-table(EVINTEREST$NumCar)
+barplot(cartable, main="Number of Cars in Each Household", 
+     xlab="Number of Cars", ylab="Frequency")
+```
+
+```{r echo=F, warning=F, message=F, error=F, fig.cap="Distribution of household size", fig.height=4}
+Hsizetable <- table(EVINTEREST$DVHsize)
+barplot(Hsizetable, main="Household size", 
+        xlab="Household size", ylab="Frequency")
+```
+
+\newpage
 
 #Logistic Regression
 ##Modelling

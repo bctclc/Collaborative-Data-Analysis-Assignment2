@@ -123,7 +123,7 @@ data1415$high[data1415$sumgross>27 & data1415$sumgross<=38] <- 1
 data1415$inccat <- 0
 data1415$inccat[data1415$low==1] <- 1
 data1415$inccat[data1415$lowermiddle==1] <- 2
-data1415$inccat[data1415$highermidde==1] <- 3
+data1415$inccat[data1415$highermiddle==1] <- 3
 data1415$inccat[data1415$high==1] <- 4
 
 # having college degree or not
