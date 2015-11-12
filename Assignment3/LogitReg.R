@@ -1,6 +1,9 @@
 ### logit models for assignment 3 ###
 ### Claire & Noriko ###
 
+### set working directory
+setwd("C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/Assignment3")
+
 library(stargazer)
 library(knitr)
 library(Zelig)
@@ -29,12 +32,12 @@ lrm(L2)
 
 # Estimate model-3 (AGE & SEX & INCOME & Education & Licence & # of Cars & # of children)
 L3 <- lrm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle + high + degree 
-          + licence + NumCar + DVHsize + havingchildren, EVINTEREST)
+          + licence + NumCar + DVHsize + havechildren, EVINTEREST)
 lrm(L3)
 
 # Estimate model-4 (AGE & SEX & INCOME & Education & Licence & # of Cars & # of children & Region)
 L4 <- lrm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle + high + degree
-          + licence + NumCar + DVHsize + havingchildren + Scotland, EVINTEREST)
+          + licence + NumCar + DVHsize + havechildren + Scotland, EVINTEREST)
 lrm(L4)
 
 

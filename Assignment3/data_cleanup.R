@@ -1,6 +1,8 @@
 ### Datasets Cleanup (inport data w/o variable labels) ###
 ### Claire & Noriko ###
 
+### set working directory
+setwd("C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/Assignment3")
 
 library(foreign)
 library(dplyr)
