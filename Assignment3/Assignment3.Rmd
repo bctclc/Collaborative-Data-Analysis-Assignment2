@@ -119,14 +119,23 @@ The less significant variables are age and income level. Age is negatively relat
 ##Prediction
 In addition to the odds ratio provided in the regression output, we want to be more specific with the size of effects of the seven independent variables. Therefore, the ranges of predicted probability based on the variation of different variables are provided as following.
 
-```{r echo=F, warning=F, message=F, error=F, fig.cap=figcap("predict-by-age", "Predicted Probability of Having an Interest in EVs by Age")}
+```{r echo=F, warning=F, message=F, error=F, fig.cap=figcap("predict-by-age", "Predicted Probability of Having an Interest in EVs by Age and Sex"), fig.height=6}
 ZP <- zelig(EVinterest ~ RAGE + Male + lowermiddle + highermiddle + high 
              + degree + licence + NumCar + NumDepCh + Scotland, 
              cite = FALSE, data = EVINTEREST, model = 'logit')
-setZP1 <- setx(ZP, RAGE = 20:80)
+setZP1 <- setx(ZP, RAGE = 20:95, Male=0)
 simZP1 <- sim(ZP, x = setZP1)
-plot(simZP1, xlab="Age", ylab="Predicted Probability")
+plot(simZP1, xlab="Age", ylab="Predicted Probability", col=rgb(1,0,0,0.15), 
+     ylim=c(0,0.4), xlim=c(20,100))
+par(new=T)
+setZP1 <- setx(ZP, RAGE = 20:95, Male=1)
+simZP1 <- sim(ZP, x = setZP1)
+plot(simZP1, xlab="Age", ylab="Predicted Probability", col=rgb(0,0,1,0.15), 
+     ylim=c(0,0.4), xlim=c(20,100))
+legend("topright", c("Male","Female"),lwd=1, col=c("blue","red"))
 ```
+
+`r figcap("predict-by-age", display="cite")` shows the predicted probability of having an interest in EVs by age and sex. Regardless of age, males show a greater interest than females. Even though the variation among males is larger too, the difference in probability is on average about 5 percentage points. The linear relationship between age and this probability is clearly demostrated here as well. Younger people are more likely to be interested than older people.
 
 #Discussion
 
