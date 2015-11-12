@@ -5,14 +5,14 @@ date: "Nov. 13th, 2015"
 output:
   pdf_document: 
     fig_caption: yes
-    number_sections: yes  
+    number_sections: yes
 bibliography: Package_Citation.bib
 ---
 
-This paper examine the determinants of interest in the Electric Vehicles in the UK. 
+This paper examines the determinants of interest in electric vehicles (EVs) in the UK. 
 First, we will describe the process of data gathering. 
-Then we descriptively analyze the dependent variable and independent variables. 
-Last part will be a preliminary analysis using logistic regression models.
+Then we descriptively analyze the dependent variable and independent variables, and use logistic regression models to indentify the correlations.
+Last part will be a brief discussion of the results of the analysis.
 
 ```{r results='hide',echo=F, warning=F, message=F, error=F}
 ### set working directory
@@ -119,22 +119,35 @@ cartable <-table(EVINTEREST$NumCar)
 barplot(cartable, main="Number of Cars in Each Household", 
      xlab="Number of Cars", ylab="Frequency")
 ```
+<<<<<<< HEAD
+* **DVHsize**: Mean=`r round(mean(EVINTEREST$DVHsize), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$DVHsize), digits=2)`
+
+```{r echo=F, warning=F, message=F, error=F, fig.cap="Distribution of household size"}
+=======
 
 ```{r echo=F, warning=F, message=F, error=F, fig.cap="Distribution of household size", fig.height=4}
+>>>>>>> origin/master
 Hsizetable <- table(EVINTEREST$DVHsize)
 barplot(Hsizetable, main="Household size", 
         xlab="Household size", ylab="Frequency")
 ```
+<<<<<<< HEAD
+* **havechildren**: `r round(mean(EVINTEREST$havechildren)*100, digits=2)` % of respondents have children
+
+* **Scotland**: `r round(mean(EVINTEREST$Scotland)*100, digits=2)` % of respondents lives in Scotland
+
+=======
 
 \newpage
+>>>>>>> origin/master
 
 #Logistic Regression
 ##Modelling
-In this section presents our efforts to answer the question, "Who are more/less likely to be interested in the EVs". Since the dependent variable is a binary variable, i.e. respondents having an interest in the EVs or not, we adopt logistic regression models here.
+This section presents our efforts to answer the question, "Who are more/less likely to be interested in EVs". Since the dependent variable is a binary variable, i.e. respondents having an interest in EVs or not, we adopt logistic regression models here.
 
-Nine independent variables are categorized into four groups. Socio-economic variables include age, sex, gross annual income level, and education level. The second group includes having driver's license or not, and the number of cars available to the household, which to some extent describe the respondents' potential to buy a new car.The third one is household-level variables, including household size and whether or not having depedent children. The last one is region. (The UK has 11 regions in total. However, our preliminary analysis suggests that, using London as the baseline, only Scotland is significantly different. Therefore, we only include "Scotland" in the regression.)
+Nine independent variables are categorized into four groups. Socio-economic variables include age, sex, gross annual income level, and education level. The second group includes having driver's license or not, and the number of cars available to the household, which to some extent describe the respondents' potential to buy a new car. The third one is household-level variables, including household size and whether or not having depedent children. The last one is region. (The UK has 11 regions in total. However, our preliminary analysis suggests that, using London as the baseline, only Scotland is significantly different. Therefore, we only include "Scotland" in the regression.)
 
-We only include socio-economic variables in our base model (regression 1) and add in a new group of independent variables each time. The results are as following:
+We only include socio-economic variables in our base model (regression 1) and add in a new group of independent variables each time. As the results in table XX show, all models are significant at 99% level. Except for the two variables, size of household and having dependent children or not, all other variables are statistically signifcant as well. The fact that household-related variables are effective predictors at macro level, but not at micro level, may suggest a neighborhood effect, but it is beyond the scope of this paper.
 
 ```{r echo=F, warning=F, message=F, error=F}
 # Estimate model-1 (AGE & SEX & INCOME & Education)
@@ -160,8 +173,6 @@ stargazer::stargazer(L1, L2, L3, L4,  type="latex", header=F, covariate.labels =
                      digits = 2, title="Step-wise Modelling")
 ```
 
-As the table above shows, all models are significant at 99% level. Except for the two variables, size of household and having dependent children or not, all other variables are statistically signifcant as well. The fact that household-related variables are effective predictors at macro level, but not at micro level, may suggest a neighborhood effect, but it is beyond the scope of this paper.
-
 Based on this analysis, we leave out the two household-related variables and use the following formula.
 
 $$Prob(Interested-in-EVs)= \beta_{0}+\beta_{1}Age+\beta_{2}Male+\beta_{3}Lowmid$$
@@ -178,11 +189,11 @@ stargazer::stargazer(L5, type="latex", header=F, covariate.labels = finallabels,
                      digits = 2, title="Interests in EVs")
 ```
 
-The model is statistically significant at 99% level and five out of the seven variables are significant at 95% level. On average, males are more likely to be interested in electric vehicles. Having a college degree or driver's license also increases the likelihood of being interested. The number of cars is positively relative to the likelihood, suggesting that people who already have the "basics" are more likely to consider electric vehicles. However, being in Scotland reduces this likelihood. 
+The model is statistically significant at 99% level and five out of the seven variables are significant at 95% level. On average, males are more likely to be interested in EVs. Having a college degree or driver's license also increases the likelihood of being interested. The number of cars is positively relative to the likelihood, suggesting that people who already have the "basics" are more likely to consider EVs. However, being in Scotland reduces this likelihood. 
 
-The less significant variables are age and income level. Age is negatively relative to the likelihood of being interested, meaning that younger people are more likely to have an interest in electric vehicles. Interestingly, income level seems not to matter much. Using the lowest quartile group as the baseline, only the highest quartile group is significantly different at 90% level. Nevertheless, results from regression 1 shows that income level (at least when comparing the highest quartile to the lowest quartile) is statistically significant at 99% level. The decrease in significance is due to the correlation between income level, and having driver's license and number of cars available. 
+The less significant variables are age and income level. Age is negatively relative to the likelihood of being interested, meaning that younger people are more likely to have an interest in EVs. Interestingly, income level seems not to matter much. Using the lowest quartile group as the baseline, only the highest quartile group is significantly different at 90% level. Nevertheless, results from regression 1 shows that income level (at least when comparing the highest quartile to the lowest quartile) is statistically significant at 99% level. The decrease in significance is due to the correlation between income level, and having driver's license and number of cars available. 
 
-##Comparison of probabilities by Group
+##Comparison of Probabilities by Group
 In addition to the odds ratio provided in the regression output, we want to be more specific with the size of effects of the seven independent variables. Therefore, the ranges of probability based on the variation of different variables are provided as following.
 
 ```{r echo=F, warning=F, message=F, error=F, fig.cap="Predicted Probability of Having an Interest in EVs by Age and Sex", fig.height=6}
@@ -203,17 +214,67 @@ legend("topright", c("Male","Female"),lwd=1, col=c("blue","red"))
 
 `r figcap("predict-by-age", display="cite")` shows the predicted probability of having an interest in EVs by age and sex. Regardless of age, males show a greater interest than females. Even though the variation among males is larger too, the difference in probability is on average about 5 percentage points. The linear relationship between age and this probability is clearly demostrated here as well. Younger people are more likely to be interested than older people.
 
-**`r tablecap("by-income", "Probability by Income Level")`**
+The following tables summarize probabilities of having an interest in EVs of different groups and allow us to know the exact differences between groups. 
 
+```{r echo=F, warning=F, message=F, error=F}
+Incomegroup <- c("Highest quartile", "Second highest quartile", "Second lowest quartile", "Lowest quartile")
+Incpro <- c(round(mean(EVINTEREST$EVinterest[EVINTEREST$high==1]),4),round(mean(EVINTEREST$EVinterest[EVINTEREST$lowermiddle==1]),4),round(mean(EVINTEREST$EVinterest[EVINTEREST$lowermiddle==1]),4), round(mean(EVINTEREST$EVinterest[EVINTEREST$low==1]),4))
+Incpro <- sprintf("%.1f %%", 100*Incpro)
+byincome <- cbind(Incomegroup, Incpro)
+kable(byincome, caption="Probability by Income Level", col.names = c("Income Level", "Mean Probability"))
+```
+
+```{r echo=F, warning=F, message=F, error=F}
+Edugroup <- c("At least have a college degree", "Do not have a college degree")
+Edupro <- c(round(mean(EVINTEREST$EVinterest[EVINTEREST$degree==1]),4), round(mean(EVINTEREST$EVinterest[EVINTEREST$degree==0]),4))
+Edupro <- sprintf("%.1f %%", 100*Edupro)
+byedu <- cbind(Edugroup, Edupro)
+kable(byedu, caption="Probability by Education Level", col.names = c("Education Level", "Mean Probability"))
+```
+
+```{r echo=F, warning=F, message=F, error=F}
+ligroup <- c("Have driver's license", "Do not have driver's license")
+lipro <- c(round(mean(EVINTEREST$EVinterest[EVINTEREST$licence==1]),4), round(mean(EVINTEREST$EVinterest[EVINTEREST$licence==0]),4))
+lipro <- sprintf("%.1f %%", 100*lipro)
+byli <- cbind(ligroup, lipro)
+kable(byli, caption="Probabilities by Driver's License Status", col.names = c("License Status", "Mean Probability"))
+```
+
+```{r echo=F, warning=F, message=F, error=F}
+cargroup <- c(0, 1, 2, 3)
+carpro <- c(round(mean(EVINTEREST$EVinterest[EVINTEREST$NumCar==0]),4), round(mean(EVINTEREST$EVinterest[EVINTEREST$NumCar==1]),4), round(mean(EVINTEREST$EVinterest[EVINTEREST$NumCar==2]),4), round(mean(EVINTEREST$EVinterest[EVINTEREST$NumCar==3]),4))
+carpro <- sprintf("%.1f %%", 100*carpro)
+carli <- cbind(cargroup, carpro)
+kable(carli, caption="Probabilities by Number of Cars", col.names = c("Number of Cars", "Mean Probability"))
+```
+
+```{r echo=F, warning=F, message=F, error=F}
+scotgroup <- c("In Scotland", "In other regions")
+scotpro <- c(round(mean(EVINTEREST$EVinterest[EVINTEREST$Scotland==1]),4), round(mean(EVINTEREST$EVinterest[EVINTEREST$Scotland==0]),4))
+scotpro <- sprintf("%.1f %%", 100*scotpro)
+scotli <- cbind(scotgroup, scotpro)
+kable(scotli, caption="Probabilities by Region", col.names = c("Regions", "Mean Probability"))
+```
+
+#Discussion and Limitations
+In general, interest in EVs is rather limited. Among all respondents, only 18.48% are interested. This, on the other hand, suggests the need to better understand the factors related to the interest in EVs, and this is what motivated our research too.
+
+Above analysis shows that the variations among different groups are quite large. For instance, people having a college degree, on average, have a probability of 30.7% to be interested in EVs, while people without a degree only have a probability of 14.5%. This kind of variation (especially the one related to education level) is actually a good sign, suggesting that interest in EVs could be potentially increased. Promotion of EVs should give more attention to the needs and comsumption patterns of low-interest groups. 
+
+However, this also leads to one of the limitations of this paper, not being able answer why different groups show different levels of interest. This question is very hard, not just because we do not have more detailed surveys, but also because different groups may be systematically different in many unobeserved ways. Even though, we will still attempt to make contributions on this question in our final paper.
+
+<<<<<<< HEAD
 |Income Level |Mean Probability|
 |-------------|-----------------|
 |Highest quartile |`r round(mean(EVINTEREST$EVinterest[EVINTEREST$high==1]),4)*100`%|
 |Second highest quartile|`r round(mean(EVINTEREST$EVinterest[EVINTEREST$highermiddle==1]),4)*100`%|
 |Second lowest quartile|`r round(mean(EVINTEREST$EVinterest[EVINTEREST$lowermiddle==1]),4)*100`%|
 |Lowest quartile|`r round(mean(EVINTEREST$EVinterest[EVINTEREST$low==1]),4)*100`%|
+=======
+Another limitation is due to the design of the survey, which did not exclude respondents who are not interested in buying cars in genereal. Therefore, varialbes, including having driver's license and number of cars available, need to be interpreted with great caution. The low interest shown in groups without driver's license or cars might not be caused by their lack of interest in EVs, but by their lack of interest in cars.
+>>>>>>> 0133c4822cb7e45339d24228c1ce2cac014c6fbb
 
-Probabilities of different income groups comfirms our previous interpretation of the regression results that only the highest quartile group has a significantly higher interest, though the genereal 
+Lastly, $R^2$ of the model is only 0.12, meaning that these variables only explain 12% of the variations in the probability of having an interest in EVs. Partly, this is because of a lack of available information, as it is impossible to survey everything. Partly, attitudes are just not easy to explain, because they could be influenced by countless factors, sometimes as trivial as an image or some careless words. Nevertheless, we believe that there are patterns and these patterns are what we should better understand if EVs are to be further promoted.
 
-#Discussion
 
 #Reference
