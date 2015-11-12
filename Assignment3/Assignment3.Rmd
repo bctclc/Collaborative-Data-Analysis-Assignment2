@@ -16,7 +16,7 @@ Last part will be a preliminary analysis using logistic regression models.
 
 ```{r results='hide',echo=F, warning=F, message=F, error=F}
 ### set working directory
-setwd("E:\\—ßœ∞œ‡πÿ\\R\\Introduction-to-Collaborative-Social-Science-Data-Analysis\\Collaborative-Data-Analysis-Assignment2\\Assignment3")
+setwd("C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/Assignment3")
 
 library(stargazer)
 library(knitr)
@@ -70,11 +70,13 @@ kable(vartable, caption="List of Variables")
 ## Summary statistics
 * **EVinterest**: `r round(mean(EVINTEREST$EVinterest)*100, digits=2)` % of respondents are interested in EVs
 
-* **RAGE**: Mean=`r round(mean(EVINTEREST$RAGE), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$RAGE), digits=2)`
+* **RAGE**: Mean=`r round(mean(EVINTEREST$RAGE), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$RAGE), digits=2)`.
+The distribution of age is shown in the figure below.
 
 * **Male**: `r round(mean(EVINTEREST$Male)*100, digits=2)` % of respondents are male
 
-* **inccat**: distribution is shown in the table below.
+* **inccat**: distribution is shown in the table and the figure below. 
+The thresholds of each category are based on 25, 50, 75 percentile gross income from the UK census. 
 
 ```{r echo=F, warning=F, message=F, error=F, results='asis'}
 inccatcount <- table(EVINTEREST$inccat)
@@ -89,9 +91,9 @@ kable(inccatsummary, caption="Distribution of Income")
 
 * **licence**: `r round(mean(EVINTEREST$licence)*100, digits=2)` % of respondents have valid drivers licence
 
-* **NumCar**: Mean=`r round(mean(EVINTEREST$NumCar), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$NumCar), digits=2)`
+* **NumCar**: Mean=`r round(mean(EVINTEREST$NumCar), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$NumCar), digits=2)`. The distribution of the number of cars in respondent's household is shown in the figure below.
 
-* **DVHsize**: Mean=`r round(mean(EVINTEREST$DVHsize), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$DVHsize), digits=2)`
+* **DVHsize**: Mean=`r round(mean(EVINTEREST$DVHsize), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$DVHsize), digits=2)`. The distribution of household size is shown in the figure below.
 
 * **havechildren**: `r round(mean(EVINTEREST$havechildren)*100, digits=2)` % of respondents have children
 
@@ -205,7 +207,7 @@ legend("topright", c("Male","Female"),lwd=1, col=c("blue","red"))
 
 |Income Level |Mean Probability|
 |-------------|-----------------|
-|Highest quartile |`r round(mean(EVINTEREST$EVinterest[EVINTEREST$high==1]),4)*100`%|`r round(ci(EVINTEREST$EVinterest[EVINTEREST$high==1]),4)*100`%|
+|Highest quartile |`r round(mean(EVINTEREST$EVinterest[EVINTEREST$high==1]),4)*100`%|
 |Second highest quartile|`r round(mean(EVINTEREST$EVinterest[EVINTEREST$highermiddle==1]),4)*100`%|
 |Second lowest quartile|`r round(mean(EVINTEREST$EVinterest[EVINTEREST$lowermiddle==1]),4)*100`%|
 |Lowest quartile|`r round(mean(EVINTEREST$EVinterest[EVINTEREST$low==1]),4)*100`%|
