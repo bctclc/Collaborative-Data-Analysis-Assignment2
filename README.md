@@ -11,9 +11,9 @@ This is a repository for the pair assignments in Collaborative Social Data Analy
 
 ## Files in this repository
 
-1. Assingment2: Files for the assignment 2 (research proposal)
+1. [Assingment2](https://github.com/bctclc/Collaborative-Data-Analysis-Assignment2/tree/master/Assignment2): Files for the assignment 2 (research proposal)
 
-2. Assingment3: Files for the assignment 3 (preliminary analysis)
+2. [Assingment3](https://github.com/bctclc/Collaborative-Data-Analysis-Assignment2/tree/master/Assignment3): Files for the assignment 3 (preliminary analysis)
 
 3. gitignore
 

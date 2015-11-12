@@ -168,7 +168,7 @@ Based on this analysis, we leave out the two household-related variables and use
 
 $$\ln{(\frac{p} {1-p})}=\beta_{0}+\beta_{1}Age+\beta_{2}Male+\beta_{3}Lowmid+\beta_{4}Highmid+\beta_{5}High+\beta_{6}College+\beta_{7}license+\beta_{8}NumCar+\beta_{9}Scotland$$
 
-Where $p$ is the probability of being interested in EVs.
+Where $p$ is the probability of being interested in EVs. The estimated model is shown in the table below.
 
 ```{r echo=F, warning=F, message=F, error=F, results='asis'}
 finallabels <- c('Age', 'Male', 'Income: low-middle', 'Income: high-middle', 'Income: high', 
