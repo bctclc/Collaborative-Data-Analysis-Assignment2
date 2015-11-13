@@ -144,20 +144,23 @@ L1 <- lrm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle +high + degree,
            EVINTEREST)
 
 # Estimate model-2 (AGE & SEX & INCOME & Education & LICENCE & Number of Cars)
-L2 <- lrm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle +high + degree + licence + NumCar, EVINTEREST)
+L2 <- lrm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
+          + licence + NumCar, EVINTEREST)
 
 # Estimate model-3 (AGE & SEX & INCOME & Education & LICENCE & Number of Cars % Number of Children)
-L3 <- lrm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle +high + degree + licence + NumCar + DVHsize + havechildren,
-          EVINTEREST)
+L3 <- lrm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
+          + licence + NumCar + DVHsize + havechildren, EVINTEREST)
 
 # Estimate model-4 (AGE & SEX & INCOME & Education & LICENCE & Number of Cars & Number of Children & Scotland)
-L4 <- lrm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle +high + degree + licence + NumCar + DVHsize + havechildren + Scotland,
-          EVINTEREST)
+L4 <- lrm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
+          + licence + NumCar + DVHsize + havechildren + Scotland, EVINTEREST)
 ```
 
 ```{r echo=F, warning=F, message=F, error=F, results='asis'}
 labels <- c('Age', 'Male', 'Income: low-middle', 'Income: high-middle', 'Income: high', 
-            'College degree', 'Drivers licence', 'Number of cars', "Size of household", 'Having dependent children', 'Scotland', '(Intercept)') 
+            'College degree', 'Drivers licence', 'Number of cars', "Size of household", 
+            'Having dependent children', 'Scotland', '(Intercept)') 
+
 stargazer::stargazer(L1, L2, L3, L4,  type="latex", header=F, covariate.labels = labels,
                      digits = 2, title="Step-wise Modelling")
 ```
@@ -166,7 +169,8 @@ stargazer::stargazer(L1, L2, L3, L4,  type="latex", header=F, covariate.labels =
 
 Based on this analysis, we leave out the two household-related variables and use the following formula.
 
-$$\ln{(\frac{p} {1-p})}=\beta_{0}+\beta_{1}Age+\beta_{2}Male+\beta_{3}Lowmid+\beta_{4}Highmid+\beta_{5}High+\beta_{6}College+\beta_{7}license+\beta_{8}NumCar+\beta_{9}Scotland$$
+$$\ln{(\frac{p} {1-p})}=\beta_{0}+\beta_{1}Age+\beta_{2}Male+\beta_{3}Lowmid+\beta_{4}Highmid+\beta_{5}High+\beta_{6}College$$
+$$+\beta_{7}license+\beta_{8}NumCar+\beta_{9}Scotland$$
 
 Where $p$ is the probability of being interested in EVs. The estimated model is shown in the table below.
 
@@ -187,7 +191,9 @@ The less significant variables are age and income level. Age is negatively relat
 ##Comparison of Probabilities by Group
 In addition to the odds ratio provided in the regression output, we want to be more specific with the size of effects of the seven independent variables. Therefore, the ranges of probability based on the variation of different variables are provided as following.
 
-```{r echo=F, warning=F, message=F, error=F, fig.cap="Predicted Probability of Having an Interest in EVs by Age and Sex", fig.height=6}
+$$Pr(Interested)=\frac{1} {1 + e^{\boldsymbol{\beta_k \cdot x_i}}}$$
+
+```{r echo=F, warning=F, message=F, error=F, fig.cap="Predicted Probability of Having an Interest in EVs by Age and Sex", fig.height=5.5}
 ZP <- zelig(EVinterest ~ RAGE + Male + lowermiddle + highermiddle + high 
              + degree + licence + NumCar  + Scotland, 
              cite = FALSE, data = EVINTEREST, model = 'logit')
@@ -203,49 +209,140 @@ plot(simZP1, xlab="Age", ylab="Predicted Probability", col=rgb(0,0,1,0.15),
 legend("topright", c("Male","Female"),lwd=1, col=c("blue","red"))
 ```
 
-`r figcap("predict-by-age", display="cite")` shows the predicted probability of having an interest in EVs by age and sex. Regardless of age, males show a greater interest than females. Even though the variation among males is larger too, the difference in probability is on average about 5 percentage points. The linear relationship between age and this probability is clearly demostrated here as well. Younger people are more likely to be interested than older people.
+\newpage
 
-The following tables summarize probabilities of having an interest in EVs of different groups and allow us to know the exact differences between groups. 
+Figure 5 shows the predicted probability of having an interest in EVs by age and sex. Regardless of age, males show a greater interest than females. Even though the variation among males is larger too, the difference in probability is on average about 5 percentage points. The linear relationship between age and this probability is clearly demostrated here as well. Younger people are more likely to be interested than older people.
+
+The following tables summarize predicted probabilities of having an interest in EVs of different groups and allow us to know the differences between groups. 
+
+* By income level & Sex: predicted for those people with mean age, valid licence, college degree, a car, and who doesn't live in Scotland.
 
 ```{r echo=F, warning=F, message=F, error=F}
-Incomegroup <- c("Highest quartile", "Second highest quartile", "Second lowest quartile", "Lowest quartile")
-Incpro <- c(round(mean(EVINTEREST$EVinterest[EVINTEREST$high==1]),4),round(mean(EVINTEREST$EVinterest[EVINTEREST$lowermiddle==1]),4),round(mean(EVINTEREST$EVinterest[EVINTEREST$lowermiddle==1]),4), round(mean(EVINTEREST$EVinterest[EVINTEREST$low==1]),4))
-Incpro <- sprintf("%.1f %%", 100*Incpro)
-byincome <- cbind(Incomegroup, Incpro)
-kable(byincome, caption="Probability by Income Level", col.names = c("Income Level", "Mean Probability"))
+# same model with glm
+LPred <- glm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle +high 
+             + degree + licence + NumCar + Scotland, 
+             data = EVINTEREST, family = 'binomial')
+
+# predicted probability by income group & sex
+fitted1 <- with(EVINTEREST,
+                data.frame(RAGE=mean(RAGE), Male=c(1,1,1,1),  
+                           lowermiddle=c(0,1,0,0), highermiddle=c(0,0,1,0), 
+                           high=c(0,0,0,1), licence=1, degree=1, NumCar=1, Scotland=0))
+fitted1$predicted <- predict(LPred, newdata = fitted1, type = 'response')
+fitted1$predicted <- round(fitted1$predicted*100, digits=2)
+fitted2 <- with(EVINTEREST,
+                data.frame(RAGE=mean(RAGE), Male=c(0,0,0,0),  
+                           lowermiddle=c(0,1,0,0), highermiddle=c(0,0,1,0), 
+                           high=c(0,0,0,1), licence=1, degree=1, NumCar=1, Scotland=0))
+fitted2$predicted <- predict(LPred, newdata = fitted2, type = 'response')
+fitted2$predicted <- round(fitted2$predicted*100, digits=2)
+
+Incomegroup <- c("Lowest quartile", "Second lowest quartile", "Second highest quartile", "Highest quartile")
+
+byincomesex <- cbind(Incomegroup, fitted1$predicted, fitted2$predicted)
+
+kable(byincomesex, caption="Probability by Income Level & Sex", 
+      col.names = c("Income Level", "Male", "Female"))
 ```
 
+* By Education & Sex: predicted for those people with mean age, Lower-middle income, valid licence, a car, and who doesn't live in Scotland.
+
 ```{r echo=F, warning=F, message=F, error=F}
+# predicted probability by educ group & sex
+fitted3 <- with(EVINTEREST,
+                data.frame(RAGE=mean(RAGE), Male=1, lowermiddle=1, 
+                           highermiddle=0, high=0,
+                           licence=1, degree=c(1,0), NumCar=1, Scotland=0))
+fitted3$predicted <- predict(LPred, newdata = fitted3, type = 'response')
+fitted3$predicted <- round(fitted3$predicted*100, digits=2)
+fitted4 <- with(EVINTEREST,
+                data.frame(RAGE=mean(RAGE), Male=0, lowermiddle=1, 
+                           highermiddle=0, high=0,
+                           licence=1, degree=c(1,0), NumCar=1, Scotland=0))
+fitted4$predicted <- predict(LPred, newdata = fitted4, type = 'response')
+fitted4$predicted <- round(fitted4$predicted*100, digits=2)
+
 Edugroup <- c("At least have a college degree", "Do not have a college degree")
-Edupro <- c(round(mean(EVINTEREST$EVinterest[EVINTEREST$degree==1]),4), round(mean(EVINTEREST$EVinterest[EVINTEREST$degree==0]),4))
-Edupro <- sprintf("%.1f %%", 100*Edupro)
-byedu <- cbind(Edugroup, Edupro)
-kable(byedu, caption="Probability by Education Level", col.names = c("Education Level", "Mean Probability"))
+
+byedusex <- cbind(Edugroup, fitted3$predicted, fitted4$predicted)
+
+kable(byedusex, caption="Probability by Education Level & Sex", 
+      col.names = c("Education Level", "Male", "Female"))
 ```
 
+* By Licence & Sex: predicted for those people with mean age, Lower-middle income, college degree, a car, and who doesn't live in Scotland.
+
 ```{r echo=F, warning=F, message=F, error=F}
+# predicted probability by licence group & sex
+fitted5 <- with(EVINTEREST,
+                data.frame(RAGE=mean(RAGE), Male=1, lowermiddle=1, 
+                           highermiddle=0, high=0,
+                           licence=c(1,0), degree=1, NumCar=1, Scotland=0))
+fitted5$predicted <- predict(LPred, newdata = fitted5, type = 'response')
+fitted5$predicted <- round(fitted5$predicted*100, digits=2)
+fitted6 <- with(EVINTEREST,
+                data.frame(RAGE=mean(RAGE), Male=0, lowermiddle=1, 
+                           highermiddle=0, high=0,
+                           licence=c(1,0), degree=1, NumCar=1, Scotland=0))
+fitted6$predicted <- predict(LPred, newdata = fitted6, type = 'response')
+fitted6$predicted <- round(fitted6$predicted*100, digits=2)
+
 ligroup <- c("Have driver's license", "Do not have driver's license")
-lipro <- c(round(mean(EVINTEREST$EVinterest[EVINTEREST$licence==1]),4), round(mean(EVINTEREST$EVinterest[EVINTEREST$licence==0]),4))
-lipro <- sprintf("%.1f %%", 100*lipro)
-byli <- cbind(ligroup, lipro)
-kable(byli, caption="Probabilities by Driver's License Status", col.names = c("License Status", "Mean Probability"))
+
+bylisex <- cbind(Edugroup, fitted5$predicted, fitted6$predicted)
+
+kable(bylisex, caption="Probabilities by Driver's License Status & Sex", 
+      col.names = c("License Status", "Male", "Female"))
 ```
 
-```{r echo=F, warning=F, message=F, error=F}
-cargroup <- c(0, 1, 2, 3)
-carpro <- c(round(mean(EVINTEREST$EVinterest[EVINTEREST$NumCar==0]),4), round(mean(EVINTEREST$EVinterest[EVINTEREST$NumCar==1]),4), round(mean(EVINTEREST$EVinterest[EVINTEREST$NumCar==2]),4), round(mean(EVINTEREST$EVinterest[EVINTEREST$NumCar==3]),4))
-carpro <- sprintf("%.1f %%", 100*carpro)
-carli <- cbind(cargroup, carpro)
-kable(carli, caption="Probabilities by Number of Cars", col.names = c("Number of Cars", "Mean Probability"))
-```
+* By Number of Cars & Sex: predicted for those people with mean age, Lower-middle income, college degree, valid licence, and who doesn't live in Scotland.
 
 ```{r echo=F, warning=F, message=F, error=F}
+# predicted probability by NumCar & sex
+fitted7 <- with(EVINTEREST,
+                data.frame(RAGE=mean(RAGE), Male=1, lowermiddle=1, 
+                           highermiddle=0, high=0, licence=1, degree=1, 
+                           NumCar=c(0,1,2,3), Scotland=0))
+fitted7$predicted <- predict(LPred, newdata = fitted7, type = 'response')
+fitted7$predicted <- round(fitted7$predicted*100, digits=2)
+fitted8 <- with(EVINTEREST,
+                data.frame(RAGE=mean(RAGE), Male=0, lowermiddle=1, 
+                           highermiddle=0, high=0, licence=1, degree=1, 
+                           NumCar=c(0,1,2,3), Scotland=0))
+fitted8$predicted <- predict(LPred, newdata = fitted8, type = 'response')
+fitted8$predicted <- round(fitted8$predicted*100, digits=2)
+
+bycarsex <- cbind(fitted7$NumCar, fitted7$predicted, fitted8$predicted)
+
+kable(bycarsex, caption="Probabilities by Number of Cars & Sex", 
+      col.names = c("Number of Cars", "Male", "Female"))
+```
+
+* By Region & Sex: predicted for those people with mean age, Lower-middle income, college degree, valid licence, and a car.
+
+```{r echo=F, warning=F, message=F, error=F}
+# predicted probability by region & sex
+fitted9 <- with(EVINTEREST,
+                data.frame(RAGE=mean(RAGE), Male=1, lowermiddle=1, 
+                           highermiddle=0, high=0, licence=1, degree=1, 
+                           NumCar=1, Scotland=c(1,0)))
+fitted9$predicted <- predict(LPred, newdata = fitted9, type = 'response')
+fitted9$predicted <- round(fitted9$predicted*100, digits=2)
+fitted10 <- with(EVINTEREST,
+                data.frame(RAGE=mean(RAGE), Male=0, lowermiddle=1, 
+                           highermiddle=0, high=0, licence=1, degree=1, 
+                           NumCar=1, Scotland=c(1,0)))
+fitted10$predicted <- predict(LPred, newdata = fitted10, type = 'response')
+fitted10$predicted <- round(fitted10$predicted*100, digits=2)
+
 scotgroup <- c("In Scotland", "In other regions")
-scotpro <- c(round(mean(EVINTEREST$EVinterest[EVINTEREST$Scotland==1]),4), round(mean(EVINTEREST$EVinterest[EVINTEREST$Scotland==0]),4))
-scotpro <- sprintf("%.1f %%", 100*scotpro)
-scotli <- cbind(scotgroup, scotpro)
-kable(scotli, caption="Probabilities by Region", col.names = c("Regions", "Mean Probability"))
+
+byscotsex <- cbind(scotgroup, fitted9$predicted, fitted10$predicted)
+
+kable(byscotsex, caption="Probabilities by Region & Sex", 
+      col.names = c("Region", "Male", "Female"))
 ```
+
 
 #Discussion and Limitations
 In general, interest in EVs is rather limited. Among all respondents, only 18.48% are interested. This, on the other hand, suggests the need to better understand the factors related to the interest in EVs, and this is what motivated our research too.

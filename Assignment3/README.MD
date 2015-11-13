@@ -2,11 +2,9 @@
 
 ## Files in this repository
 
-* **Assignment3_files/figure-html**: Folder to store output graphs
+* **Assignment3.Rmd**: preliminary analysis in Rmd format
 
 * **Assignment3.pdf**: preliminary analysis in PDF format
-
-* **Assignment3.Rmd**: preliminary analysis in Rmd format
 
 * **DescriptiveAnalysis.R**: R source code file for descriptive analysis
 
