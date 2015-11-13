@@ -1,5 +1,5 @@
 # set working directory (change this line to your repository location)
-setwd("C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/Assignment3")
+setwd("E:\\—ßœ∞œ‡πÿ\\R\\Collaborative-Data-Analysis-Assignment2\\Assignment3")
 
 library(repmis)
 

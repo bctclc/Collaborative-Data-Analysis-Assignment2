@@ -6,9 +6,7 @@ output:
   pdf_document: 
     fig_caption: yes
     number_sections: yes
-bibliography: 
-  - Package_Citation.bib
-  - Other_Citation.bib
+bibliography: citation.bib
 ---
 
 This paper examines the determinants of interest in electric vehicles (EVs) in the UK. 
@@ -18,7 +16,8 @@ Last part will be a brief discussion of the results of the analysis.
 
 ```{r results='hide',echo=F, warning=F, message=F, error=F}
 ### set working directory
-setwd("E:\\学习相关\\R\\Introduction-to-Collaborative-Social-Science-Data-Analysis\\Collaborative-Data-Analysis-Assignment2\\Assignment3")
+setwd("E:\\学习相关\\R\\Collaborative-Data-Analysis-Assignment2\\Assignment3")
+
 
 library(stargazer)
 library(knitr)
@@ -27,7 +26,7 @@ library(rms)
 library(captioner)
 library(foreign)
 library(dplyr)
-
+  
 figcap <- captioner(prefix = "Figure", auto_space = TRUE, levels = 1, type = NULL)
 tablecap <-captioner(prefix = "Table", auto_space = TRUE, levels = 1, type = NULL)
 ```
@@ -78,13 +77,13 @@ The distribution of age is shown in the figure below.
 * **Male**: `r round(mean(EVINTEREST$Male)*100, digits=2)` % of respondents are male
 
 * **inccat**: distribution is shown in the table and the figure below. 
-The thresholds of each category are based on 25, 50, 75 percentile gross income from [Survey of Personal Incomes 2012-13 in the UK](https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/399041/Table_3_1_a_13.xls)[@UKincome].
+The thresholds of each category are based on 25, 50, 75 percentile gross income from [Survey of Personal Incomes 2012-13 in the UK](https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/399041/Table_3_1_a_13.xls)(@UKincome).
 
 ```{r echo=F, warning=F, message=F, error=F, results='asis'}
 inccatcount <- table(EVINTEREST$inccat)
 Percentage <- round(inccatcount/length(EVINTEREST$inccat)*100, digits=2)
 Income <- c('Low', 'Low-Mid', 'High-Mid', 'High')
-Range <- c('Below ￡14,559', '￡14,560~￡20,799', '￡20,800~￡25,999', '￡26,000 and Above')
+Range <- c('Below 14,559GBP', '14,560GBP~20,799GBP', '20,800GBP~25,999GBP', '26,000GBP and Above')
 inccatsummary <- cbind(Income, Range, Percentage)
 kable(inccatsummary, caption="Distribution of Income")
 ```
@@ -102,7 +101,7 @@ kable(inccatsummary, caption="Distribution of Income")
 * **Scotland**: `r round(mean(EVINTEREST$Scotland)*100, digits=2)` % of respondents lives in Scotland
 
 ```{r echo=F, warning=F, message=F, error=F, fig.cap="Distribution of respondent's age", fig.height=4}
-hist(EVINTEREST$RAGE,
+hist(EVINTEREST$RAGE, main=" ",
      xlab="Age", ylab="Frequency", 
      xlim=c(10,100))
 axis(side=1, at=seq(0,100, 10))
@@ -355,5 +354,14 @@ Another limitation is due to the design of the survey, which did not exclude res
 
 Lastly, $R^2$ of the model is only 0.12, meaning that these variables only explain 12% of the variations in the probability of having an interest in EVs. Partly, this is because of a lack of available information, as it is impossible to survey everything. Partly, attitudes are just not easy to explain, because they could be influenced by countless factors, sometimes as trivial as an image or some careless words. Nevertheless, we believe that there are patterns and these patterns are what we should better understand if EVs are to be further promoted.
 
-
-#Reference
+\textcolor{white}{
+@CiteR
+@R-captioner	
+@R-dplyr	
+@R-foreign 
+@R-knitr	
+@R-repmis	
+@R-rms	
+@R-stargazer 
+@R-Zelig
+}
