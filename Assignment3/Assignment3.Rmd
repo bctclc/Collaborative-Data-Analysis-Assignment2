@@ -18,7 +18,7 @@ Last part will be a brief discussion of the results of the analysis.
 
 ```{r results='hide',echo=F, warning=F, message=F, error=F}
 ### set working directory
-setwd("C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/Assignment3")
+setwd("E:\\—ßœ∞œ‡πÿ\\R\\Introduction-to-Collaborative-Social-Science-Data-Analysis\\Collaborative-Data-Analysis-Assignment2\\Assignment3")
 
 library(stargazer)
 library(knitr)
@@ -39,7 +39,7 @@ After logging in and agreeing with the terms of conditions, the datasets are ava
 The registration process may take a few days. 
 However, other documents (e.g. questionnaire, brief summary) are available at the link above without registration.
 This module comes with two datasets: survey results from 2014 and 2015. 
-For our study, we use both survey years by combining both datasets together [@UKincome]. 
+For our study, we use both survey years by combining both datasets together. 
 
 ```{r echo=F, warning=F, message=F, error=F}
 source("data_cleanup.R")
@@ -78,13 +78,13 @@ The distribution of age is shown in the figure below.
 * **Male**: `r round(mean(EVINTEREST$Male)*100, digits=2)` % of respondents are male
 
 * **inccat**: distribution is shown in the table and the figure below. 
-The thresholds of each category are based on 25, 50, 75 percentile gross income from the UK census. 
+The thresholds of each category are based on 25, 50, 75 percentile gross income from [Survey of Personal Incomes 2012-13 in the UK](https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/399041/Table_3_1_a_13.xls)[@UKincome].
 
 ```{r echo=F, warning=F, message=F, error=F, results='asis'}
 inccatcount <- table(EVINTEREST$inccat)
 Percentage <- round(inccatcount/length(EVINTEREST$inccat)*100, digits=2)
 Income <- c('Low', 'Low-Mid', 'High-Mid', 'High')
-Range <- c('Below 14,559GDP', '14,560GBP~20,799GBP', '20,800GBP~25,999GBP', '26,000GBP and more')
+Range <- c('Below °Í14,559', '°Í14,560~°Í20,799', '°Í20,800~°Í25,999', '°Í26,000 and Above')
 inccatsummary <- cbind(Income, Range, Percentage)
 kable(inccatsummary, caption="Distribution of Income")
 ```
@@ -103,22 +103,22 @@ kable(inccatsummary, caption="Distribution of Income")
 
 ```{r echo=F, warning=F, message=F, error=F, fig.cap="Distribution of respondent's age", fig.height=4}
 hist(EVINTEREST$RAGE,
-     main="Age Distribution", xlab="Age", ylab="Frequency", 
+     xlab="Age", ylab="Frequency", 
      xlim=c(10,100))
 axis(side=1, at=seq(0,100, 10))
 ```
 
 ```{r echo=F, warning=F, message=F, error=F, fig.cap="Distribution of respondent's income", fig.height=4}
 inctable <-table(EVINTEREST$inccat)
-barplot(inctable, main="Income Distribtion",ylab="Frequnecy",
+barplot(inctable, ylab="Frequnecy",
         names.arg=c("Low", "Low-Mid", "High-Mid", "High"))
 mtext(side=1, "Gross Annual Income", line=2)
-mtext(side=1, "(Low:~14,559 / Low-Mid:14,560~20,799 / High-Mid:20,800~25,999 / High: 26,000+)", line=3)
+mtext(side=1, "(Low:~14,559 /Low-Mid:14,560~20,799 /High-Mid:20,800~25,999 /High: 26,000+)", line=3)
 ```
 
 ```{r echo=F, warning=F, message=F, error=F, fig.cap="Distribution of number of cars", fig.height=4}
 cartable <-table(EVINTEREST$NumCar)
-barplot(cartable, main="Number of Cars in Each Household", 
+barplot(cartable, 
      xlab="Number of Cars", ylab="Frequency")
 ```
 
@@ -136,7 +136,7 @@ This section presents our efforts to answer the question, "Who are more/less lik
 
 Nine independent variables are categorized into four groups. Socio-economic variables include age, sex, gross annual income level, and education level. The second group includes having driver's license or not, and the number of cars available to the household, which to some extent describe the respondents' potential to buy a new car. The third one is household-level variables, including household size and whether or not having depedent children. The last one is region. (The UK has 11 regions in total. However, our preliminary analysis suggests that, using London as the baseline, only Scotland is significantly different. Therefore, we only include "Scotland" in the regression.)
 
-We only include socio-economic variables in our base model (regression 1) and add in a new group of independent variables each time. As the results in table XX show, all models are significant at 99% level. Except for the two variables, size of household and having dependent children or not, all other variables are statistically signifcant as well. The fact that household-related variables are effective predictors at macro level, but not at micro level, may suggest a neighborhood effect, but it is beyond the scope of this paper.
+We only include socio-economic variables in our base model (regression 1) and add in a new group of independent variables each time. As the results in table 3 show, all models are significant at 99% level. Except for the two variables, size of household and having dependent children or not, all other variables are statistically signifcant as well. The fact that household-related variables are effective predictors at macro level, but not at micro level, may suggest a neighborhood effect, but it is beyond the scope of this paper.
 
 ```{r echo=F, warning=F, message=F, error=F}
 # Estimate model-1 (AGE & SEX & INCOME & Education)
@@ -172,7 +172,7 @@ Based on this analysis, we leave out the two household-related variables and use
 $$\ln{(\frac{p} {1-p})}=\beta_{0}+\beta_{1}Age+\beta_{2}Male+\beta_{3}Lowmid+\beta_{4}Highmid+\beta_{5}High+\beta_{6}College$$
 $$+\beta_{7}license+\beta_{8}NumCar+\beta_{9}Scotland$$
 
-Where $p$ is the probability of being interested in EVs. The estimated model is shown in the table below.
+Where $p$ is the probability of being interested in EVs. The estimated model is shown in table 4.
 
 ```{r echo=F, warning=F, message=F, error=F, results='asis'}
 finallabels <- c('Age', 'Male', 'Income: low-middle', 'Income: high-middle', 'Income: high', 
@@ -188,7 +188,7 @@ The model is statistically significant at 99% level and five out of the seven va
 
 The less significant variables are age and income level. Age is negatively relative to the likelihood of being interested, meaning that younger people are more likely to have an interest in EVs. Interestingly, income level seems not to matter much. Using the lowest quartile group as the baseline, only the highest quartile group is significantly different at 90% level. Nevertheless, results from regression 1 shows that income level (at least when comparing the highest quartile to the lowest quartile) is statistically significant at 99% level. The decrease in significance is due to the correlation between income level, and having driver's license and number of cars available. 
 
-##Comparison of Probabilities by Group
+##Comparison of Predicted Probabilities by Group
 In addition to the odds ratio provided in the regression output, we want to be more specific with the size of effects of the seven independent variables. Therefore, the ranges of probability based on the variation of different variables are provided as following.
 
 $$Pr(Interested)=\frac{1} {1 + e^{\boldsymbol{\beta_k \cdot x_i}}}$$
@@ -213,9 +213,9 @@ legend("topright", c("Male","Female"),lwd=1, col=c("blue","red"))
 
 Figure 5 shows the predicted probability of having an interest in EVs by age and sex. Regardless of age, males show a greater interest than females. Even though the variation among males is larger too, the difference in probability is on average about 5 percentage points. The linear relationship between age and this probability is clearly demostrated here as well. Younger people are more likely to be interested than older people.
 
-The following tables summarize predicted probabilities of having an interest in EVs of different groups and allow us to know the differences between groups. 
+Table 5-9 summarize predicted probabilities of having an interest in EVs of different groups and allow us to know the differences between groups. 
 
-* By income level & Sex: predicted for those people with mean age, valid licence, college degree, a car, and who doesn't live in Scotland.
+* By Income Level & Sex: predicted for those people with mean age, valid licence, college degree, a car, and who doesn't live in Scotland.
 
 ```{r echo=F, warning=F, message=F, error=F}
 # same model with glm
@@ -245,7 +245,7 @@ kable(byincomesex, caption="Probability by Income Level & Sex",
       col.names = c("Income Level", "Male", "Female"))
 ```
 
-* By Education & Sex: predicted for those people with mean age, Lower-middle income, valid licence, a car, and who doesn't live in Scotland.
+* By Education Level & Sex: predicted for those people with mean age, lower-middle income, valid licence, a car, and who doesn't live in Scotland.
 
 ```{r echo=F, warning=F, message=F, error=F}
 # predicted probability by educ group & sex
@@ -270,7 +270,7 @@ kable(byedusex, caption="Probability by Education Level & Sex",
       col.names = c("Education Level", "Male", "Female"))
 ```
 
-* By Licence & Sex: predicted for those people with mean age, Lower-middle income, college degree, a car, and who doesn't live in Scotland.
+* By License Status & Sex: predicted for those people with mean age, lower-middle income, college degree, a car, and who doesn't live in Scotland.
 
 ```{r echo=F, warning=F, message=F, error=F}
 # predicted probability by licence group & sex
@@ -295,7 +295,7 @@ kable(bylisex, caption="Probabilities by Driver's License Status & Sex",
       col.names = c("License Status", "Male", "Female"))
 ```
 
-* By Number of Cars & Sex: predicted for those people with mean age, Lower-middle income, college degree, valid licence, and who doesn't live in Scotland.
+* By Number of Cars & Sex: predicted for those people with mean age, lower-middle income, college degree, valid licence, and who doesn't live in Scotland.
 
 ```{r echo=F, warning=F, message=F, error=F}
 # predicted probability by NumCar & sex
@@ -318,7 +318,7 @@ kable(bycarsex, caption="Probabilities by Number of Cars & Sex",
       col.names = c("Number of Cars", "Male", "Female"))
 ```
 
-* By Region & Sex: predicted for those people with mean age, Lower-middle income, college degree, valid licence, and a car.
+* By Region & Sex: predicted for those people with mean age, lower-middle income, college degree, valid licence, and a car.
 
 ```{r echo=F, warning=F, message=F, error=F}
 # predicted probability by region & sex
@@ -357,13 +357,3 @@ Lastly, $R^2$ of the model is only 0.12, meaning that these variables only expla
 
 
 #Reference
-
-@CiteR
-@R-captioner
-@R-dplyr
-@R-foreign
-@R-knitr
-@R-repmis
-@R-rms
-@R-stargazer
-@R-Zelig
