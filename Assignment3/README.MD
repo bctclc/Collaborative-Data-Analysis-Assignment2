@@ -12,14 +12,14 @@
 
 * **LogitReg.R**: R source code file for logistic regressions
 
-* **Other_Citation.bib**: BibTeX database for datasets, etc.
+* **Package_Citation.bib**: BibTeX databese for R and R packages created by the repmis package
 
-* **Package_Citation.bib**: BibTeX databese for R and R packages
+* **README.md**: This file
+
+* **citation.bib**: BibTeX database for all sources
 
 * **data_cleanup.R**: R source code file for data clean-up
 
 * **packagetoBibtex.R**: R source code file to create BibTeX database
-
-* **README.md**: This file
 
 Note that the original datasets are not stored in this repository. 

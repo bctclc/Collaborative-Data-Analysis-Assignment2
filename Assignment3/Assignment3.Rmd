@@ -16,8 +16,7 @@ Last part will be a brief discussion of the results of the analysis.
 
 ```{r results='hide',echo=F, warning=F, message=F, error=F}
 ### set working directory
-setwd("E:\\—ßœ∞œ‡πÿ\\R\\Collaborative-Data-Analysis-Assignment2\\Assignment3")
-
+setwd("C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/Assignment3")
 
 library(stargazer)
 library(knitr)
@@ -83,7 +82,8 @@ The thresholds of each category are based on 25, 50, 75 percentile gross income 
 inccatcount <- table(EVINTEREST$inccat)
 Percentage <- round(inccatcount/length(EVINTEREST$inccat)*100, digits=2)
 Income <- c('Low', 'Low-Mid', 'High-Mid', 'High')
-Range <- c('Below 14,559GBP', '14,560GBP~20,799GBP', '20,800GBP~25,999GBP', '26,000GBP and Above')
+Range <- c('Below &#163;14,559', '&#163;14,560~&#163;20,799', 
+           '&#163;20,800~&#163;25,999', '&#163;26,000 and Above')
 inccatsummary <- cbind(Income, Range, Percentage)
 kable(inccatsummary, caption="Distribution of Income")
 ```
@@ -101,7 +101,7 @@ kable(inccatsummary, caption="Distribution of Income")
 * **Scotland**: `r round(mean(EVINTEREST$Scotland)*100, digits=2)` % of respondents lives in Scotland
 
 ```{r echo=F, warning=F, message=F, error=F, fig.cap="Distribution of respondent's age", fig.height=4}
-hist(EVINTEREST$RAGE, main=" ",
+hist(EVINTEREST$RAGE, main=NULL,
      xlab="Age", ylab="Frequency", 
      xlim=c(10,100))
 axis(side=1, at=seq(0,100, 10))
@@ -112,7 +112,7 @@ inctable <-table(EVINTEREST$inccat)
 barplot(inctable, ylab="Frequnecy",
         names.arg=c("Low", "Low-Mid", "High-Mid", "High"))
 mtext(side=1, "Gross Annual Income", line=2)
-mtext(side=1, "(Low:~14,559 /Low-Mid:14,560~20,799 /High-Mid:20,800~25,999 /High: 26,000+)", line=3)
+mtext(side=1, "(Low:~14,559 /Low-Mid:14,560~20,799 /High-Mid:20,800~25,999 /High: 26,000+)", line=3, cex=0.75)
 ```
 
 ```{r echo=F, warning=F, message=F, error=F, fig.cap="Distribution of number of cars", fig.height=4}
@@ -123,8 +123,7 @@ barplot(cartable,
 
 ```{r echo=F, warning=F, message=F, error=F, fig.cap="Distribution of household size", fig.height=4}
 Hsizetable <- table(EVINTEREST$DVHsize)
-barplot(Hsizetable, main="Household size", 
-        xlab="Household size", ylab="Frequency")
+barplot(Hsizetable, xlab="Household size", ylab="Frequency")
 ```
 
 \newpage
@@ -354,14 +353,15 @@ Another limitation is due to the design of the survey, which did not exclude res
 
 Lastly, $R^2$ of the model is only 0.12, meaning that these variables only explain 12% of the variations in the probability of having an interest in EVs. Partly, this is because of a lack of available information, as it is impossible to survey everything. Partly, attitudes are just not easy to explain, because they could be influenced by countless factors, sometimes as trivial as an image or some careless words. Nevertheless, we believe that there are patterns and these patterns are what we should better understand if EVs are to be further promoted.
 
-\textcolor{white}{
+
+#Reference
+
 @CiteR
-@R-captioner	
-@R-dplyr	
-@R-foreign 
-@R-knitr	
-@R-repmis	
-@R-rms	
-@R-stargazer 
+@R-captioner
+@R-dplyr
+@R-foreign
+@R-knitr
+@R-repmis
+@R-rms
+@R-stargazer
 @R-Zelig
-}
