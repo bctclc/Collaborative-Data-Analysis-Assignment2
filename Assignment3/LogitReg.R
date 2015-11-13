@@ -13,8 +13,6 @@ library(rms)
 
 # road the cleaned up dataframe
 load("EVdata1.rda")
-load("EVdata2.rda")
-load("EVdata3.rda")
 
 
 ### step-wise logistic regression ###

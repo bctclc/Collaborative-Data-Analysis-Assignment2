@@ -71,11 +71,11 @@ kable(vartable, caption="List of Variables")
 * **EVinterest**: `r round(mean(EVINTEREST$EVinterest)*100, digits=2)` % of respondents are interested in EVs
 
 * **RAGE**: Mean=`r round(mean(EVINTEREST$RAGE), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$RAGE), digits=2)`.
-The distribution of age is shown in the figure below.
+The distribution of age is shown in figure 1 below.
 
 * **Male**: `r round(mean(EVINTEREST$Male)*100, digits=2)` % of respondents are male
 
-* **inccat**: distribution is shown in the table and the figure below. 
+* **inccat**: distribution is shown in table 2 and figure 2 below. 
 The thresholds of each category are based on 25, 50, 75 percentile gross income from [Survey of Personal Incomes 2012-13 in the UK](https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/399041/Table_3_1_a_13.xls)(@UKincome).
 
 ```{r echo=F, warning=F, message=F, error=F, results='asis'}
@@ -92,9 +92,9 @@ kable(inccatsummary, caption="Distribution of Income")
 
 * **licence**: `r round(mean(EVINTEREST$licence)*100, digits=2)` % of respondents have valid drivers licence
 
-* **NumCar**: Mean=`r round(mean(EVINTEREST$NumCar), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$NumCar), digits=2)`. The distribution of the number of cars in respondent's household is shown in the figure below.
+* **NumCar**: Mean=`r round(mean(EVINTEREST$NumCar), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$NumCar), digits=2)`. The distribution of the number of cars in respondent's household is shown in figure 3 below.
 
-* **DVHsize**: Mean=`r round(mean(EVINTEREST$DVHsize), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$DVHsize), digits=2)`. The distribution of household size is shown in the figure below.
+* **DVHsize**: Mean=`r round(mean(EVINTEREST$DVHsize), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$DVHsize), digits=2)`. The distribution of household size is shown in figure 4 below.
 
 * **havechildren**: `r round(mean(EVINTEREST$havechildren)*100, digits=2)` % of respondents have children
 
@@ -182,16 +182,23 @@ stargazer::stargazer(L5, type="latex", header=F, covariate.labels = finallabels,
                      digits = 2, title="Interests in EVs")
 ```
 
-The model is statistically significant at 99% level and five out of the seven variables are significant at 95% level. On average, males are more likely to be interested in EVs. Having a college degree or driver's license also increases the likelihood of being interested. The number of cars is positively relative to the likelihood, suggesting that people who already have the "basics" are more likely to consider EVs. However, being in Scotland reduces this likelihood. 
+The model is statistically significant at 99% level and five out of the seven variables are significant at 95% level. 
+On average, males are more likely to be interested in EVs: 
+the odds of being interested in EVs are 60% higher ($e^{0.47}=1.60$) for male than female, holding other variables constant [z=3.36, p<0.001]. 
+Having a college degree or driver's license also increases the likelihood of being interested: the odds of having interested in EVs are 92% higher ($e^{0.65}=1.92$) for people with college degree compared to people without [z=4.38, p<0.001], the odds are 148% higher ($e^{0.91}=2.48$) for those who have drivers licence compared to those who don't [z=3.83, p<0.001]. 
+The number of cars is positively relative to the likelihood, suggesting that people who already have the "basics" are more likely to consider EVs: each additional car in a househild increases the odds of being interested in EVs by 20% ($e^{0.18}=1.20$), holding other variables constant [z=2.12, p=0.034]. 
+However, being in Scotland reduces this likelihood: people who live in Scotland have 50% lower ($e^{-0.7}=0.50$) odds of being interested in EVs compared to people who live in other regions of the UK [z=-2.44, p<0.015]. 
 
-The less significant variables are age and income level. Age is negatively relative to the likelihood of being interested, meaning that younger people are more likely to have an interest in EVs. Interestingly, income level seems not to matter much. Using the lowest quartile group as the baseline, only the highest quartile group is significantly different at 90% level. Nevertheless, results from regression 1 shows that income level (at least when comparing the highest quartile to the lowest quartile) is statistically significant at 99% level. The decrease in significance is due to the correlation between income level, and having driver's license and number of cars available. 
+The less significant variables are age and income level. Age is negatively relative to the likelihood of being interested, meaning that younger people are more likely to have an interest in EVs: each one year increase in the respondent's age is associated with 1% decrease ($e^{-0.01}=0.99$) in the odds of having interests in EVs [z=-8.73, p<0.001]. 
+Interestingly, income level seems not to matter much. Using the lowest quartile group as the baseline, only the highest quartile group is significantly different: high income people have 34% higher ($e^{0.29}=1.34$) odds of being interested in EVs compared to low income people [z=1.70, p<0.089]. 
+Nevertheless, results from regression 1 shows that income level (at least when comparing the highest quartile to the lowest quartile) is statistically significant at 99% level. The decrease in significance is due to the correlation between income level, and having driver's license and number of cars available. 
 
 ##Comparison of Predicted Probabilities by Group
 In addition to the odds ratio provided in the regression output, we want to be more specific with the size of effects of the seven independent variables. Therefore, the ranges of probability based on the variation of different variables are provided as following.
 
 $$Pr(Interested)=\frac{1} {1 + e^{\boldsymbol{\beta_k \cdot x_i}}}$$
 
-```{r echo=F, warning=F, message=F, error=F, fig.cap="Predicted Probability of Having an Interest in EVs by Age and Sex", fig.height=5.5}
+```{r echo=F, warning=F, message=F, error=F, fig.cap="Predicted Probability of Having an Interest in EVs by Age and Sex", fig.height=6}
 ZP <- zelig(EVinterest ~ RAGE + Male + lowermiddle + highermiddle + high 
              + degree + licence + NumCar  + Scotland, 
              cite = FALSE, data = EVINTEREST, model = 'logit')
