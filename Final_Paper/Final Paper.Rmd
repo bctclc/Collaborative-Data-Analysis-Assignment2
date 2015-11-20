@@ -3,7 +3,9 @@ title: "Determinants of the Interest in Electric Vehicles"
 author: "Claire Chang Liu & Noriko Magara"
 date: "Dec. 4th, 2015"
 output: pdf_document
-bibliography: others.bib
+bibliography: 
+ - others.bib
+ - Package_Citation.bib
 ---
 
 
