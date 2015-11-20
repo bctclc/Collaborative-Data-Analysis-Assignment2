@@ -10,7 +10,7 @@ bibliography: others.bib
 ```{r results='hide',echo=F, warning=F, message=F, error=F}
 
 ### set working directory
-setwd("E:\\—ßœ∞œ‡πÿ\\R\\Collaborative-Data-Analysis-Assignment2\\Final_Paper")
+setwd("C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/Final_Paper")
 
 library(stargazer)
 library(knitr)
