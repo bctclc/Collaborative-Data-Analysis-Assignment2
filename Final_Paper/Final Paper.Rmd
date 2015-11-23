@@ -2,7 +2,10 @@
 title: "Determinants of the Interest in Electric Vehicles"
 author: "Claire Chang Liu & Noriko Magara"
 date: "Dec. 4th, 2015"
-output: pdf_document
+output:
+  pdf_document: 
+    fig_caption: yes
+    number_sections: yes
 bibliography: 
  - others.bib
  - Package_Citation.bib
@@ -34,7 +37,7 @@ For the collaborative research project, we will work on adoption of electric veh
 focusing on identifying the potential buyers which hopefully helps the UK government to differentiate EV promoting strategies by target groups. 
 This document presents detailed proposal for our project.
 
-## Background
+# Background
 
 As a part of the efforts to cope with the climate change, countries have been trying to reduce greenhouse gas (GHG) emissions. 
 Considering the fact that the large portion of GHG emission is attributed to road traffic [@EC_climate], reducing the emission from vehicles is an important issue for many industrialized countries.
@@ -65,7 +68,7 @@ In order to maximize the performance of those governments' efforts, and thus to 
 This study will focus on EVs, which is the most recent generation of low emission vehicles and thus not many researches have made so far compared to other types of sustainable vehicles.
 
 
-## Literature Review
+# Literature Review
 
 Previous studies have examined various factors that are related to consumers' choice.
 
@@ -436,7 +439,85 @@ kable(byscotsex, caption="Probabilities by Region & Sex",
       col.names = c("Region", "Male", "Female"))
 ```
 
-##Obstacles to Buying EVs
+##Obstacles to Buying an EV
+### General obstacles
+In order to further investigate why people refrain from buying an EV, the survey asks questions regarding things that discourage the respondents doing so.
+The graph below shows the major obstacles to buying an EV. 
+The most popular issue is the recharging of the EVs, as `r round(mean(EVINTEREST$POrecharge)*100, digits=2)`% of respondents answered that they are concerned about it.
+The second largest issue is the capasity of the batteries, which is crucial to the travel distance. `r round(mean(EVINTEREST$PObattery)*100, digits=2)`% of renspondents are concerned about it, followed by the high costs of EVs (`r round(mean(EVINTEREST$POcost)*100, digits=2)`%).
+
+```{r echo=F, warning=F, message=F, error=F, fig.cap="Obstacles to buying an EV"}
+### Main Obstacles ###
+obscat <- c('choice', 'knowledge', 'cost', 'battery', 'recharge', 
+            'resale', 'safety', 'spec', 'technology')
+obsmean <- c(mean(EVINTEREST$POchoice), mean(EVINTEREST$POknowledge),
+             mean(EVINTEREST$POcost), mean(EVINTEREST$PObattery),
+             mean(EVINTEREST$POrecharge), mean(EVINTEREST$POresale),
+             mean(EVINTEREST$POsafety), mean(EVINTEREST$POcarspec),
+             mean(EVINTEREST$POtech))
+barplot(obsmean, names.arg=obscat, cex.names=0.6,
+        ylab="% of respondents who choose the category")
+```
+
+This result instantly suggests that the government may encourage people to buy an EV by increasing the number of EV charging stations, subsidizing R&D of the EV industry to accelerate the technical development, and/or providing financial incentives such as tax exemption or rebates to those who purchase an EV.
+However, logistic regression models identifies which groups of people care more about each of the three major obstacles as shown in the table below. 
+
+```{r  echo=F, warning=F, message=F, error=F, results='asis'}
+# Recharge
+Obs1 <- lrm(POrecharge ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
+            + licence + NumCar + Scotland,
+            EVINTEREST)
+# Battery
+Obs2 <- lrm(PObattery ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
+            + licence + NumCar + Scotland,
+            EVINTEREST)
+# Cost
+Obs3 <- lrm(POcost ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
+            + licence + NumCar + Scotland,
+            EVINTEREST)
+# summary table
+stargazer(Obs1, Obs2, Obs3, type="latex", header=F, covariate.labels = finallabels,
+          digits = 2, title="Determinats of obstacles")
+```
+
+(add interpretations of the results!)
+
+### Obstacles regarding costs
+Similarly, the survey asks what aspects of the costs people are concerned about. 
+As shown in the graph below, `r round(mean(EVINTEREST$POCpurchase)*100, digits=2)`% of respondents think that the purchasing costs would put them off buying an EV. The other major concerns are the maintenance costs (`r round(mean(EVINTEREST$POCmaintenance)*100, digits=2)`%) and the fuel/recharging costs including fuel tax (`r round(mean(EVINTEREST$POCfuel)*100, digits=2)`%). 
+
+```{r echo=F, warning=F, message=F, error=F, fig.cap="Obstacles to buying an EV regarding costs"}
+cobscat <- c('purchase', 'fuel', 'maintenance', 'resale', 'exercise tax',
+             'company tax', 'insurance')
+cobsmean <- c(mean(EVINTEREST$POCpurchase), mean(EVINTEREST$POCfuel),
+              mean(EVINTEREST$POCmaintenance), mean(EVINTEREST$POCresale),
+              mean(EVINTEREST$POCextax), mean(EVINTEREST$POCcomptax),
+              mean(EVINTEREST$POCinsurance))
+barplot(cobsmean, names.arg=cobscat, cex.names=0.6,
+        ylab="% of respondents who choose the category")
+```
+
+The table below shows the results of logistic regression models for the three major concerns regarding costs.
+
+```{r echo=F, warning=F, message=F, error=F, results='asis'}
+# Purchase
+Cobs1 <- lrm(POCpurchase ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
+             + licence + NumCar + Scotland,
+             EVINTEREST)
+# maintenance
+Cobs2 <- lrm(POCmaintenance ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
+             + licence + NumCar + Scotland,
+             EVINTEREST)
+# Cost
+Cobs3 <- lrm(POCfuel ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
+             + licence + NumCar + Scotland,
+             EVINTEREST)
+# summary table
+stargazer(Cobs1, Cobs2, Cobs3, type="latex", header=F, covariate.labels = finallabels,
+          digits = 2, title="Determinats of obstacles regarding costs")
+```
+
+(add interpretations of the results!)
 
 ##Encouragements
 
@@ -450,3 +531,5 @@ However, this also leads to one of the limitations of this paper, not being able
 Another limitation is due to the design of the survey, which did not exclude respondents who are not interested in buying cars in genereal. Therefore, varialbes, including having driver's license and number of cars available, need to be interpreted with great caution. The low interest shown in groups without driver's license or cars might not be caused by their lack of interest in EVs, but by their lack of interest in cars.
 
 Lastly, $R^2$ of the model is only 0.12, meaning that these variables only explain 12% of the variations in the probability of having an interest in EVs. Partly, this is because of a lack of available information, as it is impossible to survey everything. Partly, attitudes are just not easy to explain, because they could be influenced by countless factors, sometimes as trivial as an image or some careless words. Nevertheless, we believe that there are patterns and these patterns are what we should better understand if EVs are to be further promoted.
+
+# Reference

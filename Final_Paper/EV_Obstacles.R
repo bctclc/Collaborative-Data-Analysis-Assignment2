@@ -1,4 +1,4 @@
-### R codes for more logit models ###
+### R codes for more logit models (obstacles to buying an EV) ###
 
 # set working directory
 setwd("C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/Final_Paper")
@@ -13,13 +13,14 @@ library(stargazer)
 
 ### Main Obstacles ###
 obscat <- c('choice', 'knowledge', 'cost', 'battery', 'recharge', 
-            'resale', 'safety', 'carspec', 'tech')
+            'resale', 'safety', 'spec', 'technology')
 obsmean <- c(mean(EVINTEREST$POchoice), mean(EVINTEREST$POknowledge),
              mean(EVINTEREST$POcost), mean(EVINTEREST$PObattery),
              mean(EVINTEREST$POrecharge), mean(EVINTEREST$POresale),
              mean(EVINTEREST$POsafety), mean(EVINTEREST$POcarspec),
              mean(EVINTEREST$POtech))
-barplot(obsmean, names.arg=obscat, main="Obstacles to buying an EV")
+barplot(obsmean, names.arg=obscat, main="Obstacles to buying an EV",
+        ylab="% of respondents who choose the category")
 
 
 # Recharge
@@ -46,13 +47,14 @@ stargazer(Obs1, Obs2, Obs3, type="text", header=F,
 
 
 ### Breakdown of concerns re costs ###
-cobscat <- c('purchase', 'fuel', 'maintenance', 'resale', 'exercisetax',
-             'companytax', 'insurance')
+cobscat <- c('purchase', 'fuel', 'maintenance', 'resale', 'exercise tax',
+             'company tax', 'insurance')
 cobsmean <- c(mean(EVINTEREST$POCpurchase), mean(EVINTEREST$POCfuel),
               mean(EVINTEREST$POCmaintenance), mean(EVINTEREST$POCresale),
               mean(EVINTEREST$POCextax), mean(EVINTEREST$POCcomptax),
               mean(EVINTEREST$POCinsurance))
-barplot(cobsmean, names.arg=cobscat, main="Obstacles to buying an EV regarding costs")
+barplot(cobsmean, names.arg=cobscat, main="Obstacles to buying an EV regarding costs",
+        ylab="% of respondents who choose the category")
 
 
 # Purchase
