@@ -440,8 +440,11 @@ kable(byscotsex, caption="Probabilities by Region & Sex",
 ```
 
 ##Obstacles to Buying an EV
-### General obstacles
+
 In order to further investigate why people refrain from buying an EV, the survey asks questions regarding things that discourage the respondents doing so.
+
+### General obstacles
+
 The graph below shows the major obstacles to buying an EV. 
 The most popular issue is the recharging of the EVs, as `r round(mean(EVINTEREST$POrecharge)*100, digits=2)`% of respondents answered that they are concerned about it.
 The second largest issue is the capasity of the batteries, which is crucial to the travel distance. `r round(mean(EVINTEREST$PObattery)*100, digits=2)`% of renspondents are concerned about it, followed by the high costs of EVs (`r round(mean(EVINTEREST$POcost)*100, digits=2)`%).
@@ -480,10 +483,15 @@ stargazer(Obs1, Obs2, Obs3, type="latex", header=F, covariate.labels = finallabe
           digits = 2, title="Determinats of obstacles")
 ```
 
-(add interpretations of the results!)
+As for the recharging issue, males, college graduates, people who have a drivers licence, and people who have more car are more likely to be concerned about it compared to females, non-college graduates, people without drivers licence, and people who have fewer cars, respectively.
+Similarly, as for the battery capacity issue, males, college graduates, people who have a drivers licence, people who have more car, and people live outside Scotland are more likely to be concerned about it compared to females, non-college graduates, people without drivers licence, people who have fewer cars, and people live in Scotland, respectively.
+Finally, regarding costs, younger people, males, college graduates, and people who have a drivers licence are more likely to be concerned about it compared to older people, females, non-college graduates, and people without drivers licence, respectively.
+Although the more sensitive groups slightly differ by the obstacles, they are generally consistent with the groups that are more likely to be interested in EVs. 
+This result implies that people who have stronger interests in EVs are at the same time more concerned about those obstacles.   
+
 
 ### Obstacles regarding costs
-Similarly, the survey asks what aspects of the costs people are concerned about. 
+The survey also asks what aspects of the costs people are concerned about. 
 As shown in the graph below, `r round(mean(EVINTEREST$POCpurchase)*100, digits=2)`% of respondents think that the purchasing costs would put them off buying an EV. The other major concerns are the maintenance costs (`r round(mean(EVINTEREST$POCmaintenance)*100, digits=2)`%) and the fuel/recharging costs including fuel tax (`r round(mean(EVINTEREST$POCfuel)*100, digits=2)`%). 
 
 ```{r echo=F, warning=F, message=F, error=F, fig.cap="Obstacles to buying an EV regarding costs"}
@@ -498,6 +506,12 @@ barplot(cobsmean, names.arg=cobscat, cex.names=0.6,
 ```
 
 The table below shows the results of logistic regression models for the three major concerns regarding costs.
+Younger people, male, college graduates, and people with a drivers licence are more likely to be concerned about purchasing costs, compared to older people, females, non-college graduates, and people without drivers licence.
+Likewise, younger people, males, people with a drivers licence, and people live outside Scotland are more likely to be concerned about maintenance costs, compared to each counterpart.
+Interestingly, regarding fuel and recharging costs, the lower-middle and the higher-middle income group are more likely to be concerned compared to the low income group. 
+People who have a drivers licence have strong concerns on this issue as well.
+In fact, EVs are cheaper than conventional vehicles in terms of fuel/recharge costs as @Herron2015web argues.
+Better understanding about the actual energy costs may help motivate these people to consider buying one.
 
 ```{r echo=F, warning=F, message=F, error=F, results='asis'}
 # Purchase
@@ -517,7 +531,7 @@ stargazer(Cobs1, Cobs2, Cobs3, type="latex", header=F, covariate.labels = finall
           digits = 2, title="Determinats of obstacles regarding costs")
 ```
 
-(add interpretations of the results!)
+\newpage
 
 ##Encouragements
 
@@ -533,3 +547,8 @@ Another limitation is due to the design of the survey, which did not exclude res
 Lastly, $R^2$ of the model is only 0.12, meaning that these variables only explain 12% of the variations in the probability of having an interest in EVs. Partly, this is because of a lack of available information, as it is impossible to survey everything. Partly, attitudes are just not easy to explain, because they could be influenced by countless factors, sometimes as trivial as an image or some careless words. Nevertheless, we believe that there are patterns and these patterns are what we should better understand if EVs are to be further promoted.
 
 # Reference
+
+---
+nocite: | 
+  @CiteR,@R-captioner,@R-dplyr,@R-foreign,@R-ggplot2,@R-googleVis,@R-knitr,@R-markdown,@R-repmis,@R-rms,@R-stargazer,@R-Zelig
+...
