@@ -495,7 +495,7 @@ The survey also asks what aspects of the costs people are concerned about.
 As shown in the graph below, `r round(mean(EVINTEREST$POCpurchase)*100, digits=2)`% of respondents think that the purchasing costs would put them off buying an EV. The other major concerns are the maintenance costs (`r round(mean(EVINTEREST$POCmaintenance)*100, digits=2)`%) and the fuel/recharging costs including fuel tax (`r round(mean(EVINTEREST$POCfuel)*100, digits=2)`%). 
 
 ```{r echo=F, warning=F, message=F, error=F, fig.cap="Obstacles to buying an EV regarding costs"}
-cobscat <- c('purchase', 'fuel', 'maintenance', 'resale', 'exercise tax',
+cobscat <- c('purchase', 'fuel/charging', 'maintenance', 'resale', 'excise tax',
              'company tax', 'insurance')
 cobsmean <- c(mean(EVINTEREST$POCpurchase), mean(EVINTEREST$POCfuel),
               mean(EVINTEREST$POCmaintenance), mean(EVINTEREST$POCresale),
@@ -534,6 +534,65 @@ stargazer(Cobs1, Cobs2, Cobs3, type="latex", header=F, covariate.labels = finall
 \newpage
 
 ##Encouragements
+
+Since the survey also asks respondents what would encourage them to buy an EV, we will provide a descriptive and analytical analysis of these factors here in the hope that the results will inform our policy recommendation.
+
+The choices provided in the survey and their relative importance in the respondents' minds are shown in the figure xxx.
+
+```{r echo=F, warning=F, message=F, error=F, results='asis'}
+ennames <- c('Cost', 'Battery: \n distance travelled \n on charge', 'Convenience \n of recharging', 'Resale/residual \n value', 'Safety \n features/record', 'Vehicle size, \n performance \n or aesthetics', 'If there was \n more choice \n available', 'Technology: \n reliable/proven', 'Environmentally \n friendly')
+enmeans <- c(mean(EVINTEREST$ENcost), mean(EVINTEREST$ENbattery),
+             mean(EVINTEREST$ENrecharge), mean(EVINTEREST$ENresale),
+             mean(EVINTEREST$ENsafety), mean(EVINTEREST$ENcarspec),
+             mean(EVINTEREST$ENchoice), mean(EVINTEREST$ENtech),
+             mean(EVINTEREST$ENenv))
+barplot(enmeans, names.arg=ennames, cex.names=0.6,
+        ylab="% of respondents who choose the category")
+```
+
+Among the nine choices, the top four choices are: "Cost" with `r round(mean(EVINTEREST$ENcost)*100, digits=2)`% respondents choosing it, "Battery: distance travelled on charge" with `r round(mean(EVINTEREST$ENbattery)*100, digits=2)`%, "Convenience of recharging" with `r round(mean(EVINTEREST$ENrecharge)*100, digits=2)`%, and "Environmentally friendly" with `r round(mean(EVINTEREST$ENenv)*100, digits=2)`%. 
+
+The facts above potentially reveal a public interest in EVs. If there were no interest at all, people would not have bothered to learn about EVs' battery capacity and recharging condition. These again show the practical problems related to EVs and will lead to similar policy suggestions above, i.e. more support to R&D in EVs and more charging stations.
+
+As in the previous section, we here break down the factor "cost" and see what exactly is cost about.
+
+```{r echo=F, warning=F, message=F, error=F, results='asis'}
+encostnames <-  c('purchase', 'fuel/recharging', 'maintenance', 'resale', 'excise tax',
+             'company tax', 'insurance')
+encostmeans <- c(mean(EVINTEREST$ENCpurchase), mean(EVINTEREST$ENCfuel),
+             mean(EVINTEREST$ENCmaintenance), mean(EVINTEREST$ENCresale),
+             mean(EVINTEREST$ENCextax), mean(EVINTEREST$ENCcomptac),
+             mean(EVINTEREST$ENCinsurance))
+barplot(encostmeans, names.arg=encostnames, cex.names=0.6,
+        ylab="% of respondents who choose the category")
+```
+
+Admittedly, this question is rather vague, because it only gives us the information regarding what kind of cost matters most to consumers, but not how they think of the costs at current levels. However, a comparison between the costs that will put off buying EVs and the costs that will encourage buying is interesting. While the top four choices are the same, purchase costs, fuel/recharging costs, maintenance costs, and insurances costs, more people are put off by fuel/recharging costs or insurance costs. This shows that people are worried about the recharging costs for EVs which actually have a lower energy cost per mile than ordinary cars.As for insurance costs, it is true that premium for EVs is higher, but it could be reduced as EVs become more prevalent.
+
+Now we turn to potentially different considerations held by different groups of people.
+
+```{r echo=F, warning=F, message=F, error=F, results='asis'}
+
+en1 <- lrm(ENcost ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
+             + licence + NumCar + Scotland,
+             EVINTEREST)
+
+en2 <- lrm(ENbattery ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
+             + licence + NumCar + Scotland,
+             EVINTEREST)
+
+en3 <- lrm(ENrecharge ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
+             + licence + NumCar + Scotland,
+             EVINTEREST)
+
+en4 <- lrm(ENenv ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
+             + licence + NumCar + Scotland,
+             EVINTEREST)
+
+stargazer(en1, en2, en3, en4,type="latex", header=F, covariate.labels = finallabels,
+          digits = 2, title="Determinats of factors that will be encourage buying EVs")
+```
+
 
 #Discussion and Limitations
 In general, interest in EVs is rather limited. Among all respondents, only 18.48% are interested. This, on the other hand, suggests the need to better understand the factors related to the interest in EVs, and this is what motivated our research too.
