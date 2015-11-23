@@ -10,7 +10,8 @@ load("EVdata1.rda")
 library(rms)
 library(stargazer)
 
-# Main Obstacles
+
+### Main Obstacles ###
 obscat <- c('choice', 'knowledge', 'cost', 'battery', 'recharge', 
             'resale', 'safety', 'carspec', 'tech')
 obsmean <- c(mean(EVINTEREST$POchoice), mean(EVINTEREST$POknowledge),
@@ -42,3 +43,36 @@ lrm(Obs3)
 # summary table
 stargazer(Obs1, Obs2, Obs3, type="text", header=F, 
           digits = 2, title="Determinats of obstacles")
+
+
+### Breakdown of concerns re costs ###
+cobscat <- c('purchase', 'fuel', 'maintenance', 'resale', 'exercisetax',
+             'companytax', 'insurance')
+cobsmean <- c(mean(EVINTEREST$POCpurchase), mean(EVINTEREST$POCfuel),
+              mean(EVINTEREST$POCmaintenance), mean(EVINTEREST$POCresale),
+              mean(EVINTEREST$POCextax), mean(EVINTEREST$POCcomptax),
+              mean(EVINTEREST$POCinsurance))
+barplot(cobsmean, names.arg=cobscat, main="Obstacles to buying an EV regarding costs")
+
+
+# Purchase
+Cobs1 <- lrm(POCpurchase ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
+             + licence + NumCar + Scotland,
+             EVINTEREST)
+lrm(Cobs1)
+
+# maintenance
+Cobs2 <- lrm(POCmaintenance ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
+             + licence + NumCar + Scotland,
+             EVINTEREST)
+lrm(Cobs2)
+
+# Cost
+Cobs3 <- lrm(POCfuel ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
+             + licence + NumCar + Scotland,
+             EVINTEREST)
+lrm(Cobs3)
+
+# summary table
+stargazer(Cobs1, Cobs2, Cobs3, type="text", header=F, 
+          digits = 2, title="Determinats of obstacles regarding costs")
