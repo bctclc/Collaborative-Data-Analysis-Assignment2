@@ -118,21 +118,15 @@ source("data_cleanup.R")
 
 We are interested in the potentially different attitudes and priorities of different groups and in identifying potential buyers of EVs as well as obstacles preventing EV consumption. (To better understand the regional differences, if there are, we will look closer into regional policies or aggregate-level characteristics of Great Britain.) Therefore, we will be using the three core questions as dependent variables and demographic variables as independent variables. We will also be primarily using data from 2015, and might draw on data from 2014 in case of a need for contrast or support. 
 
-As our dependent variables are all categories variables, **multinomial logistic regression** will be adopted:
+As our dependent variables are all binary dummy variables, **logistic regression** will be adopted:
 
-$$\ln{\frac{Pr(Y_i=1)}{Pr(Y_i=K)}}=\beta_{0,1} + \beta_{1,1} x_{1,i} + \beta_{2,1} x_{2,i} + \dots = \boldsymbol{\beta_1 \cdot x_i}$$
-$$\ln{\frac{Pr(Y_i=2)}{Pr(Y_i=K)}}=\boldsymbol{\beta_2 \cdot x_i}$$
-$$\vdots$$
-$$\ln{\frac{Pr(Y_i=K-1)}{Pr(Y_i=K)}}=\boldsymbol{\beta_{K-1} \cdot x_i}$$
+$$\ln{\frac{p}{1-p}}=\beta_{0} + \beta_{1} x_{1i} + \beta_{2} x_{2i} + \dots + \beta_{k} x_{ki}$$
 
-Where $Pr(Y_i=1)$ to $Pr(Y_i=K)$ are the probabilities that the *i*th person is classified into the first category to the *K*th category, and $\boldsymbol{x_i}$ is a vector of the *i*th person's independent variables, i.e. the individual's characteristics in our study. 
+Where $p$ is the probability that the dependent variable equals to 1 (e.g. being interested in EVs).
 
-By converting the log odds into probabilities, we will obtain the probability of the *i*th person being classified into the *J*th category (e.g. buying an EV) depending on his/her personal characteristics. 
-For the *K*th category (the category used as a reference), the predicted probability is calculated by the second formula.
+By converting $\ln{\frac{p}{1-p}}$ into $p$, we will obtain the predicted probability for the *i*th person depending on his/her personal characteristics. 
 
-$$Pr(Y_i=J)=\frac{e^{\boldsymbol{\beta_J \cdot x_i}}} {1 + \sum_{k=1}^{K-1} e^{\boldsymbol{\beta_k \cdot x_i}}}$$
-
-$$Pr(Y_i=K)=\frac{1} {1 + \sum_{k=1}^{K-1} e^{\boldsymbol{\beta_k \cdot x_i}}}$$
+$$p=\frac{1} {1 + exp\{-(\beta_{0} + \beta_{1} x_{1i} + \beta_{2} x_{2i} + \dots + \beta_{k} x_{ki})\}}$$
 
 Thus, we are expecting to see different predicted probabilities of showing certain attitudes or making certain decisions for different demographic groups, which will provide some useful information for the policy makers to create efficient means to promote EVs.
 
@@ -546,7 +540,7 @@ enmeans <- c(mean(EVINTEREST$ENcost), mean(EVINTEREST$ENbattery),
              mean(EVINTEREST$ENsafety), mean(EVINTEREST$ENcarspec),
              mean(EVINTEREST$ENchoice), mean(EVINTEREST$ENtech),
              mean(EVINTEREST$ENenv))
-barplot(enmeans, names.arg=ennames, cex.names=0.6,
+barplot(enmeans, names.arg=ennames, cex.names=0.35,
         ylab="% of respondents who choose the category")
 ```
 
