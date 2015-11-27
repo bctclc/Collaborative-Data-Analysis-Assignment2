@@ -1,0 +1,263 @@
+---
+title: "Determinants of the Interest in Electric Vehicles"
+author: "Claire Chang Liu & Noriko Magara"
+date: "Dec. 4th, 2015"
+output: ioslides_presentation
+---
+
+## Introduction
+```{r results='hide',echo=F, warning=F, message=F, error=F}
+
+### set working directory
+setwd("C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/Final_Paper")
+
+library(stargazer)
+library(knitr)
+library(Zelig)
+library(rms)
+library(captioner)
+library(foreign)
+library(dplyr)
+library(ggplot2)
+library(googleVis)
+library(xtable)
+  
+figcap <- captioner(prefix = "Figure", auto_space = TRUE, levels = 1, type = NULL)
+tablecap <-captioner(prefix = "Table", auto_space = TRUE, levels = 1, type = NULL)
+
+load("EVdata1.rda")
+```
+
+- Climate change, GHG emission
+- Government promoting low emission vehicles
+- Low adotion
+
+## Purpose of Research
+
+- Identify the characteristics of potential EV buyers
+- Identify the factors encouraging/putting off buying EVs
+
+## Data Source
+This analysis is based on survey data in the UK called ["Opinions and Lifestyle Survey, Electric Vehicles Module, February 2014 and February 2015"](https://discover.ukdataservice.ac.uk/Catalogue/?sn=7571&type=Data%20catalogue) conducted by Social Survey Division of the Office for National Statistics. 
+This module comes with two datasets: survey results from 2014 and 2015. 
+
+## List of Variables
+```{r echo=F, warning=F, message=F, error=F, results='asis'}
+Names <- c("EVinterest", "RAGE", "Male", "inccat", "degree", "licence", 
+           "NumCar", "DVHsize", "havechildren", "Scotland")
+Types <- c("dummy", "continuous", "dummy", "categorical", "dummy", 
+           "dummy", "continuous", "continuous", "dummy", "dummy")
+Descriptions <- c("Whether the respondent is interested in EVs or not", 
+                  "Respondent's age",
+                  "Respondent's sex",
+                  "Respondent's income in 4 categories (low, low-mid, high-mid, high)",
+                  "Whether the respondent is a college graduate or not",
+                  "Whether the respondent has a valid drivers licence or not",
+                  "Number of cars in the respondent's household",
+                  "Respondent's household size",
+                  "Whether the Respondent has children or not",
+                  "Whether the Respondent lives in Scotland or not")
+vartable <- cbind(Names, Types, Descriptions)
+table <- kable(vartable)
+print(table, tabular.environment = "longtable")
+```
+
+## Methodology
+
+$$\ln{\frac{p}{1-p}}=\beta_{0} + \beta_{1} x_{1i} + \beta_{2} x_{2i} + \dots + \beta_{k} x_{ki}$$
+
+
+
+## Descriptive Analysis | Dependent Variables
+```{r echo=F, warning=F, message=F, error=F, results='asis'}
+par(mfrow=c(2,3), mar=c(4,6,2,6))
+barplot(table(EVINTEREST$EVinterest), ylab="Frequency", main="Interest in EVs")
+obscat <- c('choice', 'knowledge', 'cost', 'battery', 'recharge', 
+            'resale', 'safety', 'spec', 'technology')
+obsmean <- c(mean(EVINTEREST$POchoice), mean(EVINTEREST$POknowledge),
+             mean(EVINTEREST$POcost), mean(EVINTEREST$PObattery),
+             mean(EVINTEREST$POrecharge), mean(EVINTEREST$POresale),
+             mean(EVINTEREST$POsafety), mean(EVINTEREST$POcarspec),
+             mean(EVINTEREST$POtech))
+barplot(obsmean, names.arg=obscat, cex.names=0.6, cex.ylab=0.6,
+        ylab="% of respondents who \n choose the category", main="Obstacles to buying EVs")
+cobscat <- c('purchase', 'fuel/charging', 'maintenance', 'resale', 'excise tax',
+             'company tax', 'insurance')
+cobsmean <- c(mean(EVINTEREST$POCpurchase), mean(EVINTEREST$POCfuel),
+              mean(EVINTEREST$POCmaintenance), mean(EVINTEREST$POCresale),
+              mean(EVINTEREST$POCextax), mean(EVINTEREST$POCcomptax),
+              mean(EVINTEREST$POCinsurance))
+barplot(cobsmean, names.arg=cobscat, cex.names=0.6, cex.ylab=0.6,
+        ylab="% of respondents who \n choose the category", main="Cost-related obstacles to buying EVs")
+ennames <- c('Cost', 'Battery: \n distance travelled \n on charge', 'Convenience \n of recharging', 'Resale/residual \n value', 'Safety \n features/record', 'Vehicle size, \n performance \n or aesthetics', 'If there was \n more choice \n available', 'Technology: \n reliable/proven', 'Environmentally \n friendly')
+enmeans <- c(mean(EVINTEREST$ENcost), mean(EVINTEREST$ENbattery),
+             mean(EVINTEREST$ENrecharge), mean(EVINTEREST$ENresale),
+             mean(EVINTEREST$ENsafety), mean(EVINTEREST$ENcarspec),
+             mean(EVINTEREST$ENchoice), mean(EVINTEREST$ENtech),
+             mean(EVINTEREST$ENenv))
+barplot(enmeans, names.arg=ennames, cex.names=0.35, cex.ylab=0.6,
+        ylab="% of respondents who \n choose the category", main="Factors encouraging buying EVs")
+encostnames <-  c('purchase', 'fuel/recharging', 'maintenance', 'resale', 'excise tax',
+             'company tax', 'insurance')
+encostmeans <- c(mean(EVINTEREST$ENCpurchase), mean(EVINTEREST$ENCfuel),
+             mean(EVINTEREST$ENCmaintenance), mean(EVINTEREST$ENCresale),
+             mean(EVINTEREST$ENCextax), mean(EVINTEREST$ENCcomptac),
+             mean(EVINTEREST$ENCinsurance))
+barplot(encostmeans, names.arg=encostnames, cex.names=0.6, cex.ylab=0.6,
+        ylab="% of respondents who \n choose the category", main="Cost-related factors encouraging buying EVs")
+```
+
+## Descriptive Analysis | Independent Variables
+```{r echo=F, warning=F, message=F, error=F, results='asis'}
+par(mfrow=c(3,3), mar=c(4,6,2,6))
+hist(EVINTEREST$RAGE, 
+     xlab="Age", ylab="Frequency", main="Distribution of Age", 
+     xlim=c(10,100))
+axis(side=1, at=seq(0,100, 10))
+barplot(table(EVINTEREST$Male), ylab="Frequency", main="Sex")
+inctable <-table(EVINTEREST$inccat)
+barplot(inctable, ylab="Frequnecy", main="Distribution of Income",
+        names.arg=c("Low", "Low-Mid", "High-Mid", "High"))
+mtext(side=1, "Gross Annual Income", line=2)
+mtext(side=1, "(Low:~14,559 /Low-Mid:14,560~20,799 /High-Mid:20,800~25,999 /High: 26,000+)", line=3, cex=0.75)
+barplot(table(EVINTEREST$degree), ylab="Frequency", main="College Degree")
+barplot(table(EVINTEREST$licence), ylab="Frequency", main="Drivers Licence")
+cartable <-table(EVINTEREST$NumCar)
+barplot(cartable, main="Distirbution of number of cars",
+     xlab="Number of Cars", ylab="Frequency")
+Hsizetable <- table(EVINTEREST$DVHsize)
+barplot(Hsizetable, xlab="Household size", ylab="Frequency", main="Distribution of Household Size")
+barplot(table(EVINTEREST$havechildren), ylab="Frequency", main="having children")
+barplot(table(EVINTEREST$Scotland), ylab="Frequency", main="Scotland Residents")
+```
+
+
+## Logistic Regression | Interest in EVs
+
+$\ln{(\frac{p} {1-p})}=\beta_{0}+\beta_{1}Age+\beta_{2}Male+\beta_{3}Lowmid$
+           $+\beta_{4}Highmid+\beta_{5}High+\beta_{6}College$
+           $+\beta_{7}license+\beta_{8}NumCar+\beta_{9}Scotland$
+
+```{r echo=F, warning=F, message=F, error=F, results='asis'}
+finallabels <- c('Age', 'Male', 'Income: low-middle', 'Income: high-middle', 'Income: high', 
+            'College degree', 'Drivers licence', 'Number of cars', 'Scotland', '(Intercept)') 
+L5 <- lrm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
+          + licence + NumCar + Scotland,
+          EVINTEREST)
+stargazer::stargazer(L5, type="html", header=F, covariate.labels = finallabels,
+                     digits = 2, title="Interests in EVs")
+```
+
+## Predicted Probabilities | Gender & Age
+```{r echo=F, warning=F, message=F, error=F, fig.cap="Predicted Probability of Having an Interest in EVs by Age and Sex", fig.height=5}
+ZP <- zelig(EVinterest ~ RAGE + Male + lowermiddle + highermiddle + high 
+             + degree + licence + NumCar  + Scotland, 
+             cite = FALSE, data = EVINTEREST, model = 'logit')
+setZP1 <- setx(ZP, RAGE = 20:95, Male=0)
+simZP1 <- sim(ZP, x = setZP1)
+plot(simZP1, xlab="Age", ylab="Predicted Probability", col=rgb(1,0,0,0.15), 
+     ylim=c(0,0.4), xlim=c(20,100))
+par(new=T)
+setZP1 <- setx(ZP, RAGE = 20:95, Male=1)
+simZP1 <- sim(ZP, x = setZP1)
+plot(simZP1, xlab="Age", ylab="Predicted Probability", col=rgb(0,0,1,0.15), 
+     ylim=c(0,0.4), xlim=c(20,100))
+legend("topright", c("Male","Female"),lwd=1, col=c("blue","red"))
+```
+
+##  Predicted Probabilities | Degree & Licence
+```{r echo=F, warning=F, message=F, error=F}
+LPred <- glm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle +high 
+             + degree + licence + NumCar + Scotland, 
+             data = EVINTEREST, family = 'binomial')
+
+# predicted probability by educ group & sex
+fitted3 <- with(EVINTEREST,
+                data.frame(RAGE=mean(RAGE), Male=1, lowermiddle=1, 
+                           highermiddle=0, high=0,
+                           licence=1, degree=c(1,0), NumCar=1, Scotland=0))
+fitted3$predicted <- predict(LPred, newdata = fitted3, type = 'response')
+fitted3$predicted <- round(fitted3$predicted*100, digits=2)
+fitted4 <- with(EVINTEREST,
+                data.frame(RAGE=mean(RAGE), Male=0, lowermiddle=1, 
+                           highermiddle=0, high=0,
+                           licence=1, degree=c(1,0), NumCar=1, Scotland=0))
+fitted4$predicted <- predict(LPred, newdata = fitted4, type = 'response')
+fitted4$predicted <- round(fitted4$predicted*100, digits=2)
+
+Edugroup <- c("At least have a college degree", "Do not have a college degree")
+
+byedusex <- cbind(Edugroup, fitted3$predicted, fitted4$predicted)
+
+kable(byedusex, caption="Probability by Education Level & Sex", 
+      col.names = c("Education Level", "Male", "Female"))
+```
+
+\n
+```{r echo=F, warning=F, message=F, error=F}
+# predicted probability by licence group & sex
+fitted5 <- with(EVINTEREST,
+                data.frame(RAGE=mean(RAGE), Male=1, lowermiddle=1, 
+                           highermiddle=0, high=0,
+                           licence=c(1,0), degree=1, NumCar=1, Scotland=0))
+fitted5$predicted <- predict(LPred, newdata = fitted5, type = 'response')
+fitted5$predicted <- round(fitted5$predicted*100, digits=2)
+fitted6 <- with(EVINTEREST,
+                data.frame(RAGE=mean(RAGE), Male=0, lowermiddle=1, 
+                           highermiddle=0, high=0,
+                           licence=c(1,0), degree=1, NumCar=1, Scotland=0))
+fitted6$predicted <- predict(LPred, newdata = fitted6, type = 'response')
+fitted6$predicted <- round(fitted6$predicted*100, digits=2)
+
+ligroup <- c("Have driver's license", "Do not have driver's license")
+
+bylisex <- cbind(Edugroup, fitted5$predicted, fitted6$predicted)
+
+kable(bylisex, caption="Probabilities by Driver's License Status & Sex", 
+      col.names = c("License Status", "Male", "Female"))
+```
+
+## Factors Encouraging/Putting Off Buying EVs
+```{r echo=F, warning=F, message=F, error=F, results='asis'}
+par(mfrow=c(2,2), mar=c(4,6,2,6))
+obscat <- c('choice', 'knowledge', 'cost', 'battery', 'recharge', 
+            'resale', 'safety', 'spec', 'technology')
+obsmean <- c(mean(EVINTEREST$POchoice), mean(EVINTEREST$POknowledge),
+             mean(EVINTEREST$POcost), mean(EVINTEREST$PObattery),
+             mean(EVINTEREST$POrecharge), mean(EVINTEREST$POresale),
+             mean(EVINTEREST$POsafety), mean(EVINTEREST$POcarspec),
+             mean(EVINTEREST$POtech))
+barplot(obsmean, names.arg=obscat, cex.names=0.6, cex.ylab=0.6,
+        ylab="% of respondents who \n choose the category", main="Obstacles to buying EVs")
+cobscat <- c('purchase', 'fuel/charging', 'maintenance', 'resale', 'excise tax',
+             'company tax', 'insurance')
+cobsmean <- c(mean(EVINTEREST$POCpurchase), mean(EVINTEREST$POCfuel),
+              mean(EVINTEREST$POCmaintenance), mean(EVINTEREST$POCresale),
+              mean(EVINTEREST$POCextax), mean(EVINTEREST$POCcomptax),
+              mean(EVINTEREST$POCinsurance))
+barplot(cobsmean, names.arg=cobscat, cex.names=0.6, cex.ylab=0.6,
+        ylab="% of respondents who \n choose the category", main="Cost-related obstacles to buying EVs")
+ennames <- c('Cost', 'Battery: \n distance travelled \n on charge', 'Convenience \n of recharging', 'Resale/residual \n value', 'Safety \n features/record', 'Vehicle size, \n performance \n or aesthetics', 'If there was \n more choice \n available', 'Technology: \n reliable/proven', 'Environmentally \n friendly')
+enmeans <- c(mean(EVINTEREST$ENcost), mean(EVINTEREST$ENbattery),
+             mean(EVINTEREST$ENrecharge), mean(EVINTEREST$ENresale),
+             mean(EVINTEREST$ENsafety), mean(EVINTEREST$ENcarspec),
+             mean(EVINTEREST$ENchoice), mean(EVINTEREST$ENtech),
+             mean(EVINTEREST$ENenv))
+barplot(enmeans, names.arg=ennames, cex.names=0.35, cex.ylab=0.6,
+        ylab="% of respondents who \n choose the category", main="Factors encouraging buying EVs")
+encostnames <-  c('purchase', 'fuel/recharging', 'maintenance', 'resale', 'excise tax',
+             'company tax', 'insurance')
+encostmeans <- c(mean(EVINTEREST$ENCpurchase), mean(EVINTEREST$ENCfuel),
+             mean(EVINTEREST$ENCmaintenance), mean(EVINTEREST$ENCresale),
+             mean(EVINTEREST$ENCextax), mean(EVINTEREST$ENCcomptac),
+             mean(EVINTEREST$ENCinsurance))
+barplot(encostmeans, names.arg=encostnames, cex.names=0.6, cex.ylab=0.6,
+        ylab="% of respondents who \n choose the category", main="Cost-related factors encouraging buying EVs")
+```
+
+
+## Conclusion & Recommendations
+
+- Females, elderies, people without college degree, people in Scotland, people who have fewer cars: information campaign
+- (The other people): increase recharging stations, R&D to increase battery capacity, financial incentives (buyers/producers), information campaigns on energy costs, information campaigns on climate change
+
