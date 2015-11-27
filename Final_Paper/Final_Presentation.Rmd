@@ -2,14 +2,16 @@
 title: "Determinants of the Interest in Electric Vehicles"
 author: "Claire Chang Liu & Noriko Magara"
 date: "Dec. 4th, 2015"
-output: ioslides_presentation
+output: 
+  ioslides_presentation:
+    widescreen: true
 ---
 
 ## Introduction
 ```{r results='hide',echo=F, warning=F, message=F, error=F}
 
 ### set working directory
-possible_wd <- c("E:\\å­¦ä¹ ç›¸å…³\\R\\Collaborative-Data-Analysis-Assignment2\\Final_Paper", "C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/Final_Paper")
+possible_wd <- c("E:\\Šw???‘Š???\\R\\Collaborative-Data-Analysis-Assignment2\\Final_Paper", "C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/Final_Paper")
 repmis::set_valid_wd(possible_wd)
 
 library(stargazer)
@@ -43,18 +45,25 @@ This analysis is based on survey data in the UK called ["Opinions and Lifestyle 
 This module comes with two datasets: survey results from 2014 and 2015. 
 
 ## List of Variables
-1. Dependent variables:
-  - Interests in EVs 
+- Dependent variables
 
-2. Independent variables: 
-  - Age, Sex, Income, College degree 
-  - Drivers licence, Number of Cars 
-  - Household size, Children 
-  - Region
+    + Interests in EVs
 
-3. Other variables
-  - Factors encouraging/putting off buying EVs
-  - Cost-related factors encouraging/putting off buying EVs
+- Independent variables
+
+    + Age, Sex, Income, College degree
+
+    + Drivers licence, Number of Cars
+
+    + Household size, Children
+
+    + Region
+
+- Other variables
+
+    + Factors encouraging/putting off buying EVs
+
+    + Cost-related factors encouraging/putting off buying EVs
 
 ## Methodology
 
@@ -128,19 +137,11 @@ barplot(table(EVINTEREST$Scotland), ylab="Frequency", main="Scotland Residents")
 
 ## Logistic Regression | Interest in EVs
 
-$\ln{(\frac{p} {1-p})}=\beta_{0}+\beta_{1}Age+\beta_{2}Male+\beta_{3}Lowmid$
-           $+\beta_{4}Highmid+\beta_{5}High+\beta_{6}College$
-           $+\beta_{7}license+\beta_{8}NumCar+\beta_{9}Scotland$
+$$\ln{(\frac{p} {1-p})}=\underset{(.29^{***})}{-2.56}-\underset{(.004^{*})}{.01Age}+\underset{(.14^{***})}{.47Male}\underset{(.21)}{-.10Lowmid}+\underset{(.24)}{.03Highmid}$$
 
-```{r echo=F, warning=F, message=F, error=F, results='asis'}
-finallabels <- c('Age', 'Male', 'Income: low-middle', 'Income: high-middle', 'Income: high', 
-            'College degree', 'Drivers licence', 'Number of cars', 'Scotland', '(Intercept)') 
-L5 <- lrm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
-          + licence + NumCar + Scotland,
-          EVINTEREST)
-stargazer::stargazer(L5, type="html", header=F, covariate.labels = finallabels,
-                     digits = 2, title="Interests in EVs")
-```
+$$+\underset{(.17^*)}{.29High}+\underset{(.15^{***})}{.65College}+\underset{(.24^{***})}{.91license}+\underset{(.09^{**})}{.18NumCar}-\underset{(.29^{**})}{.70Scotland}$$
+
+*Note:* $^{*}p<0.1$; $^{**}p<0.05$; $^{***}p<0.01$
 
 ## Predicted Probabilities | Gender & Age
 ```{r echo=F, warning=F, message=F, error=F, fig.cap="Predicted Probability of Having an Interest in EVs by Age and Sex", fig.height=5}
@@ -252,6 +253,19 @@ barplot(encostmeans, names.arg=encostnames, cex.names=0.6, cex.ylab=0.6,
 
 ## Conclusion & Recommendations
 
-- Females, elderies, people without college degree, people in Scotland, people who have fewer cars: information campaign
-- (The other people): increase recharging stations, R&D to increase battery capacity, financial incentives (buyers/producers), information campaigns on energy costs, information campaigns on climate change
+- Females, elderies, people without college degree, people in Scotland, people who have fewer cars: 
+
+    + information campaign
+
+- Males, younger generation, college graduates, people outside scotland:
+
+    + increase recharging stations, 
+
+    + R&D to increase battery capacity, 
+    
+    + financial incentives (buyers/producers), 
+    
+    + information campaigns on energy costs, 
+    
+    + information campaigns on climate change
 
