@@ -130,8 +130,9 @@ $$p=\frac{1} {1 + exp\{-(\beta_{0} + \beta_{1} x_{1i} + \beta_{2} x_{2i} + \dots
 
 Thus, we are expecting to see different predicted probabilities of showing certain attitudes or making certain decisions for different demographic groups, which will provide some useful information for the policy makers to create efficient means to promote EVs.
 
-# Descriptive Analysis
-## Variables
+# Analysis
+## Descriptive Analysis
+### Variables
 The list of variables are shown in the table below.
 
 ```{r echo=F, warning=F, message=F, error=F, results='asis'}
@@ -154,7 +155,7 @@ kable(vartable, caption="List of Variables")
 ```
 
 
-## Summary statistics
+### Summary statistics
 * **EVinterest**: `r round(mean(EVINTEREST$EVinterest)*100, digits=2)` % of respondents are interested in EVs
 
 * **RAGE**: Mean=`r round(mean(EVINTEREST$RAGE), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$RAGE), digits=2)`.
@@ -213,8 +214,8 @@ Hsizetable <- table(EVINTEREST$DVHsize)
 barplot(Hsizetable, xlab="Household size", ylab="Frequency")
 ```
 
-#Logistic Regression
-##Modelling
+##Logistic Regression
+###Modelling
 This section presents our efforts to answer the question, "Who are more/less likely to be interested in EVs". Since the dependent variable is a binary variable, i.e. respondents having an interest in EVs or not, we adopt logistic regression models here.
 
 Nine independent variables are categorized into four groups. Socio-economic variables include age, sex, gross annual income level, and education level. The second group includes having driver's license or not, and the number of cars available to the household, which to some extent describe the respondents' potential to buy a new car. The third one is household-level variables, including household size and whether or not having depedent children. The last one is region. (The UK has 11 regions in total. However, our preliminary analysis suggests that, using London as the baseline, only Scotland is significantly different. Therefore, we only include "Scotland" in the regression.)
@@ -278,7 +279,7 @@ The less significant variables are age and income level. Age is negatively relat
 Interestingly, income level seems not to matter much. Using the lowest quartile group as the baseline, only the highest quartile group is significantly different: high income people have 34% higher ($e^{0.29}=1.34$) odds of being interested in EVs compared to low income people [z=1.70, p<0.089]. 
 Nevertheless, results from regression 1 shows that income level (at least when comparing the highest quartile to the lowest quartile) is statistically significant at 99% level. The decrease in significance is due to the correlation between income level, and having driver's license and number of cars available. 
 
-##Predicted Probabilities of Interest in EVs by Group
+###Predicted Probabilities of Interest in EVs by Group
 In addition to the odds ratio provided in the regression output, we want to be more specific with the size of effects of the seven independent variables. Therefore, the ranges of probability based on the variation of different variables are provided as following.
 
 $$Pr(Interested)=\frac{1} {1 + e^{\boldsymbol{\beta_k \cdot x_i}}}$$
@@ -433,7 +434,13 @@ kable(byscotsex, caption="Probabilities by Region & Sex",
       col.names = c("Region", "Male", "Female"))
 ```
 
-##Obstacles to Buying an EV
+
+Among all respondents, only 18.48% are interested. This, on the other hand, suggests the need to better understand the factors related to the interest in EVs, and this is what motivated our research too.
+
+Above analysis shows that the variations among different groups are quite large. For instance, people having a college degree, on average, have a probability of 30.7% to be interested in EVs, while people without a degree only have a probability of 14.5%. This kind of variation (especially the one related to education level) is actually a good sign, suggesting that interest in EVs could be potentially increased. Promotion of EVs should give more attention to the needs and comsumption patterns of low-interest groups. 
+
+
+##Factors Putting Off/Encouraging Buying EVs
 
 In order to further investigate why people refrain from buying an EV, the survey asks questions regarding things that discourage the respondents doing so.
 
@@ -527,7 +534,7 @@ stargazer(Cobs1, Cobs2, Cobs3, type="latex", header=F, covariate.labels = finall
 
 \newpage
 
-##Encouragements
+###Encouragements
 
 Since the survey also asks respondents what would encourage them to buy an EV, we will provide a descriptive and analytical analysis of these factors here in the hope that the results will inform our policy recommendation.
 
@@ -587,11 +594,10 @@ stargazer(en1, en2, en3, en4,type="latex", header=F, covariate.labels = finallab
           digits = 2, title="Determinats of factors that will be encourage buying EVs")
 ```
 
+# Recommendations
 
 #Discussion and Limitations
-In general, interest in EVs is rather limited. Among all respondents, only 18.48% are interested. This, on the other hand, suggests the need to better understand the factors related to the interest in EVs, and this is what motivated our research too.
-
-Above analysis shows that the variations among different groups are quite large. For instance, people having a college degree, on average, have a probability of 30.7% to be interested in EVs, while people without a degree only have a probability of 14.5%. This kind of variation (especially the one related to education level) is actually a good sign, suggesting that interest in EVs could be potentially increased. Promotion of EVs should give more attention to the needs and comsumption patterns of low-interest groups. 
+In general, interest in EVs is rather limited. 
 
 However, this also leads to one of the limitations of this paper, not being able answer why different groups show different levels of interest. This question is very hard, not just because we do not have more detailed surveys, but also because different groups may be systematically different in many unobeserved ways. Even though, we will still attempt to make contributions on this question in our final paper.
 
