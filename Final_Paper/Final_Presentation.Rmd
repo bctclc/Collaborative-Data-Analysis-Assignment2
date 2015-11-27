@@ -31,7 +31,7 @@ load("EVdata1.rda")
 
 - Climate change, GHG emission
 - Government promoting low emission vehicles
-- Low adotion
+- Low adoption
 
 ## Purpose of Research
 
@@ -43,25 +43,18 @@ This analysis is based on survey data in the UK called ["Opinions and Lifestyle 
 This module comes with two datasets: survey results from 2014 and 2015. 
 
 ## List of Variables
-```{r echo=F, warning=F, message=F, error=F, results='asis'}
-Names <- c("EVinterest", "RAGE", "Male", "inccat", "degree", "licence", 
-           "NumCar", "DVHsize", "havechildren", "Scotland")
-Types <- c("dummy", "continuous", "dummy", "categorical", "dummy", 
-           "dummy", "continuous", "continuous", "dummy", "dummy")
-Descriptions <- c("Whether the respondent is interested in EVs or not", 
-                  "Respondent's age",
-                  "Respondent's sex",
-                  "Respondent's income in 4 categories (low, low-mid, high-mid, high)",
-                  "Whether the respondent is a college graduate or not",
-                  "Whether the respondent has a valid drivers licence or not",
-                  "Number of cars in the respondent's household",
-                  "Respondent's household size",
-                  "Whether the Respondent has children or not",
-                  "Whether the Respondent lives in Scotland or not")
-vartable <- cbind(Names, Types, Descriptions)
-table <- kable(vartable)
-print(table, tabular.environment = "longtable")
-```
+1. Dependent variables:
+  - Interests in EVs 
+
+2. Independent variables: 
+  - Age, Sex, Income, College degree 
+  - Drivers licence, Number of Cars 
+  - Household size, Children 
+  - Region
+
+3. Other variables
+  - Factors encouraging/putting off buying EVs
+  - Cost-related factors encouraging/putting off buying EVs
 
 ## Methodology
 
@@ -80,7 +73,7 @@ obsmean <- c(mean(EVINTEREST$POchoice), mean(EVINTEREST$POknowledge),
              mean(EVINTEREST$POrecharge), mean(EVINTEREST$POresale),
              mean(EVINTEREST$POsafety), mean(EVINTEREST$POcarspec),
              mean(EVINTEREST$POtech))
-barplot(obsmean, names.arg=obscat, cex.names=0.6, cex.ylab=0.6,
+barplot(obsmean, names.arg=obscat, cex.names=0.6, 
         ylab="% of respondents who \n choose the category", main="Obstacles to buying EVs")
 cobscat <- c('purchase', 'fuel/charging', 'maintenance', 'resale', 'excise tax',
              'company tax', 'insurance')
@@ -88,7 +81,7 @@ cobsmean <- c(mean(EVINTEREST$POCpurchase), mean(EVINTEREST$POCfuel),
               mean(EVINTEREST$POCmaintenance), mean(EVINTEREST$POCresale),
               mean(EVINTEREST$POCextax), mean(EVINTEREST$POCcomptax),
               mean(EVINTEREST$POCinsurance))
-barplot(cobsmean, names.arg=cobscat, cex.names=0.6, cex.ylab=0.6,
+barplot(cobsmean, names.arg=cobscat, cex.names=0.6, 
         ylab="% of respondents who \n choose the category", main="Cost-related obstacles to buying EVs")
 ennames <- c('Cost', 'Battery: \n distance travelled \n on charge', 'Convenience \n of recharging', 'Resale/residual \n value', 'Safety \n features/record', 'Vehicle size, \n performance \n or aesthetics', 'If there was \n more choice \n available', 'Technology: \n reliable/proven', 'Environmentally \n friendly')
 enmeans <- c(mean(EVINTEREST$ENcost), mean(EVINTEREST$ENbattery),
@@ -96,7 +89,7 @@ enmeans <- c(mean(EVINTEREST$ENcost), mean(EVINTEREST$ENbattery),
              mean(EVINTEREST$ENsafety), mean(EVINTEREST$ENcarspec),
              mean(EVINTEREST$ENchoice), mean(EVINTEREST$ENtech),
              mean(EVINTEREST$ENenv))
-barplot(enmeans, names.arg=ennames, cex.names=0.35, cex.ylab=0.6,
+barplot(enmeans, names.arg=ennames, cex.names=0.35, 
         ylab="% of respondents who \n choose the category", main="Factors encouraging buying EVs")
 encostnames <-  c('purchase', 'fuel/recharging', 'maintenance', 'resale', 'excise tax',
              'company tax', 'insurance')
@@ -104,7 +97,7 @@ encostmeans <- c(mean(EVINTEREST$ENCpurchase), mean(EVINTEREST$ENCfuel),
              mean(EVINTEREST$ENCmaintenance), mean(EVINTEREST$ENCresale),
              mean(EVINTEREST$ENCextax), mean(EVINTEREST$ENCcomptac),
              mean(EVINTEREST$ENCinsurance))
-barplot(encostmeans, names.arg=encostnames, cex.names=0.6, cex.ylab=0.6,
+barplot(encostmeans, names.arg=encostnames, cex.names=0.6, 
         ylab="% of respondents who \n choose the category", main="Cost-related factors encouraging buying EVs")
 ```
 
