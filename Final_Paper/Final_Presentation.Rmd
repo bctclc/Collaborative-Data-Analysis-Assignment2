@@ -9,7 +9,8 @@ output: ioslides_presentation
 ```{r results='hide',echo=F, warning=F, message=F, error=F}
 
 ### set working directory
-setwd("C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/Final_Paper")
+possible_wd <- c("E:\\学习相关\\R\\Collaborative-Data-Analysis-Assignment2\\Final_Paper", "C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/Final_Paper")
+repmis::set_valid_wd(possible_wd)
 
 library(stargazer)
 library(knitr)
