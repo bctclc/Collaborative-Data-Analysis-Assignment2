@@ -215,6 +215,11 @@ table(data1415$NumCar, data1415$CAR)
 data1415$havechildren <-1
 data1415$havechildren[data1415$NumDepCh==0] <- 0
 
+# Age group
+data1415$agegroup <- 2
+data1415$agegroup[data1415$RAGE<=30] <- 1 
+data1415$agegroup[data1415$RAGE>60] <-3
+
 ### subset of variables for our analysis (w/o missing data)
 # base subset
 EVINTEREST <- subset(data1415, select= c(EVinterest, RAGE, Male, inc1000, degree, 
@@ -229,41 +234,8 @@ EVINTEREST <- subset(data1415, select= c(EVinterest, RAGE, Male, inc1000, degree
                      ENresale, ENsafety, ENcarspec, ENchoice, ENtech, ENenv, 
                      ENCpurchase, ENCfuel, ENCmaintenance, ENCresale, ENCextax, 
                      ENCcomptac, ENCinsurance, high, highermiddle, lowermiddle, 
-                     low, inccat, havechildren))
+                     low, inccat, havechildren, agegroup))
 EVINTEREST <- na.omit(EVINTEREST)
-
-# base subset + full-time/part-time (fewer observations!)
-EVINTERESTemp <- subset(data1415, select= c(EVinterest, RAGE, Male, inc1000, degree, 
-                        licence, travfreq,  Employed, Unemployed, Inactive, 
-                        NorthEast, NorthWest, YorkshireHumber, EastMidlands, 
-                        WestMidrands, EastofEngland, London, SouthEast, 
-                        SouthWest, Wales, Scotland, Single, Married, MarriedSep, 
-                        Divorced, Widowed, illness, DVHsize, NumDepCh, NumCar, 
-                        Fulltime, Parttime, POchoice, POknowledge, POcost, 
-                        PObattery, POrecharge, POresale, POsafety, POcarspec, 
-                        POtech, POCpurchase, POCfuel, POCmaintenance, POCresale, 
-                        POCextax, POCcomptax, POCinsurance, ENcost, ENbattery, 
-                        ENrecharge, ENresale, ENsafety, ENcarspec, ENchoice, 
-                        ENtech, ENenv, ENCpurchase, ENCfuel, ENCmaintenance, 
-                        ENCresale, ENCextax, ENCcomptac, ENCinsurance, high, 
-                        highermiddle, lowermiddle, low, inccat, havechildren))
-EVINTERESTemp <- na.omit(EVINTERESTemp)
-
-# subset of people w/ illness (breakdown of them by limited activity)
-EVINTERESTill <- subset(data1415, select= c(EVinterest, RAGE, Male, inc1000, degree, 
-                        licence, travfreq, Employed, Unemployed, Inactive, NorthEast, 
-                        NorthWest, YorkshireHumber, EastMidlands, WestMidrands, 
-                        EastofEngland, London, SouthEast, SouthWest, Wales, Scotland, 
-                        Single, Married, MarriedSep, Divorced, Widowed, DVHsize, 
-                        NumDepCh, NumCar, illnesslim, POchoice, POknowledge, POcost, 
-                        PObattery, POrecharge, POresale, POsafety, POcarspec, POtech, 
-                        POCpurchase, POCfuel, POCmaintenance, POCresale, POCextax, 
-                        POCcomptax, POCinsurance, ENcost, ENbattery, ENrecharge, 
-                        ENresale, ENsafety, ENcarspec, ENchoice, ENtech, ENenv, 
-                        ENCpurchase, ENCfuel, ENCmaintenance, ENCresale, ENCextax, 
-                        ENCcomptac, ENCinsurance, high, highermiddle, lowermiddle, 
-                        low, inccat, havechildren))
-EVINTERESTill <- na.omit(EVINTERESTill)
 
 # save the subsets
 save(EVINTEREST, file="EVdata1.rda")

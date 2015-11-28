@@ -15,7 +15,8 @@ bibliography:
 ```{r results='hide',echo=F, warning=F, message=F, error=F}
 
 ### set working directory
-setwd("C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/Final_Paper")
+possible_wd <- c("E:\\Ñ§Ï°Ïà¹Ø\\R\\Collaborative-Data-Analysis-Assignment2\\Final_Paper", "C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/Final_Paper")
+repmis::set_valid_wd(possible_wd)
 
 library(stargazer)
 library(knitr)
@@ -55,7 +56,7 @@ The batteries that drive the motors are charged by plugging into charging infras
 Because EVs do not use inner combustion engines at all, they make no emission when they drive.
 
 From the environmental point of view, PHEVs and BEVs are the ideal type of vehicles because they use electric powers from plugs, instead of fossil fuels. 
-In this project, we will collectively reffer to them as electric vehicles (EVs).
+In this project, we will collectively refer to them as electric vehicles (EVs).
 In reality, however, because of many reasons, the adoption rates of EVs are not as high as the desirable level. 
 One of the biggest reasons is the costs. 
 Although some articles report that EVs are cheaper than conventional vehicles in long-term thanks to no fuel costs [e.g. @Herron2015web], people tend to refrain from buying EVs because of the high purchase prices.
@@ -73,14 +74,14 @@ This study will focus on EVs, which is the most recent generation of low emissio
 Previous studies have examined various factors that are related to consumers' choice.
 
 At the macro level, the relationship between demographic characteristics and EV adoption has been analyzed. For instance, 
-@countrycomparison identify financial incentives, the prevalence of charging stations, and the presence of a local EV manufacturer as the relevant factors, using data on 30 countries. Interestingly, however, they do not find socio-economic variables to be good predicators of a country's EV adoption level. Another macro-level study divides Finland into grids with different socio-economic characteristics and finds that "the income and education level, the amount of families with children and the average size of the residences" (p. 459) are related to the region-level or neighborhood-level adoption rate of EVs [@Finland2013].
+@countrycomparison identify financial incentives, the prevalence of charging stations, and the presence of a local EV manufacturer as the relevant factors, using data on 30 countries. Interestingly, however, they do not find socio-economic variables to be good predictors of a country's EV adoption level. Another macro-level study divides Finland into grids with different socio-economic characteristics and finds that "the income and education level, the amount of families with children and the average size of the residences" (p. 459) are related to the region-level or neighborhood-level adoption rate of EVs [@Finland2013].
 
 At the micro level, motivations and individual characteristics that affect individual choice are studied. 
 @egbue2012barriers explores characteristics of potential EV buyers through a survey targeting current conventional vehicle owners, which asked their opinions, perceptions, and attitudes towards EVs, besides socio-economic attributes. 
 Using 481 observations gained from the web-based survey, the authors performs chi-square analyses and find out that different groups of people have different stances towards EVs. 
 For instance, likelihood to purchase an EV differs by gender, education level, age, and income of respondents. 
 In addition, based on the survey questions regarding the respondents' concerns, the authors reveal that more than a quarter of them were unsure about the safety of EVs. 
-Therefore, they concluds that people with better knowledge about EVs are more likely to purchase one.  
+Therefore, they concludes that people with better knowledge about EVs are more likely to purchase one.  
 
 There are not many studies that observed people who actually bought an EV, possibly resulting from the small adoption rate. 
 However, a similar study for another type of low emission vehicle may be helpful to think about the motivations that push people to purchase one. 
@@ -101,16 +102,16 @@ Thus, both to identifying the characteristics of potential buyers and to design 
 
 Regarding EV adoption, more detailed researches that focus on EVs are needed. 
 In particular, not many studies have been done on the relationship between EV adoption and individual-level motivations/characteristics, partly due to a lack of survey data on people's attitudes towards EVs that covers both those who buy (or are willing to buy) and those who do not. 
-In this study, we will examine the micro-level relationship using a recent dataset from the UK.
+In this study, we will examine the micro-level relationship using a recent data set from the UK.
 
 # Data Gathering and Methodology
 This analysis is based on survey data in the UK called ["Opinions and Lifestyle Survey, Electric Vehicles Module, February 2014 and February 2015"](https://discover.ukdataservice.ac.uk/Catalogue/?sn=7571&type=Data%20catalogue) [@UKDATA]. 
-Note that [registration](http://ukdataservice.ac.uk/get-data/how-to-access/registration) is required to download the dataset from the UK Data Service website above.
-After logging in and agreeing with the terms of conditions, the datasets are available for download in STATA or other format.
+Note that [registration](http://ukdataservice.ac.uk/get-data/how-to-access/registration) is required to download the data set from the UK Data Service website above.
+After logging in and agreeing with the terms of conditions, the data sets are available for download in STATA or other format.
 The registration process may take a few days. 
 However, other documents (e.g. questionnaire, brief summary) are available at the link above without registration.
-This module comes with two datasets: survey results from 2014 and 2015. 
-For our study, we use both survey years by combining both datasets together. 
+This module comes with two data sets: survey results from 2014 and 2015. 
+For our study, we use both survey years by combining both data sets together. 
 
 ```{r echo=F, warning=F, message=F, error=F}
 source("data_cleanup.R")
@@ -218,9 +219,9 @@ barplot(Hsizetable, xlab="Household size", ylab="Frequency")
 ###Modelling
 This section presents our efforts to answer the question, "Who are more/less likely to be interested in EVs". Since the dependent variable is a binary variable, i.e. respondents having an interest in EVs or not, we adopt logistic regression models here.
 
-Nine independent variables are categorized into four groups. Socio-economic variables include age, sex, gross annual income level, and education level. The second group includes having driver's license or not, and the number of cars available to the household, which to some extent describe the respondents' potential to buy a new car. The third one is household-level variables, including household size and whether or not having depedent children. The last one is region. (The UK has 11 regions in total. However, our preliminary analysis suggests that, using London as the baseline, only Scotland is significantly different. Therefore, we only include "Scotland" in the regression.)
+Nine independent variables are categorized into four groups. Socio-economic variables include age, sex, gross annual income level, and education level. The second group includes having driver's license or not, and the number of cars available to the household, which to some extent describe the respondents' potential to buy a new car. The third one is household-level variables, including household size and whether or not having dependent children. The last one is region. (The UK has 11 regions in total. However, our preliminary analysis suggests that, using London as the baseline, only Scotland is significantly different. Therefore, we only include "Scotland" in the regression.)
 
-We only include socio-economic variables in our base model (regression 1) and add in a new group of independent variables each time. As the results in table 3 show, all models are significant at 99% level. Except for the two variables, size of household and having dependent children or not, all other variables are statistically signifcant as well. The fact that household-related variables are effective predictors at macro level, but not at micro level, may suggest a neighborhood effect, but it is beyond the scope of this paper.
+We only include socio-economic variables in our base model (regression 1) and add in a new group of independent variables each time. As the results in table 3 show, all models are significant at 99% level. Except for the two variables, size of household and having dependent children or not, all other variables are statistically significant as well. The fact that household-related variables are effective predictors at macro level, but not at micro level, may suggest a neighborhood effect, but it is beyond the scope of this paper.
 
 ```{r echo=F, warning=F, message=F, error=F}
 # Estimate model-1 (AGE & SEX & INCOME & Education)
@@ -268,11 +269,15 @@ stargazer::stargazer(L5, type="latex", header=F, covariate.labels = finallabels,
                      digits = 2, title="Interests in EVs")
 ```
 
+$$\ln{(\frac{p} {1-p})}=\underset{(.29)}{-2.56}-\underset{(.004)}{.01Age}+\underset{(.14)}{.47Male}\underset{(.21)}{-.10Lowmid}+\underset{(.24)}{.03Highmid}$$
+
+$$+\underset{(.17)}{.29High}+\underset{(.15)}{.65College}+\underset{(.24)}{.91license}+\underset{(.09)}{.18NumCar}-\underset{(.29^)}{.70Scotland}$$
+
 The model is statistically significant at 99% level and five out of the seven variables are significant at 95% level. 
 On average, males are more likely to be interested in EVs: 
 the odds of being interested in EVs are 60% higher ($e^{0.47}=1.60$) for male than female, holding other variables constant [z=3.36, p<0.001]. 
 Having a college degree or driver's license also increases the likelihood of being interested: the odds of having interested in EVs are 92% higher ($e^{0.65}=1.92$) for people with college degree compared to people without [z=4.38, p<0.001], the odds are 148% higher ($e^{0.91}=2.48$) for those who have drivers licence compared to those who don't [z=3.83, p<0.001]. 
-The number of cars is positively relative to the likelihood, suggesting that people who already have the "basics" are more likely to consider EVs: each additional car in a househild increases the odds of being interested in EVs by 20% ($e^{0.18}=1.20$), holding other variables constant [z=2.12, p=0.034]. 
+The number of cars is positively relative to the likelihood, suggesting that people who already have the "basics" are more likely to consider EVs: each additional car in a household increases the odds of being interested in EVs by 20% ($e^{0.18}=1.20$), holding other variables constant [z=2.12, p=0.034]. 
 However, being in Scotland reduces this likelihood: people who live in Scotland have 50% lower ($e^{-0.7}=0.50$) odds of being interested in EVs compared to people who live in other regions of the UK [z=-2.44, p<0.015]. 
 
 The less significant variables are age and income level. Age is negatively relative to the likelihood of being interested, meaning that younger people are more likely to have an interest in EVs: each one year increase in the respondent's age is associated with 1% decrease ($e^{-0.01}=0.99$) in the odds of having interests in EVs [z=-8.73, p<0.001]. 
@@ -302,7 +307,7 @@ legend("topright", c("Male","Female"),lwd=1, col=c("blue","red"))
 
 \newpage
 
-Figure 5 shows the predicted probability of having an interest in EVs by age and sex. Regardless of age, males show a greater interest than females. Even though the variation among males is larger too, the difference in probability is on average about 5 percentage points. The linear relationship between age and this probability is clearly demostrated here as well. Younger people are more likely to be interested than older people.
+Figure 5 shows the predicted probability of having an interest in EVs by age and sex. Regardless of age, males show a greater interest than females. Even though the variation among males is larger too, the difference in probability is on average about 5 percentage points. The linear relationship between age and this probability is clearly demonstrated here as well. Younger people are more likely to be interested than older people.
 
 Table 5-9 summarize predicted probabilities of having an interest in EVs of different groups and allow us to know the differences between groups. 
 
@@ -437,20 +442,20 @@ kable(byscotsex, caption="Probabilities by Region & Sex",
 
 Among all respondents, only 18.48% are interested. This, on the other hand, suggests the need to better understand the factors related to the interest in EVs, and this is what motivated our research too.
 
-Above analysis shows that the variations among different groups are quite large. For instance, people having a college degree, on average, have a probability of 30.7% to be interested in EVs, while people without a degree only have a probability of 14.5%. This kind of variation (especially the one related to education level) is actually a good sign, suggesting that interest in EVs could be potentially increased. Promotion of EVs should give more attention to the needs and comsumption patterns of low-interest groups. 
+Above analysis shows that the variations among different groups are quite large. For instance, people having a college degree, on average, have a probability of 30.7% to be interested in EVs, while people without a degree only have a probability of 14.5%. This kind of variation (especially the one related to education level) is actually a good sign, suggesting that interest in EVs could be potentially increased. Promotion of EVs should give more attention to the needs and consumption patterns of low-interest groups. 
 
 
 ##Factors Putting Off/Encouraging Buying EVs
 
-In order to further investigate why people refrain from buying an EV, the survey asks questions regarding things that discourage the respondents doing so.
+In order to investigate what would turn existing interest in EVs into actual consumption of EVs, we look at questions regarding factors that will put off or encourage buying EVs and summarize the results here.
 
-### General obstacles
+###General factors
 
 The graph below shows the major obstacles to buying an EV. 
 The most popular issue is the recharging of the EVs, as `r round(mean(EVINTEREST$POrecharge)*100, digits=2)`% of respondents answered that they are concerned about it.
-The second largest issue is the capasity of the batteries, which is crucial to the travel distance. `r round(mean(EVINTEREST$PObattery)*100, digits=2)`% of renspondents are concerned about it, followed by the high costs of EVs (`r round(mean(EVINTEREST$POcost)*100, digits=2)`%).
+The second largest issue is the capacity of the batteries, which is crucial to the travel distance. `r round(mean(EVINTEREST$PObattery)*100, digits=2)`% of respondents are concerned about it, followed by the high costs of EVs (`r round(mean(EVINTEREST$POcost)*100, digits=2)`%).
 
-```{r echo=F, warning=F, message=F, error=F, fig.cap="Obstacles to buying an EV"}
+```{r echo=F, warning=F, message=F, error=F, fig.cap="Factors putting off buying EVs"}
 ### Main Obstacles ###
 obscat <- c('choice', 'knowledge', 'cost', 'battery', 'recharge', 
             'resale', 'safety', 'spec', 'technology')
@@ -463,84 +468,9 @@ barplot(obsmean, names.arg=obscat, cex.names=0.6,
         ylab="% of respondents who choose the category")
 ```
 
-This result instantly suggests that the government may encourage people to buy an EV by increasing the number of EV charging stations, subsidizing R&D of the EV industry to accelerate the technical development, and/or providing financial incentives such as tax exemption or rebates to those who purchase an EV.
-However, logistic regression models identifies which groups of people care more about each of the three major obstacles as shown in the table below. 
+Now we turn to the factors that may encourage EV consumption. The choices provided in the survey and their relative importance in the respondents' minds are shown in the figure xxx.
 
-```{r  echo=F, warning=F, message=F, error=F, results='asis'}
-# Recharge
-Obs1 <- lrm(POrecharge ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
-            + licence + NumCar + Scotland,
-            EVINTEREST)
-# Battery
-Obs2 <- lrm(PObattery ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
-            + licence + NumCar + Scotland,
-            EVINTEREST)
-# Cost
-Obs3 <- lrm(POcost ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
-            + licence + NumCar + Scotland,
-            EVINTEREST)
-# summary table
-stargazer(Obs1, Obs2, Obs3, type="latex", header=F, covariate.labels = finallabels,
-          digits = 2, title="Determinats of obstacles")
-```
-
-As for the recharging issue, males, college graduates, people who have a drivers licence, and people who have more car are more likely to be concerned about it compared to females, non-college graduates, people without drivers licence, and people who have fewer cars, respectively.
-Similarly, as for the battery capacity issue, males, college graduates, people who have a drivers licence, people who have more car, and people live outside Scotland are more likely to be concerned about it compared to females, non-college graduates, people without drivers licence, people who have fewer cars, and people live in Scotland, respectively.
-Finally, regarding costs, younger people, males, college graduates, and people who have a drivers licence are more likely to be concerned about it compared to older people, females, non-college graduates, and people without drivers licence, respectively.
-Although the more sensitive groups slightly differ by the obstacles, they are generally consistent with the groups that are more likely to be interested in EVs. 
-This result implies that people who have stronger interests in EVs are at the same time more concerned about those obstacles.   
-
-
-### Obstacles regarding costs
-The survey also asks what aspects of the costs people are concerned about. 
-As shown in the graph below, `r round(mean(EVINTEREST$POCpurchase)*100, digits=2)`% of respondents think that the purchasing costs would put them off buying an EV. The other major concerns are the maintenance costs (`r round(mean(EVINTEREST$POCmaintenance)*100, digits=2)`%) and the fuel/recharging costs including fuel tax (`r round(mean(EVINTEREST$POCfuel)*100, digits=2)`%). 
-
-```{r echo=F, warning=F, message=F, error=F, fig.cap="Obstacles to buying an EV regarding costs"}
-cobscat <- c('purchase', 'fuel/charging', 'maintenance', 'resale', 'excise tax',
-             'company tax', 'insurance')
-cobsmean <- c(mean(EVINTEREST$POCpurchase), mean(EVINTEREST$POCfuel),
-              mean(EVINTEREST$POCmaintenance), mean(EVINTEREST$POCresale),
-              mean(EVINTEREST$POCextax), mean(EVINTEREST$POCcomptax),
-              mean(EVINTEREST$POCinsurance))
-barplot(cobsmean, names.arg=cobscat, cex.names=0.6,
-        ylab="% of respondents who choose the category")
-```
-
-The table below shows the results of logistic regression models for the three major concerns regarding costs.
-Younger people, male, college graduates, and people with a drivers licence are more likely to be concerned about purchasing costs, compared to older people, females, non-college graduates, and people without drivers licence.
-Likewise, younger people, males, people with a drivers licence, and people live outside Scotland are more likely to be concerned about maintenance costs, compared to each counterpart.
-Interestingly, regarding fuel and recharging costs, the lower-middle and the higher-middle income group are more likely to be concerned compared to the low income group. 
-People who have a drivers licence have strong concerns on this issue as well.
-In fact, EVs are cheaper than conventional vehicles in terms of fuel/recharge costs as @Herron2015web argues.
-Better understanding about the actual energy costs may help motivate these people to consider buying one.
-
-```{r echo=F, warning=F, message=F, error=F, results='asis'}
-# Purchase
-Cobs1 <- lrm(POCpurchase ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
-             + licence + NumCar + Scotland,
-             EVINTEREST)
-# maintenance
-Cobs2 <- lrm(POCmaintenance ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
-             + licence + NumCar + Scotland,
-             EVINTEREST)
-# Cost
-Cobs3 <- lrm(POCfuel ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
-             + licence + NumCar + Scotland,
-             EVINTEREST)
-# summary table
-stargazer(Cobs1, Cobs2, Cobs3, type="latex", header=F, covariate.labels = finallabels,
-          digits = 2, title="Determinats of obstacles regarding costs")
-```
-
-\newpage
-
-###Encouragements
-
-Since the survey also asks respondents what would encourage them to buy an EV, we will provide a descriptive and analytical analysis of these factors here in the hope that the results will inform our policy recommendation.
-
-The choices provided in the survey and their relative importance in the respondents' minds are shown in the figure xxx.
-
-```{r echo=F, warning=F, message=F, error=F, results='asis'}
+```{r echo=F, warning=F, message=F, error=F, results='asis', fig.cap="Factors encouraging buying EVs"}
 ennames <- c('Cost', 'Battery: \n distance travelled \n on charge', 'Convenience \n of recharging', 'Resale/residual \n value', 'Safety \n features/record', 'Vehicle size, \n performance \n or aesthetics', 'If there was \n more choice \n available', 'Technology: \n reliable/proven', 'Environmentally \n friendly')
 enmeans <- c(mean(EVINTEREST$ENcost), mean(EVINTEREST$ENbattery),
              mean(EVINTEREST$ENrecharge), mean(EVINTEREST$ENresale),
@@ -553,11 +483,29 @@ barplot(enmeans, names.arg=ennames, cex.names=0.35,
 
 Among the nine choices, the top four choices are: "Cost" with `r round(mean(EVINTEREST$ENcost)*100, digits=2)`% respondents choosing it, "Battery: distance travelled on charge" with `r round(mean(EVINTEREST$ENbattery)*100, digits=2)`%, "Convenience of recharging" with `r round(mean(EVINTEREST$ENrecharge)*100, digits=2)`%, and "Environmentally friendly" with `r round(mean(EVINTEREST$ENenv)*100, digits=2)`%. 
 
-The facts above potentially reveal a public interest in EVs. If there were no interest at all, people would not have bothered to learn about EVs' battery capacity and recharging condition. These again show the practical problems related to EVs and will lead to similar policy suggestions above, i.e. more support to R&D in EVs and more charging stations.
+The facts above potentially reveal a public interest in EVs. If there were no interest at all, people would not have bothered to learn about EVs' battery capacity and recharging condition. In the section of policy recommendations, we will provide suggestions on how to take advantage of this interest.
 
-As in the previous section, we here break down the factor "cost" and see what exactly is cost about.
 
-```{r echo=F, warning=F, message=F, error=F, results='asis'}
+
+### Cost-related factors
+
+The survey also asks what aspects of the costs people are concerned about. 
+As shown in the graph below, `r round(mean(EVINTEREST$POCpurchase)*100, digits=2)`% of respondents think that the purchasing costs would put them off buying an EV. The other major concerns are the maintenance costs (`r round(mean(EVINTEREST$POCmaintenance)*100, digits=2)`%) and the fuel/recharging costs including fuel tax (`r round(mean(EVINTEREST$POCfuel)*100, digits=2)`%). 
+
+```{r echo=F, warning=F, message=F, error=F, fig.cap="Cost-related factors that put off buying EVs"}
+cobscat <- c('purchase', 'fuel/charging', 'maintenance', 'resale', 'excise tax',
+             'company tax', 'insurance')
+cobsmean <- c(mean(EVINTEREST$POCpurchase), mean(EVINTEREST$POCfuel),
+              mean(EVINTEREST$POCmaintenance), mean(EVINTEREST$POCresale),
+              mean(EVINTEREST$POCextax), mean(EVINTEREST$POCcomptax),
+              mean(EVINTEREST$POCinsurance))
+barplot(cobsmean, names.arg=cobscat, cex.names=0.6,
+        ylab="% of respondents who choose the category")
+```
+
+As for encouraging cost-related factors, the top three choices are the same, only with a different order. While the top choice is still the purchase cost (`r round(mean(EVINTEREST$ENCpurchase)*100, digits=2)`%), the second is fuel/recharging cost (`r round(mean(EVINTEREST$ENCfuel)*100, digits=2)`%) and the third is maintenance cost (`r round(mean(EVINTEREST$ENCmaintenance)*100, digits=2)`%).
+
+```{r echo=F, warning=F, message=F, error=F, results='asis', fig.cap="Cost-related factors that encourage buying EVs"}
 encostnames <-  c('purchase', 'fuel/recharging', 'maintenance', 'resale', 'excise tax',
              'company tax', 'insurance')
 encostmeans <- c(mean(EVINTEREST$ENCpurchase), mean(EVINTEREST$ENCfuel),
@@ -568,46 +516,77 @@ barplot(encostmeans, names.arg=encostnames, cex.names=0.6,
         ylab="% of respondents who choose the category")
 ```
 
-Admittedly, this question is rather vague, because it only gives us the information regarding what kind of cost matters most to consumers, but not how they think of the costs at current levels. However, a comparison between the costs that will put off buying EVs and the costs that will encourage buying is interesting. While the top four choices are the same, purchase costs, fuel/recharging costs, maintenance costs, and insurances costs, more people are put off by fuel/recharging costs or insurance costs. This shows that people are worried about the recharging costs for EVs which actually have a lower energy cost per mile than ordinary cars.As for insurance costs, it is true that premium for EVs is higher, but it could be reduced as EVs become more prevalent.
+Admittedly, this question is rather vague, because it only gives us the information regarding what kind of cost matters most to consumers, but not how they think of the costs at current levels. However, the results clearly identify the costs that are most likely to be considered when making a car purchase, and these are where government can go in and provide financial incentives to consumers.
 
-Now we turn to potentially different considerations held by different groups of people.
 
-```{r echo=F, warning=F, message=F, error=F, results='asis'}
-
-en1 <- lrm(ENcost ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
-             + licence + NumCar + Scotland,
-             EVINTEREST)
-
-en2 <- lrm(ENbattery ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
-             + licence + NumCar + Scotland,
-             EVINTEREST)
-
-en3 <- lrm(ENrecharge ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
-             + licence + NumCar + Scotland,
-             EVINTEREST)
-
-en4 <- lrm(ENenv ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
-             + licence + NumCar + Scotland,
-             EVINTEREST)
-
-stargazer(en1, en2, en3, en4,type="latex", header=F, covariate.labels = finallabels,
-          digits = 2, title="Determinats of factors that will be encourage buying EVs")
+###Similar considerations for different groups
+```{r cho=F, warning=F, message=F, error=F, results='asis'}
+agemean <- c(mean(EVINTEREST$POchoice[EVINTEREST$agegroup==1]),
+             mean(EVINTEREST$POknowledge[EVINTEREST$agegroup==1]),
+             mean(EVINTEREST$POcost[EVINTEREST$agegroup==1]), 
+             mean(EVINTEREST$PObattery[EVINTEREST$agegroup==1]),
+             mean(EVINTEREST$POrecharge[EVINTEREST$agegroup==1]), 
+             mean(EVINTEREST$POresale[EVINTEREST$agegroup==1]),
+             mean(EVINTEREST$POsafety[EVINTEREST$agegroup==1]), 
+             mean(EVINTEREST$POcarspec[EVINTEREST$agegroup==1]),
+             mean(EVINTEREST$POtech[EVINTEREST$agegroup==1]),
+             mean(EVINTEREST$POchoice[EVINTEREST$agegroup==2]),
+             mean(EVINTEREST$POknowledge[EVINTEREST$agegroup==2]),
+             mean(EVINTEREST$POcost[EVINTEREST$agegroup==2]), 
+             mean(EVINTEREST$PObattery[EVINTEREST$agegroup==2]),
+             mean(EVINTEREST$POrecharge[EVINTEREST$agegroup==2]), 
+             mean(EVINTEREST$POresale[EVINTEREST$agegroup==2]),
+             mean(EVINTEREST$POsafety[EVINTEREST$agegroup==2]), 
+             mean(EVINTEREST$POcarspec[EVINTEREST$agegroup==2]),
+             mean(EVINTEREST$POtech[EVINTEREST$agegroup==2]),
+             mean(EVINTEREST$POchoice[EVINTEREST$agegroup==3]),
+             mean(EVINTEREST$POknowledge[EVINTEREST$agegroup==3]),
+             mean(EVINTEREST$POcost[EVINTEREST$agegroup==3]), 
+             mean(EVINTEREST$PObattery[EVINTEREST$agegroup==3]),
+             mean(EVINTEREST$POrecharge[EVINTEREST$agegroup==3]), 
+             mean(EVINTEREST$POresale[EVINTEREST$agegroup==3]),
+             mean(EVINTEREST$POsafety[EVINTEREST$agegroup==3]), 
+             mean(EVINTEREST$POcarspec[EVINTEREST$agegroup==3]),
+             mean(EVINTEREST$POtech[EVINTEREST$agegroup==3]))
+POfactor <- c('choice', 'knowledge', 'cost', 'battery', 'recharge', 
+            'resale', 'safety', 'spec', 'technology', 'choice', 'knowledge', 'cost', 
+            'battery', 'recharge', 'resale', 'safety', 'spec', 'technology', 'choice', 
+            'knowledge', 'cost', 'battery', 'recharge', 
+            'resale', 'safety', 'spec', 'technology')
+Agegroupl <- c(1,1,1,1,1,1,1,1,1,
+               2,2,2,2,2,2,2,2,2,
+               3,3,3,3,3,3,3,3,3)
+meanagetable <- cbind(agemean, POfactor, Agegroupl)
+ggplot(as.data.frame(meanagetable), aes(factor(POfactor), agemean, fill = Agegroupl)) + 
+        geom_bar(stat="identity", position = "dodge") +
+        scale_fill_manual(labels=c("young people", "middle-age people", "elder people"), 
+                            values=c("dodgerblue", "blue", "dodgerblue4")) +
+        scale_x_discrete(limits=c("recharge", "battery", "cost", "knowledge", "spec", 
+                                  "choice","technology", "safety", "resale")) +
+        xlab("Factors putting off buying EVs") +
+        ylab("% of respondents") +
+        labs(fill="  ") +
+        theme(panel.grid =element_blank())
 ```
+
+
+
+
 
 # Recommendations
 
 #Discussion and Limitations
 In general, interest in EVs is rather limited. 
 
-However, this also leads to one of the limitations of this paper, not being able answer why different groups show different levels of interest. This question is very hard, not just because we do not have more detailed surveys, but also because different groups may be systematically different in many unobeserved ways. Even though, we will still attempt to make contributions on this question in our final paper.
+However, this also leads to one of the limitations of this paper, not being able answer why different groups show different levels of interest. This question is very hard, not just because we do not have more detailed surveys, but also because different groups may be systematically different in many unobserved ways. Even though, we will still attempt to make contributions on this question in our final paper.
 
-Another limitation is due to the design of the survey, which did not exclude respondents who are not interested in buying cars in genereal. Therefore, varialbes, including having driver's license and number of cars available, need to be interpreted with great caution. The low interest shown in groups without driver's license or cars might not be caused by their lack of interest in EVs, but by their lack of interest in cars.
+Another limitation is due to the design of the survey, which did not exclude respondents who are not interested in buying cars in general. Therefore, variables, including having driver's license and number of cars available, need to be interpreted with great caution. The low interest shown in groups without driver's license or cars might not be caused by their lack of interest in EVs, but by their lack of interest in cars.
 
 Lastly, $R^2$ of the model is only 0.12, meaning that these variables only explain 12% of the variations in the probability of having an interest in EVs. Partly, this is because of a lack of available information, as it is impossible to survey everything. Partly, attitudes are just not easy to explain, because they could be influenced by countless factors, sometimes as trivial as an image or some careless words. Nevertheless, we believe that there are patterns and these patterns are what we should better understand if EVs are to be further promoted.
 
 # Reference
 
 ---
-nocite: | 
+notice: | 
   @CiteR,@R-captioner,@R-dplyr,@R-foreign,@R-ggplot2,@R-googleVis,@R-knitr,@R-markdown,@R-repmis,@R-rms,@R-stargazer,@R-Zelig
 ...
