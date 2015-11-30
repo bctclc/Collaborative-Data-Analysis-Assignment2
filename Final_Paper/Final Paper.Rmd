@@ -521,7 +521,18 @@ Admittedly, this question is rather vague, because it only gives us the informat
 
 
 ###Similar considerations for different groups
-```{r echo=F, warning=F, message=F, error=F, results='asis', fig.cap="Relative weight to factors that encourage buying EVs among groups"}
+In an attempt to formulate policy recommendations that resemble differentiated marketing strategy, we compare the relative weight given to the factors by different groups. We find that in most cases, different groups share their relative weight given to different factors. However, we do find some differences that can be used in differentiated marketing strategy.
+
+1. Young people's stronger environmental awareness is somewhat confirmed in our results. They actually rank environmentalism before battery capacity and recharging conditions. So are females, people without driver's licence, people without cars and people living in Scotland, compared with males, people with driver's licence, people with car(s) and people living elsewhere respectively. Therefore, although people are most encouraged by practical improvements, people can also be motivated by ideological affinity.
+
+2. Higher-middle income people will be very encouraged by increased convenience of recharging. Reason for this might be that this group are mainly white collars who work in city centers and they might be concerned about the cost of charging at home.   
+
+3. People with one car pay special attention to the potential of resale of EVs. Middle-income people (including people with lower-middle and higher-middle income) share this attention comparatively speaking. The majority of these groups of people might not be able to afford having one car. Therefore, they might want to make sure that they can esaily resale their EVs if EVs turned out to be a bad fit for them. This mindset is very common with the first generation who experience a new product. 
+
+4. Lowering the insurance cost of EVs would be most effective with young people, people with lower-middle income and people in Scotland. Lowering the insurance cost is harder, because it depends on the pool insurance companies have and as only a minority of people possess EVs, the pool is small. Also, it is because maintaining and repairing EVs are relatively more expensive since they require specially-made components.
+
+
+```{r echo=F, warning=F, message=F, error=F, results='asis', fig.cap="Relative weights to factors that encourage buying EVs among groups"}
 
 #age group & factors encouraging buying
 agemean <- c(mean(EVINTEREST$ENcost[EVINTEREST$agegroup==1]),
@@ -560,13 +571,12 @@ ageEN <- ggplot(as.data.frame(meanagetable), aes(factor(ENfactor3), as.numeric(a
         geom_bar(stat="identity", position = "dodge") +
         scale_fill_manual(labels=c("young people", "middle-age people", "elder people"), 
                             values=c("dodgerblue", "dodgerblue2", "dodgerblue3")) +
-        scale_x_discrete(limits=c("cost", "battery", "recharge", "environmentalism", "technology", "design","choice", "safety", "resale")) +
-        xlab("Factors putting off buying EVs") +
+        scale_x_discrete("  ",limits=c("cost", "battery", "recharge", "environmentalism", "technology", "design","choice", "safety", "resale")) +
         labs(fill="  ") +
         theme(panel.grid =element_blank())+
         scale_y_continuous("relative weight", labels=NULL)
 
-#sex & factors putting off buying
+#sex & factors encouraging buying
 sexmean <- c(mean(EVINTEREST$ENcost[EVINTEREST$Male==1]),
              mean(EVINTEREST$ENbattery[EVINTEREST$Male==1]), 
              mean(EVINTEREST$ENrecharge[EVINTEREST$Male==1]),
@@ -593,13 +603,12 @@ sexEN <- ggplot(as.data.frame(meansextable), aes(factor(ENfactor2), as.numeric(s
         geom_bar(stat="identity", position = "dodge") +
         scale_fill_manual(labels=c("male", "female"), 
                             values=c("dodgerblue", "dodgerblue4")) +
-        scale_x_discrete(limits=c("cost", "battery", "recharge", "environmentalism", "technology", "design","choice", "safety", "resale")) +
-        xlab("Factors putting off buying EVs") +
+        scale_x_discrete("  ",limits=c("cost", "battery", "recharge", "environmentalism", "technology", "design","choice", "safety", "resale")) +
         labs(fill="  ") +
         theme(panel.grid =element_blank())+
         scale_y_continuous("relative weight", labels=NULL)
 
-#income & factors putting off buying
+#income & factors encouraging buying
 incmean <- c(mean(EVINTEREST$ENcost[EVINTEREST$inccat==1]),
              mean(EVINTEREST$ENbattery[EVINTEREST$inccat==1]), 
              mean(EVINTEREST$ENrecharge[EVINTEREST$inccat==1]),
@@ -646,13 +655,12 @@ incomeEN <- ggplot(as.data.frame(meaninctable), aes(factor(ENfactor4), as.numeri
         geom_bar(stat="identity", position = "dodge") +
         scale_fill_manual(labels=c("low-income \n people", "lower-middle-income \n people", "higher-middle-income \n people", "high-income \n people"), 
                             values=c("dodgerblue", "dodgerblue2", "dodgerblue3", "dodgerblue4")) +
-        scale_x_discrete(limits=c("cost", "battery", "recharge", "environmentalism", "technology", "design","choice", "safety", "resale")) +
-        xlab("Factors putting off buying EVs") +
+        scale_x_discrete("  ",limits=c("cost", "battery", "recharge", "environmentalism", "technology", "design","choice", "safety", "resale")) +
         labs(fill="  ") +
         theme(panel.grid =element_blank())+
         scale_y_continuous("relative weight", labels=NULL)
 
-#college & factors putting off buying
+#college & factors encouraging buying
 collegemean <- c(mean(EVINTEREST$ENcost[EVINTEREST$degree==1]),
              mean(EVINTEREST$ENbattery[EVINTEREST$degree==1]), 
              mean(EVINTEREST$ENrecharge[EVINTEREST$degree==1]),
@@ -679,13 +687,12 @@ collegeEN <- ggplot(as.data.frame(collegemeantable), aes(factor(ENfactor2), as.n
         geom_bar(stat="identity", position = "dodge") +
         scale_fill_manual(labels=c("People with \n college degree", "people without \n college degree"), 
                             values=c("dodgerblue", "dodgerblue4")) +
-        scale_x_discrete(limits=c("cost", "battery", "recharge", "environmentalism", "technology", "design","choice", "safety", "resale")) +
-        xlab("Factors putting off buying EVs") +
+        scale_x_discrete("  ",limits=c("cost", "battery", "recharge", "environmentalism", "technology", "design","choice", "safety", "resale")) +
         labs(fill="  ") +
         theme(panel.grid =element_blank())+
         scale_y_continuous("relative weight", labels=NULL)
 
-#driver's licence & factors putting off buying
+#driver's licence & factors encouraging buying
 licencemean <- c(mean(EVINTEREST$ENcost[EVINTEREST$licence==1]),
              mean(EVINTEREST$ENbattery[EVINTEREST$licence==1]), 
              mean(EVINTEREST$ENrecharge[EVINTEREST$licence==1]),
@@ -712,13 +719,12 @@ licenceEN <- ggplot(as.data.frame(licencemeantable), aes(factor(ENfactor2), as.n
         geom_bar(stat="identity", position = "dodge") +
         scale_fill_manual(labels=c("People with \n driver's licence", "people without \n driver's licence"), 
                             values=c("dodgerblue", "dodgerblue4")) +
-        scale_x_discrete(limits=c("cost", "battery", "recharge", "environmentalism", "technology", "design","choice", "safety", "resale")) +
-        xlab("Factors putting off buying EVs") +
+        scale_x_discrete("  ", limits=c("cost", "battery", "recharge", "environmentalism", "technology", "design","choice", "safety", "resale")) +
         labs(fill="  ") +
         theme(panel.grid =element_blank())+
         scale_y_continuous("relative weight", labels=NULL)
 
-#number of cars & factors putting off buying
+#number of cars & factors encouraging buying
 carnomean <- c(mean(EVINTEREST$ENcost[EVINTEREST$NumCar==0]),
              mean(EVINTEREST$ENbattery[EVINTEREST$NumCar==0]), 
              mean(EVINTEREST$ENrecharge[EVINTEREST$NumCar==0]),
@@ -763,15 +769,14 @@ incgroupl <- c(1,1,1,1,1,1,1,1,1,
 carnomeantable <- cbind(carnomean, ENfactor4, incgroupl)
 carnoEN <- ggplot(as.data.frame(carnomeantable), aes(factor(ENfactor4), as.numeric(carnomean), fill = as.factor(incgroupl))) + 
         geom_bar(stat="identity", position = "dodge") +
-        scale_fill_manual(labels=c("no car", "1 car", "2 cars", "3 cars"), 
+        scale_fill_manual(labels=c("no car", "1 car", "2 cars", "3 cars \n or more"), 
                             values=c("dodgerblue", "dodgerblue2", "dodgerblue3", "dodgerblue4")) +
-        scale_x_discrete(limits=c("cost", "battery", "recharge", "environmentalism", "technology", "design","choice", "safety", "resale")) +
-        xlab("Factors putting off buying EVs") +
+        scale_x_discrete("  ",limits=c("cost", "battery", "recharge", "environmentalism", "technology", "design","choice", "safety", "resale")) +
         labs(fill="  ") +
         theme(panel.grid =element_blank())+
         scale_y_continuous("relative weight", labels=NULL)
 
-#in scotland & factors putting off buying
+#in scotland & factors encouraging buying
 scotmean <- c(mean(EVINTEREST$ENcost[EVINTEREST$Scotland==1]),
              mean(EVINTEREST$ENbattery[EVINTEREST$Scotland==1]), 
              mean(EVINTEREST$ENrecharge[EVINTEREST$Scotland==1]),
@@ -798,8 +803,7 @@ scotEN <- ggplot(as.data.frame(scotmeantable), aes(factor(ENfactor2), as.numeric
         geom_bar(stat="identity", position = "dodge") +
         scale_fill_manual(labels=c("people in Scotland", "people elsewhere"), 
                             values=c("dodgerblue", "dodgerblue4")) +
-        scale_x_discrete(limits=c("cost", "battery", "recharge", "environmentalism", "technology", "design","choice", "safety", "resale")) +
-        xlab("Factors putting off buying EVs") +
+        scale_x_discrete("  ",limits=c("cost", "battery", "recharge", "environmentalism", "technology", "design","choice", "safety", "resale")) +
         labs(fill="  ") +
         theme(panel.grid =element_blank())+
         scale_y_continuous("relative weight", labels=NULL)
@@ -832,21 +836,20 @@ agemeanc <- c(mean(EVINTEREST$ENCpurchase[EVINTEREST$agegroup==1]),
              mean(EVINTEREST$ENCcomptac[EVINTEREST$agegroup==3]), 
              mean(EVINTEREST$ENCinsurance[EVINTEREST$agegroup==3]))
 ENCfactor3 <- c("purchase","maintenance","fuel/recharging","resale","excise tax","company tax","insurance", "purchase","maintenance","fuel/recharging","resale","excise tax","company tax","insurance", "purchase","maintenance","fuel/recharging","resale","excise tax","company tax","insurance")
-Agegroupl <- c(1,1,1,1,1,1,1,1,1,
-               2,2,2,2,2,2,2,2,2,
-               3,3,3,3,3,3,3,3,3)
-meancagetable <- cbind(agemeanc, ENCfactor3, Agegroupl)
-ageENC <- ggplot(as.data.frame(meancagetable), aes(factor(ENCfactor3), as.numeric(agemeanc), fill = as.factor(Agegroupl))) + 
+Agegrouplc <- c(1,1,1,1,1,1,1,
+               2,2,2,2,2,2,2,
+               3,3,3,3,3,3,3)
+meancagetable <- cbind(agemeanc, ENCfactor3, Agegrouplc)
+ageENC <- ggplot(as.data.frame(meancagetable), aes(factor(ENCfactor3), as.numeric(agemeanc), fill = as.factor(Agegrouplc))) + 
         geom_bar(stat="identity", position = "dodge") +
         scale_fill_manual(labels=c("young people", "middle-age people", "elder people"), 
                             values=c("dodgerblue", "dodgerblue2", "dodgerblue3")) +
-        scale_x_discrete(limits=c("purchase", "fuel/recharging", "maintenance", "insurance", "excise tax", "resale","company tax")) +
-        xlab("Factors putting off buying EVs") +
+        scale_x_discrete("  ",limits=c("purchase", "fuel/recharging", "maintenance", "insurance", "excise tax", "resale","company tax")) +
         labs(fill="  ") +
         theme(panel.grid =element_blank())+
         scale_y_continuous("relative weight", labels=NULL)
 
-#sex & factors putting off buying
+#sex & factors encouraging buying
 sexmeanc <- c(mean(EVINTEREST$ENCpurchase[EVINTEREST$Male==1]),
              mean(EVINTEREST$ENCmaintenance[EVINTEREST$Male==1]), 
              mean(EVINTEREST$ENCfuel[EVINTEREST$Male==1]),
@@ -854,32 +857,27 @@ sexmeanc <- c(mean(EVINTEREST$ENCpurchase[EVINTEREST$Male==1]),
              mean(EVINTEREST$ENCextax[EVINTEREST$Male==1]),
              mean(EVINTEREST$ENCcomptac[EVINTEREST$Male==1]), 
              mean(EVINTEREST$ENCinsurance[EVINTEREST$Male==1]),
-             mean(EVINTEREST$ENtech[EVINTEREST$Male==1]),
-             mean(EVINTEREST$ENenv[EVINTEREST$Male==1]),
              mean(EVINTEREST$ENCpurchase[EVINTEREST$Male==0]),
              mean(EVINTEREST$ENCmaintenance[EVINTEREST$Male==0]), 
              mean(EVINTEREST$ENCfuel[EVINTEREST$Male==0]),
              mean(EVINTEREST$ENCresale[EVINTEREST$Male==0]), 
              mean(EVINTEREST$ENCextax[EVINTEREST$Male==0]),
              mean(EVINTEREST$ENCcomptac[EVINTEREST$Male==0]), 
-             mean(EVINTEREST$ENCinsurance[EVINTEREST$Male==0]),
-             mean(EVINTEREST$ENtech[EVINTEREST$Male==0]),
-             mean(EVINTEREST$ENenv[EVINTEREST$Male==0]))
+             mean(EVINTEREST$ENCinsurance[EVINTEREST$Male==0]))
 ENCfactor2 <- c("purchase","maintenance","fuel/recharging","resale","excise tax","company tax","insurance", "purchase","maintenance","fuel/recharging","resale","excise tax","company tax","insurance")
-sexgroupl <- c(1,1,1,1,1,1,1,1,1,
-               2,2,2,2,2,2,2,2,2)
-meancsextable <- cbind(sexmeanc, ENCfactor2, sexgroupl)
-sexENC <- ggplot(as.data.frame(meancsextable), aes(factor(ENCfactor2), as.numeric(sexmeanc), fill = as.factor(sexgroupl))) + 
+sexgrouplc <- c(1,1,1,1,1,1,1,
+               2,2,2,2,2,2,2)
+meancsextable <- cbind(sexmeanc, ENCfactor2, sexgrouplc)
+sexENC <- ggplot(as.data.frame(meancsextable), aes(factor(ENCfactor2), as.numeric(sexmeanc), fill = as.factor(sexgrouplc))) + 
         geom_bar(stat="identity", position = "dodge") +
         scale_fill_manual(labels=c("male", "female"), 
                             values=c("dodgerblue", "dodgerblue4")) +
-        scale_x_discrete(limits=c("purchase", "fuel/recharging", "maintenance", "insurance", "excise tax", "resale","company tax")) +
-        xlab("Factors putting off buying EVs") +
+        scale_x_discrete("  ",limits=c("purchase", "fuel/recharging", "maintenance", "insurance", "excise tax", "resale","company tax")) +
         labs(fill="  ") +
         theme(panel.grid =element_blank())+
         scale_y_continuous("relative weight", labels=NULL)
 
-#income & factors putting off buying
+#income & factors encouraging buying
 incmeanc <- c(mean(EVINTEREST$ENCpurchase[EVINTEREST$inccat==1]),
              mean(EVINTEREST$ENCmaintenance[EVINTEREST$inccat==1]), 
              mean(EVINTEREST$ENCfuel[EVINTEREST$inccat==1]),
@@ -909,22 +907,21 @@ incmeanc <- c(mean(EVINTEREST$ENCpurchase[EVINTEREST$inccat==1]),
              mean(EVINTEREST$ENCcomptac[EVINTEREST$inccat==4]), 
              mean(EVINTEREST$ENCinsurance[EVINTEREST$inccat==4]))
 ENCfactor4 <- c("purchase","maintenance","fuel/recharging","resale","excise tax","company tax","insurance","purchase","maintenance","fuel/recharging","resale","excise tax","company tax","insurance","purchase","maintenance","fuel/recharging","resale","excise tax","company tax","insurance","purchase","maintenance","fuel/recharging","resale","excise tax","company tax","insurance")
-incgroupl <- c(1,1,1,1,1,1,1,1,1,
-               2,2,2,2,2,2,2,2,2,
-               3,3,3,3,3,3,3,3,3,
-               4,4,4,4,4,4,4,4,4)
-meancinctable <- cbind(incmeanc, ENCfactor4, incgroupl)
-incomeENC <- ggplot(as.data.frame(meancinctable), aes(factor(ENCfactor4), as.numeric(incmeanc), fill = as.factor(incgroupl))) + 
+incgrouplc <- c(1,1,1,1,1,1,1,
+               2,2,2,2,2,2,2,
+               3,3,3,3,3,3,3,
+               4,4,4,4,4,4,4)
+meancinctable <- cbind(incmeanc, ENCfactor4, incgrouplc)
+incomeENC <- ggplot(as.data.frame(meancinctable), aes(factor(ENCfactor4), as.numeric(incmeanc), fill = as.factor(incgrouplc))) + 
         geom_bar(stat="identity", position = "dodge") +
         scale_fill_manual(labels=c("low-income \n people", "lower-middle-income \n people", "higher-middle-income \n people", "high-income \n people"), 
                             values=c("dodgerblue", "dodgerblue2", "dodgerblue3", "dodgerblue4")) +
-        scale_x_discrete(limits=c("purchase", "fuel/recharging", "maintenance", "insurance", "excise tax", "resale","company tax")) +
-        xlab("Factors putting off buying EVs") +
+        scale_x_discrete("  ",limits=c("purchase", "fuel/recharging", "maintenance", "insurance", "excise tax", "resale","company tax")) +
         labs(fill="  ") +
         theme(panel.grid =element_blank())+
         scale_y_continuous("relative weight", labels=NULL)
 
-#college & factors putting off buying
+#college & factors encouraging buying
 collegemeanc <- c(mean(EVINTEREST$ENCpurchase[EVINTEREST$degree==1]),
              mean(EVINTEREST$ENCmaintenance[EVINTEREST$degree==1]), 
              mean(EVINTEREST$ENCfuel[EVINTEREST$degree==1]),
@@ -940,20 +937,17 @@ collegemeanc <- c(mean(EVINTEREST$ENCpurchase[EVINTEREST$degree==1]),
              mean(EVINTEREST$ENCcomptac[EVINTEREST$degree==0]), 
              mean(EVINTEREST$ENCinsurance[EVINTEREST$degree==0]))
 ENCfactor2 <- c("purchase","maintenance","fuel/recharging","resale","excise tax","company tax","insurance","purchase","maintenance","fuel/recharging","resale","excise tax","company tax","insurance")
-sexgroupl <- c(1,1,1,1,1,1,1,1,1,
-               2,2,2,2,2,2,2,2,2)
-collegemeanctable <- cbind(collegemeanc, ENCfactor2, sexgroupl)
-collegeENC <- ggplot(as.data.frame(collegemeanctable), aes(factor(ENCfactor2), as.numeric(collegemeanc), fill = as.factor(sexgroupl))) + 
+collegemeanctable <- cbind(collegemeanc, ENCfactor2, sexgrouplc)
+collegeENC <- ggplot(as.data.frame(collegemeanctable), aes(factor(ENCfactor2), as.numeric(collegemeanc), fill = as.factor(sexgrouplc))) + 
         geom_bar(stat="identity", position = "dodge") +
         scale_fill_manual(labels=c("People with \n college degree", "people without \n college degree"), 
                             values=c("dodgerblue", "dodgerblue4")) +
-        scale_x_discrete(limits=c("purchase", "fuel/recharging", "maintenance", "insurance", "excise tax", "resale","company tax")) +
-        xlab("Factors putting off buying EVs") +
+        scale_x_discrete("  ",limits=c("purchase", "fuel/recharging", "maintenance", "insurance", "excise tax", "resale","company tax")) +
         labs(fill="  ") +
         theme(panel.grid =element_blank())+
         scale_y_continuous("relative weight", labels=NULL)
 
-#driver's licence & factors putting off buying
+#driver's licence & factors encouraging buying
 licencemeanc <- c(mean(EVINTEREST$ENCpurchase[EVINTEREST$licence==1]),
              mean(EVINTEREST$ENCmaintenance[EVINTEREST$licence==1]), 
              mean(EVINTEREST$ENCfuel[EVINTEREST$licence==1]),
@@ -968,20 +962,17 @@ licencemeanc <- c(mean(EVINTEREST$ENCpurchase[EVINTEREST$licence==1]),
              mean(EVINTEREST$ENCextax[EVINTEREST$licence==0]),
              mean(EVINTEREST$ENCcomptac[EVINTEREST$licence==0]), 
              mean(EVINTEREST$ENCinsurance[EVINTEREST$licence==0]))
-sexgroupl <- c(1,1,1,1,1,1,1,1,1,
-               2,2,2,2,2,2,2,2,2)
-licencemeanctable <- cbind(licencemeanc, ENCfactor2, sexgroupl)
-licenceENC <- ggplot(as.data.frame(licencemeanctable), aes(factor(ENCfactor2), as.numeric(licencemeanc), fill = as.factor(sexgroupl))) + 
+licencemeanctable <- cbind(licencemeanc, ENCfactor2, sexgrouplc)
+licenceENC <- ggplot(as.data.frame(licencemeanctable), aes(factor(ENCfactor2), as.numeric(licencemeanc), fill = as.factor(sexgrouplc))) + 
         geom_bar(stat="identity", position = "dodge") +
         scale_fill_manual(labels=c("People with \n driver's licence", "people without \n driver's licence"), 
                             values=c("dodgerblue", "dodgerblue4")) +
-        scale_x_discrete(limits=c("purchase", "fuel/recharging", "maintenance", "insurance", "excise tax", "resale","company tax")) +
-        xlab("Factors putting off buying EVs") +
+        scale_x_discrete("  ",limits=c("purchase", "fuel/recharging", "maintenance", "insurance", "excise tax", "resale","company tax")) +
         labs(fill="  ") +
         theme(panel.grid =element_blank())+
         scale_y_continuous("relative weight", labels=NULL)
 
-#number of cars & factors putting off buying
+#number of cars & factors encouraging buying
 carnomeanc <- c(mean(EVINTEREST$ENCpurchase[EVINTEREST$NumCar==0]),
              mean(EVINTEREST$ENCmaintenance[EVINTEREST$NumCar==0]), 
              mean(EVINTEREST$ENCfuel[EVINTEREST$NumCar==0]),
@@ -1010,22 +1001,17 @@ carnomeanc <- c(mean(EVINTEREST$ENCpurchase[EVINTEREST$NumCar==0]),
              mean(EVINTEREST$ENCextax[EVINTEREST$NumCar==3]),
              mean(EVINTEREST$ENCcomptac[EVINTEREST$NumCar==3]), 
              mean(EVINTEREST$ENCinsurance[EVINTEREST$NumCar==3]))
-incgroupl <- c(1,1,1,1,1,1,1,1,1,
-               2,2,2,2,2,2,2,2,2,
-               3,3,3,3,3,3,3,3,3,
-               4,4,4,4,4,4,4,4,4)
-carnomeanctable <- cbind(carnomeanc, ENCfactor4, incgroupl)
-carnoENC <- ggplot(as.data.frame(carnomeanctable), aes(factor(ENCfactor4), as.numeric(carnomeanc), fill = as.factor(incgroupl))) + 
+carnomeanctable <- cbind(carnomeanc, ENCfactor4, incgrouplc)
+carnoENC <- ggplot(as.data.frame(carnomeanctable), aes(factor(ENCfactor4), as.numeric(carnomeanc), fill = as.factor(incgrouplc))) + 
         geom_bar(stat="identity", position = "dodge") +
-        scale_fill_manual(labels=c("no car", "1 car", "2 cars", "3 cars"), 
+        scale_fill_manual(labels=c("no car", "1 car", "2 cars", "3 cars \n or more"), 
                             values=c("dodgerblue", "dodgerblue2", "dodgerblue3", "dodgerblue4")) +
-        scale_x_discrete(limits=c("purchase", "fuel/recharging", "maintenance", "insurance", "excise tax", "resale","company tax")) +
-        xlab("Factors putting off buying EVs") +
+        scale_x_discrete("  ",limits=c("purchase", "fuel/recharging", "maintenance", "insurance", "excise tax", "resale","company tax")) +
         labs(fill="  ") +
         theme(panel.grid =element_blank())+
         scale_y_continuous("relative weight", labels=NULL)
 
-#in scotland & factors putting off buying
+#in scotland & factors encouraging buying
 scotmeanc <- c(mean(EVINTEREST$ENCpurchase[EVINTEREST$Scotland==1]),
              mean(EVINTEREST$ENCmaintenance[EVINTEREST$Scotland==1]), 
              mean(EVINTEREST$ENCfuel[EVINTEREST$Scotland==1]),
@@ -1040,15 +1026,12 @@ scotmeanc <- c(mean(EVINTEREST$ENCpurchase[EVINTEREST$Scotland==1]),
              mean(EVINTEREST$ENCextax[EVINTEREST$Scotland==0]),
              mean(EVINTEREST$ENCcomptac[EVINTEREST$Scotland==0]), 
              mean(EVINTEREST$ENCinsurance[EVINTEREST$Scotland==0]))
-sexgroupl <- c(1,1,1,1,1,1,1,1,1,
-               2,2,2,2,2,2,2,2,2)
-scotmeanctable <- cbind(scotmeanc, ENCfactor2, sexgroupl)
-scotENC <- ggplot(as.data.frame(scotmeanctable), aes(factor(ENCfactor2), as.numeric(scotmeanc), fill = as.factor(sexgroupl))) + 
+scotmeanctable <- cbind(scotmeanc, ENCfactor2, sexgrouplc)
+scotENC <- ggplot(as.data.frame(scotmeanctable), aes(factor(ENCfactor2), as.numeric(scotmeanc), fill = as.factor(sexgrouplc))) + 
         geom_bar(stat="identity", position = "dodge") +
         scale_fill_manual(labels=c("people in Scotland", "people elsewhere"), 
                             values=c("dodgerblue", "dodgerblue4")) +
-        scale_x_discrete(limits=c("purchase", "fuel/recharging", "maintenance", "insurance", "excise tax", "resale","company tax")) +
-        xlab("Factors putting off buying EVs") +
+        scale_x_discrete("  ",limits=c("purchase", "fuel/recharging", "maintenance", "insurance", "excise tax", "resale","company tax")) +
         labs(fill="  ") +
         theme(panel.grid =element_blank())+
         scale_y_continuous("relative weight", labels=NULL)
@@ -1058,19 +1041,29 @@ grid.arrange(ageENC, sexENC, incomeENC, collegeENC, licenceENC,carnoENC,scotENC,
 ```
 
 
-
-
-
 # Recommendations
+Based on analysis in the previous section, we make the following policy recommendations on how to promote EVs in the UK.
 
-#Discussion and Limitations
-In general, interest in EVs is rather limited. 
+1. Information campaign targeted on low-interest groups, in addition to general information campaign, is needed. Admitted, the general interest in EVs is still rather low, as only about 18% of the respondents show interest. However, we find great gaps among different groups and believe that these closing these gaps will great increase the level of interest. Females and people without a college degree are two groups in question. Information campaign on channels that are popular with these groups and catering the campaign to their tastes could be helpful in promoting EVs.
 
-However, this also leads to one of the limitations of this paper, not being able answer why different groups show different levels of interest. This question is very hard, not just because we do not have more detailed surveys, but also because different groups may be systematically different in many unobserved ways. Even though, we will still attempt to make contributions on this question in our final paper.
+2. Removing obstacles by investing in R&D related to battery and recharging facilities must be continued. EVs, in many ways, are very different from traditional cars, and thus might even alter people's driving and other habits. Therefore, constantly improving battery and recharging facilities to reduce the changes consumers need to make will encourage more people to accept EVs. 
 
-Another limitation is due to the design of the survey, which did not exclude respondents who are not interested in buying cars in general. Therefore, variables, including having driver's license and number of cars available, need to be interpreted with great caution. The low interest shown in groups without driver's license or cars might not be caused by their lack of interest in EVs, but by their lack of interest in cars.
+3. Putting recharging facilities in place should be a priority, as most respondents are put off by the inconvenience of recharging. There needs to be a long-term plan for this, since charging EVs takes much time and making sure that recharges needs are met in time can be hard if the number of EVs increase greatly in the future.
 
-Lastly, $R^2$ of the model is only 0.12, meaning that these variables only explain 12% of the variations in the probability of having an interest in EVs. Partly, this is because of a lack of available information, as it is impossible to survey everything. Partly, attitudes are just not easy to explain, because they could be influenced by countless factors, sometimes as trivial as an image or some careless words. Nevertheless, we believe that there are patterns and these patterns are what we should better understand if EVs are to be further promoted.
+4. Providing financial incentives, especially the ones regarding lowering purchase prices, is necessary. There are many ways to desgin financial incentives and lower EV prices, and different policies can have very different results.Generally speaking, the policies that immediately reduce the price (as constrast to refund) are most effective [@givinggreen].
+
+5. Advertising the economic benefits of EVs could be encouraging. Suprisingly, energy cost ranks the third among nine cost-related factors that put off buying EVs, since EVs are cheaper than conventional vehicles in terms of energy cost [@Herron2015web]. Highlighting this information may change some people's minds.
+
+6. Differentiated marketing strategies could be adopted in possible. They might help catalyze the process of turning interest into actual consumption of EVs.
+
+Admittedly, there are some aspects that are beyond the capacity of government. For example, higher maintenance and insurance costs are largely the results of market. Relatively limited choices of models of EVs are probably due to companies' market projections as well. However, we believe that there are still much that can be done by the government to promote EVs, although there is still long way to go before EVs replace conventional cars too.
+
+
+
+#Limitations
+One limitation is due to the design of the survey, which did not exclude respondents who are not interested in buying cars in general. Therefore, variables, including having driver's license and number of cars available, need to be interpreted with great caution. The low interest shown in groups without driver's license or cars might not be caused by their lack of interest in EVs, but by their lack of interest in cars.
+
+Another limitation is that $R^2$ of the model is only 0.12, meaning that these variables only explain 12% of the variations in the probability of having an interest in EVs. Partly, this is because of a lack of available information, as it is impossible to survey everything. Partly, attitudes are just not easy to explain, because they could be influenced by countless factors, sometimes as trivial as an image or some careless words. Nevertheless, we believe that there are patterns and these patterns are what we should better understand if EVs are to be further promoted.
 
 # Reference
 
