@@ -574,7 +574,7 @@ ageEN <- ggplot(as.data.frame(meanagetable), aes(factor(ENfactor3), as.numeric(a
         scale_x_discrete("  ",limits=c("cost", "battery", "recharge", "environmentalism", "technology", "design","choice", "safety", "resale")) +
         labs(fill="  ") +
         theme(panel.grid =element_blank())+
-        scale_y_continuous("relative weight", labels=NULL)
+        scale_y_continuous(" ", labels=NULL)
 
 #sex & factors encouraging buying
 sexmean <- c(mean(EVINTEREST$ENcost[EVINTEREST$Male==1]),
@@ -606,7 +606,7 @@ sexEN <- ggplot(as.data.frame(meansextable), aes(factor(ENfactor2), as.numeric(s
         scale_x_discrete("  ",limits=c("cost", "battery", "recharge", "environmentalism", "technology", "design","choice", "safety", "resale")) +
         labs(fill="  ") +
         theme(panel.grid =element_blank())+
-        scale_y_continuous("relative weight", labels=NULL)
+        scale_y_continuous(" ", labels=NULL)
 
 #income & factors encouraging buying
 incmean <- c(mean(EVINTEREST$ENcost[EVINTEREST$inccat==1]),
@@ -658,7 +658,7 @@ incomeEN <- ggplot(as.data.frame(meaninctable), aes(factor(ENfactor4), as.numeri
         scale_x_discrete("  ",limits=c("cost", "battery", "recharge", "environmentalism", "technology", "design","choice", "safety", "resale")) +
         labs(fill="  ") +
         theme(panel.grid =element_blank())+
-        scale_y_continuous("relative weight", labels=NULL)
+        scale_y_continuous(" ", labels=NULL)
 
 #college & factors encouraging buying
 collegemean <- c(mean(EVINTEREST$ENcost[EVINTEREST$degree==1]),
@@ -690,7 +690,7 @@ collegeEN <- ggplot(as.data.frame(collegemeantable), aes(factor(ENfactor2), as.n
         scale_x_discrete("  ",limits=c("cost", "battery", "recharge", "environmentalism", "technology", "design","choice", "safety", "resale")) +
         labs(fill="  ") +
         theme(panel.grid =element_blank())+
-        scale_y_continuous("relative weight", labels=NULL)
+        scale_y_continuous(" ", labels=NULL)
 
 #driver's licence & factors encouraging buying
 licencemean <- c(mean(EVINTEREST$ENcost[EVINTEREST$licence==1]),
@@ -722,7 +722,7 @@ licenceEN <- ggplot(as.data.frame(licencemeantable), aes(factor(ENfactor2), as.n
         scale_x_discrete("  ", limits=c("cost", "battery", "recharge", "environmentalism", "technology", "design","choice", "safety", "resale")) +
         labs(fill="  ") +
         theme(panel.grid =element_blank())+
-        scale_y_continuous("relative weight", labels=NULL)
+        scale_y_continuous(" ", labels=NULL)
 
 #number of cars & factors encouraging buying
 carnomean <- c(mean(EVINTEREST$ENcost[EVINTEREST$NumCar==0]),
@@ -774,7 +774,7 @@ carnoEN <- ggplot(as.data.frame(carnomeantable), aes(factor(ENfactor4), as.numer
         scale_x_discrete("  ",limits=c("cost", "battery", "recharge", "environmentalism", "technology", "design","choice", "safety", "resale")) +
         labs(fill="  ") +
         theme(panel.grid =element_blank())+
-        scale_y_continuous("relative weight", labels=NULL)
+        scale_y_continuous(" ", labels=NULL)
 
 #in scotland & factors encouraging buying
 scotmean <- c(mean(EVINTEREST$ENcost[EVINTEREST$Scotland==1]),
@@ -806,10 +806,10 @@ scotEN <- ggplot(as.data.frame(scotmeantable), aes(factor(ENfactor2), as.numeric
         scale_x_discrete("  ",limits=c("cost", "battery", "recharge", "environmentalism", "technology", "design","choice", "safety", "resale")) +
         labs(fill="  ") +
         theme(panel.grid =element_blank())+
-        scale_y_continuous("relative weight", labels=NULL)
+        scale_y_continuous(" ", labels=NULL)
 
 #put them in one
-grid.arrange(ageEN, sexEN, incomeEN, collegeEN, licenceEN,carnoEN,scotEN, ncol=2, nrow=4)
+grid.arrange(ageEN, sexEN, incomeEN, collegeEN, licenceEN,carnoEN,scotEN, ncol=1, nrow=7, newpage=TRUE, widths=3000)
 ```
 
 ```{r echo=F, warning=F, message=F, error=F, results='asis', fig.cap="Relative weight to cost-related factors that encourage buying EVs among groups"}
@@ -847,7 +847,7 @@ ageENC <- ggplot(as.data.frame(meancagetable), aes(factor(ENCfactor3), as.numeri
         scale_x_discrete("  ",limits=c("purchase", "fuel/recharging", "maintenance", "insurance", "excise tax", "resale","company tax")) +
         labs(fill="  ") +
         theme(panel.grid =element_blank())+
-        scale_y_continuous("relative weight", labels=NULL)
+        scale_y_continuous(" ", labels=NULL)
 
 #sex & factors encouraging buying
 sexmeanc <- c(mean(EVINTEREST$ENCpurchase[EVINTEREST$Male==1]),
@@ -875,7 +875,7 @@ sexENC <- ggplot(as.data.frame(meancsextable), aes(factor(ENCfactor2), as.numeri
         scale_x_discrete("  ",limits=c("purchase", "fuel/recharging", "maintenance", "insurance", "excise tax", "resale","company tax")) +
         labs(fill="  ") +
         theme(panel.grid =element_blank())+
-        scale_y_continuous("relative weight", labels=NULL)
+        scale_y_continuous(" ", labels=NULL)
 
 #income & factors encouraging buying
 incmeanc <- c(mean(EVINTEREST$ENCpurchase[EVINTEREST$inccat==1]),
@@ -919,7 +919,7 @@ incomeENC <- ggplot(as.data.frame(meancinctable), aes(factor(ENCfactor4), as.num
         scale_x_discrete("  ",limits=c("purchase", "fuel/recharging", "maintenance", "insurance", "excise tax", "resale","company tax")) +
         labs(fill="  ") +
         theme(panel.grid =element_blank())+
-        scale_y_continuous("relative weight", labels=NULL)
+        scale_y_continuous("  ", labels=NULL)
 
 #college & factors encouraging buying
 collegemeanc <- c(mean(EVINTEREST$ENCpurchase[EVINTEREST$degree==1]),
@@ -945,7 +945,7 @@ collegeENC <- ggplot(as.data.frame(collegemeanctable), aes(factor(ENCfactor2), a
         scale_x_discrete("  ",limits=c("purchase", "fuel/recharging", "maintenance", "insurance", "excise tax", "resale","company tax")) +
         labs(fill="  ") +
         theme(panel.grid =element_blank())+
-        scale_y_continuous("relative weight", labels=NULL)
+        scale_y_continuous(" ", labels=NULL)
 
 #driver's licence & factors encouraging buying
 licencemeanc <- c(mean(EVINTEREST$ENCpurchase[EVINTEREST$licence==1]),
@@ -970,7 +970,7 @@ licenceENC <- ggplot(as.data.frame(licencemeanctable), aes(factor(ENCfactor2), a
         scale_x_discrete("  ",limits=c("purchase", "fuel/recharging", "maintenance", "insurance", "excise tax", "resale","company tax")) +
         labs(fill="  ") +
         theme(panel.grid =element_blank())+
-        scale_y_continuous("relative weight", labels=NULL)
+        scale_y_continuous(" ", labels=NULL)
 
 #number of cars & factors encouraging buying
 carnomeanc <- c(mean(EVINTEREST$ENCpurchase[EVINTEREST$NumCar==0]),
@@ -1009,7 +1009,7 @@ carnoENC <- ggplot(as.data.frame(carnomeanctable), aes(factor(ENCfactor4), as.nu
         scale_x_discrete("  ",limits=c("purchase", "fuel/recharging", "maintenance", "insurance", "excise tax", "resale","company tax")) +
         labs(fill="  ") +
         theme(panel.grid =element_blank())+
-        scale_y_continuous("relative weight", labels=NULL)
+        scale_y_continuous(" ", labels=NULL)
 
 #in scotland & factors encouraging buying
 scotmeanc <- c(mean(EVINTEREST$ENCpurchase[EVINTEREST$Scotland==1]),
@@ -1034,10 +1034,10 @@ scotENC <- ggplot(as.data.frame(scotmeanctable), aes(factor(ENCfactor2), as.nume
         scale_x_discrete("  ",limits=c("purchase", "fuel/recharging", "maintenance", "insurance", "excise tax", "resale","company tax")) +
         labs(fill="  ") +
         theme(panel.grid =element_blank())+
-        scale_y_continuous("relative weight", labels=NULL)
+        scale_y_continuous("   ", labels=NULL)
 
 #put them in one
-grid.arrange(ageENC, sexENC, incomeENC, collegeENC, licenceENC,carnoENC,scotENC, ncol=2, nrow=4)
+grid.arrange(ageENC, sexENC, incomeENC, collegeENC, licenceENC,carnoENC,scotENC, ncol=1, nrow=7, newpage=TRUE, widths=3000)
 ```
 
 
