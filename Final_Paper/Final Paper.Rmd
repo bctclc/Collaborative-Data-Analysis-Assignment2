@@ -809,7 +809,7 @@ scotEN <- ggplot(as.data.frame(scotmeantable), aes(factor(ENfactor2), as.numeric
         scale_y_continuous(" ", labels=NULL)
 
 #put them in one
-grid.arrange(ageEN, sexEN, incomeEN, collegeEN, licenceEN,carnoEN,scotEN, ncol=1, nrow=7, newpage=TRUE, widths=3000)
+grid.arrange(ageEN, sexEN, incomeEN, collegeEN, licenceEN,carnoEN,scotEN, ncol=2, nrow=4, newpage=TRUE)
 ```
 
 ```{r echo=F, warning=F, message=F, error=F, results='asis', fig.cap="Relative weight to cost-related factors that encourage buying EVs among groups"}
@@ -1037,7 +1037,7 @@ scotENC <- ggplot(as.data.frame(scotmeanctable), aes(factor(ENCfactor2), as.nume
         scale_y_continuous("   ", labels=NULL)
 
 #put them in one
-grid.arrange(ageENC, sexENC, incomeENC, collegeENC, licenceENC,carnoENC,scotENC, ncol=1, nrow=7, newpage=TRUE, widths=3000)
+grid.arrange(ageENC, sexENC, incomeENC, collegeENC, licenceENC,carnoENC,scotENC, ncol=2, nrow=4, newpage=TRUE)
 ```
 
 
