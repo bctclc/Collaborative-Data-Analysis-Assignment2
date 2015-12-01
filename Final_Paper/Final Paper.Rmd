@@ -118,19 +118,24 @@ For our study, we use both survey years by combining both data sets together.
 source("data_cleanup.R")
 ```
 
-We are interested in the potentially different attitudes and priorities of different groups and in identifying potential buyers of EVs as well as obstacles preventing EV consumption. (To better understand the regional differences, if there are, we will look closer into regional policies or aggregate-level characteristics of Great Britain.) Therefore, we will be using the three core questions as dependent variables and demographic variables as independent variables. We will also be primarily using data from 2015, and might draw on data from 2014 in case of a need for contrast or support. 
+We are interested in the potentially different attitudes and priorities of different groups and in identifying potential buyers of EVs as well as obstacles preventing EV consumption.
+In the survey, the questionnaire asks the respondent's attitudes towards buying an EV. The answer choices ranges from "I already have one" to "I don't drive". 
+The answers are recoded into a binary dummy variable whether the person is interested in buying an EV ("I already have one," "I am thinking about buying one," "I thought about buying one") or not.
+The explanatory variables will be each person's demographic characteristics such as age, gender, education level, etc.
+In order to take the regional differences in policies to promote EVs into account, if there are, we will also include government administrative regions within the U.K. as a control.
 
-As our dependent variables are all binary dummy variables, **logistic regression** will be adopted:
+
+As our dependent variable is a binary dummy, **logistic regression** expressed in the equation below will be adopted:
 
 $$\ln{\frac{p}{1-p}}=\beta_{0} + \beta_{1} x_{1i} + \beta_{2} x_{2i} + \dots + \beta_{k} x_{ki}$$
 
-Where $p$ is the probability that the dependent variable equals to 1 (e.g. being interested in EVs).
+Where $p$ is the probability that the dependent variable equals to 1 (i.e. being interested in buying an EV). By exponentiating the coefficients ($e^{\beta_{i}}$), we will obtain the odds ratio for different group of people.
 
-By converting $\ln{\frac{p}{1-p}}$ into $p$, we will obtain the predicted probability for the *i*th person depending on his/her personal characteristics. 
+Further, by converting the log odds ($\ln{\frac{p}{1-p}}$) into $p$ as shown in the equation below, we will obtain the predicted probability for the *i*th person depending on his/her personal characteristics. 
 
 $$p=\frac{1} {1 + exp\{-(\beta_{0} + \beta_{1} x_{1i} + \beta_{2} x_{2i} + \dots + \beta_{k} x_{ki})\}}$$
 
-Thus, we are expecting to see different predicted probabilities of showing certain attitudes or making certain decisions for different demographic groups, which will provide some useful information for the policy makers to create efficient means to promote EVs.
+Thus, we are expecting to see different predicted probabilities of being interested in buying an EV for different demographic groups, which will provide some useful information for the policy makers to create efficient means to promote EVs.
 
 # Analysis
 ## Descriptive Analysis
@@ -158,7 +163,11 @@ kable(vartable, caption="List of Variables")
 
 
 ### Summary statistics
-* **EVinterest**: `r round(mean(EVINTEREST$EVinterest)*100, digits=2)` % of respondents are interested in EVs
+The original data set contains 962 observations from Feburary 2014 and 1,034 from Feburary 2015. 
+After combining the two samples and liminating all the observations with missing values in any of the key variable listed above, a subset of 1,710 observations is obtained for this study. 
+Each of the variables are summarized as follows:
+
+* **EVinterest**: `r round(mean(EVINTEREST$EVinterest)*100, digits=2)` % of respondents have interests in EVs
 
 * **RAGE**: Mean=`r round(mean(EVINTEREST$RAGE), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$RAGE), digits=2)`.
 The distribution of age is shown in figure 1 below.
