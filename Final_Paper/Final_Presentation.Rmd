@@ -41,8 +41,10 @@ load("EVdata1.rda")
 - Identify the factors encouraging/putting off buying EVs
 
 ## Data Source
-This analysis is based on survey data in the UK called ["Opinions and Lifestyle Survey, Electric Vehicles Module, February 2014 and February 2015"](https://discover.ukdataservice.ac.uk/Catalogue/?sn=7571&type=Data%20catalogue) conducted by Social Survey Division of the Office for National Statistics. 
-This module comes with two datasets: survey results from 2014 and 2015. 
+- Name: ["Opinions and Lifestyle Survey, Electric Vehicles Module, February 2014 and February 2015"](https://discover.ukdataservice.ac.uk/Catalogue/?sn=7571&type=Data%20catalogue) 
+- Source: Social Survey Division of the Office for National Statistics, the U.K. 
+- Survey year: 2014 and 2015. 
+- Sample size: 1,710
 
 ## List of Variables
 - Dependent variables
@@ -65,10 +67,13 @@ This module comes with two datasets: survey results from 2014 and 2015.
 
     + Cost-related factors encouraging/putting off buying EVs
 
-## Methodology
+## Methodology | Logistic Regression
 
 $$\ln{\frac{p}{1-p}}=\beta_{0} + \beta_{1} x_{1i} + \beta_{2} x_{2i} + \dots + \beta_{k} x_{ki}$$
 
+$$p=\frac{1} {1 + exp\{-(\beta_{0} + \beta_{1} x_{1i} + \beta_{2} x_{2i} + \dots + \beta_{k} x_{ki})\}}$$
+
+$p$: probability of being interested in buying an EV
 
 
 ## Descriptive Analysis | Dependent Variables
@@ -184,11 +189,11 @@ Edugroup <- c("At least have a college degree", "Do not have a college degree")
 
 byedusex <- cbind(Edugroup, fitted3$predicted, fitted4$predicted)
 
-kable(byedusex, caption="Probability by Education Level & Sex", 
+kable(byedusex, caption="Probability by Education Level & Sex (%)", 
       col.names = c("Education Level", "Male", "Female"))
 ```
 
-\n
+
 ```{r echo=F, warning=F, message=F, error=F}
 # predicted probability by licence group & sex
 fitted5 <- with(EVINTEREST,
@@ -208,7 +213,7 @@ ligroup <- c("Have driver's license", "Do not have driver's license")
 
 bylisex <- cbind(Edugroup, fitted5$predicted, fitted6$predicted)
 
-kable(bylisex, caption="Probabilities by Driver's License Status & Sex", 
+kable(bylisex, caption="Probabilities by Driver's License Status & Sex (%)", 
       col.names = c("License Status", "Male", "Female"))
 ```
 
