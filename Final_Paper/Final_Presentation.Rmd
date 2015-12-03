@@ -80,7 +80,8 @@ $$p=\frac{1} {1 + exp\{-(\beta_{0} + \beta_{1} x_{1i} + \beta_{2} x_{2i} + \dots
 $p$: probability of being interested in buying an EV
 
 
-## Descriptive Analysis | Dependent Variables {.columns-2}
+## Descriptive Analysis | Dependent Variables
+<div class="columns-2">
 - `r round(mean(EVINTEREST$EVinterest)*100, digits=2)`% of British People are interested in EVs
 
 
@@ -129,9 +130,10 @@ ggplot(mapdf, aes(x = long, y = lat, group = group)) +
   scale_fill_gradientn( colours = brewer.pal( 9 , "Reds" ) )+
   coord_equal()
 ```
+</div>
 
-
-## Descriptive Analysis | Independent Variables {.columns-2}
+## Descriptive Analysis | Independent Variables
+<div class="columns-2">
 - Average Age: `r round(mean(EVINTEREST$RAGE), digits=2)`
 - `r round(mean(EVINTEREST$Male)*100, digits=2)`% Male, `r round((1-mean(EVINTEREST$Male))*100, digits=2)`% Female
 - `r round(mean(EVINTEREST$degree)*100, digits=2)`% college graduates
@@ -141,7 +143,6 @@ ggplot(mapdf, aes(x = long, y = lat, group = group)) +
 - Income level:
 
 
-
 ```{r echo=F, warning=F, message=F, error=F, results='asis', fig.height=4, fig.width=5}
 inctable <-table(EVINTEREST$inccat)
 barplot(inctable, ylab="Frequnecy", main="Distribution of Income",
@@ -149,7 +150,7 @@ barplot(inctable, ylab="Frequnecy", main="Distribution of Income",
 mtext(side=1, "Gross Annual Income", line=2)
 mtext(side=1, "(Low:~14,559 /Low-Mid:14,560~20,799 /High-Mid:20,800~25,999 /High: 26,000+)", line=3, cex=0.75)
 ```
-
+</div>
 
 ## Logistic Regression | Interest in EVs
 
