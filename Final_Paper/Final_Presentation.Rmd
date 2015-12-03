@@ -77,66 +77,45 @@ $p$: probability of being interested in buying an EV
 
 
 ## Descriptive Analysis | Dependent Variables
-```{r echo=F, warning=F, message=F, error=F, results='asis'}
-par(mfrow=c(2,3), mar=c(4,6,2,6))
-barplot(table(EVINTEREST$EVinterest), ylab="Frequency", main="Interest in EVs")
-obscat <- c('choice', 'knowledge', 'cost', 'battery', 'recharge', 
-            'resale', 'safety', 'spec', 'technology')
-obsmean <- c(mean(EVINTEREST$POchoice), mean(EVINTEREST$POknowledge),
-             mean(EVINTEREST$POcost), mean(EVINTEREST$PObattery),
-             mean(EVINTEREST$POrecharge), mean(EVINTEREST$POresale),
-             mean(EVINTEREST$POsafety), mean(EVINTEREST$POcarspec),
-             mean(EVINTEREST$POtech))
-barplot(obsmean, names.arg=obscat, cex.names=0.6, 
-        ylab="% of respondents who \n choose the category", main="Obstacles to buying EVs")
-cobscat <- c('purchase', 'fuel/charging', 'maintenance', 'resale', 'excise tax',
-             'company tax', 'insurance')
-cobsmean <- c(mean(EVINTEREST$POCpurchase), mean(EVINTEREST$POCfuel),
-              mean(EVINTEREST$POCmaintenance), mean(EVINTEREST$POCresale),
-              mean(EVINTEREST$POCextax), mean(EVINTEREST$POCcomptax),
-              mean(EVINTEREST$POCinsurance))
-barplot(cobsmean, names.arg=cobscat, cex.names=0.6, 
-        ylab="% of respondents who \n choose the category", main="Cost-related obstacles to buying EVs")
-ennames <- c('Cost', 'Battery: \n distance travelled \n on charge', 'Convenience \n of recharging', 'Resale/residual \n value', 'Safety \n features/record', 'Vehicle size, \n performance \n or aesthetics', 'If there was \n more choice \n available', 'Technology: \n reliable/proven', 'Environmentally \n friendly')
-enmeans <- c(mean(EVINTEREST$ENcost), mean(EVINTEREST$ENbattery),
-             mean(EVINTEREST$ENrecharge), mean(EVINTEREST$ENresale),
-             mean(EVINTEREST$ENsafety), mean(EVINTEREST$ENcarspec),
-             mean(EVINTEREST$ENchoice), mean(EVINTEREST$ENtech),
-             mean(EVINTEREST$ENenv))
-barplot(enmeans, names.arg=ennames, cex.names=0.35, 
-        ylab="% of respondents who \n choose the category", main="Factors encouraging buying EVs")
-encostnames <-  c('purchase', 'fuel/recharging', 'maintenance', 'resale', 'excise tax',
-             'company tax', 'insurance')
-encostmeans <- c(mean(EVINTEREST$ENCpurchase), mean(EVINTEREST$ENCfuel),
-             mean(EVINTEREST$ENCmaintenance), mean(EVINTEREST$ENCresale),
-             mean(EVINTEREST$ENCextax), mean(EVINTEREST$ENCcomptac),
-             mean(EVINTEREST$ENCinsurance))
-barplot(encostmeans, names.arg=encostnames, cex.names=0.6, 
-        ylab="% of respondents who \n choose the category", main="Cost-related factors encouraging buying EVs")
-```
+```{r echo=F, warning=F, message=F, error=F, results='asis', fig.width = 10}
+# summary of EVinterest
+Region <- c('North \n East','North \n West','Yorkshire \n Humber','East \n Midlands', 'West \n Midrands',
+            'East of \n England','London','South \n East','South \n West','Wales', 'Scotland', 'National \n Ave.')
+IntRegion <- c(mean(EVINTEREST$EVinterest[EVINTEREST$NorthEast==1]),
+               mean(EVINTEREST$EVinterest[EVINTEREST$NorthWest==1]),
+               mean(EVINTEREST$EVinterest[EVINTEREST$YorkshireHumber==1]),
+               mean(EVINTEREST$EVinterest[EVINTEREST$EastMidlands==1]),
+               mean(EVINTEREST$EVinterest[EVINTEREST$WestMidrands==1]),
+               mean(EVINTEREST$EVinterest[EVINTEREST$EastofEngland==1]),
+               mean(EVINTEREST$EVinterest[EVINTEREST$London==1]),
+               mean(EVINTEREST$EVinterest[EVINTEREST$SouthEast==1]),
+               mean(EVINTEREST$EVinterest[EVINTEREST$SouthWest==1]),
+               mean(EVINTEREST$EVinterest[EVINTEREST$Wales==1]),
+               mean(EVINTEREST$EVinterest[EVINTEREST$Scotland==1]),
+               mean(EVINTEREST$EVinterest))
+Intsum <- data.frame(Region=Region, Interest=IntRegion)
 
-## Descriptive Analysis | Independent Variables
-```{r echo=F, warning=F, message=F, error=F, results='asis'}
-par(mfrow=c(3,3), mar=c(4,6,2,6))
-hist(EVINTEREST$RAGE, 
-     xlab="Age", ylab="Frequency", main="Distribution of Age", 
-     xlim=c(10,100))
-axis(side=1, at=seq(0,100, 10))
-barplot(table(EVINTEREST$Male), ylab="Frequency", main="Sex")
+barplot(IntRegion, names.arg=Region, cex.names=0.7)
+```
+`r round(mean(EVINTEREST$EVinterest)*100, digits=2)` % of British People are interested in EVs
+
+## Descriptive Analysis | Independent Variables {.columns-2}
+- Average Age: `r round(mean(EVINTEREST$RAGE), digits=2)`
+- `r round(mean(EVINTEREST$Male)*100, digits=2)`% Male, `r round((1-mean(EVINTEREST$Male))*100, digits=2)`% Female
+- `r round(mean(EVINTEREST$degree)*100, digits=2)`% college graduates
+- `r round(mean(EVINTEREST$licence)*100, digits=2)`% have drivers licence
+- Average number of cars: `r round(mean(EVINTEREST$NumCar), digits=2)`
+- `r round(mean(EVINTEREST$Scotland)*100, digits=2)`% in Scotland
+- Income level:
+
+
+
+```{r echo=F, warning=F, message=F, error=F, results='asis', fig.height=4, fig.width=5}
 inctable <-table(EVINTEREST$inccat)
 barplot(inctable, ylab="Frequnecy", main="Distribution of Income",
         names.arg=c("Low", "Low-Mid", "High-Mid", "High"))
 mtext(side=1, "Gross Annual Income", line=2)
 mtext(side=1, "(Low:~14,559 /Low-Mid:14,560~20,799 /High-Mid:20,800~25,999 /High: 26,000+)", line=3, cex=0.75)
-barplot(table(EVINTEREST$degree), ylab="Frequency", main="College Degree")
-barplot(table(EVINTEREST$licence), ylab="Frequency", main="Drivers Licence")
-cartable <-table(EVINTEREST$NumCar)
-barplot(cartable, main="Distirbution of number of cars",
-     xlab="Number of Cars", ylab="Frequency")
-Hsizetable <- table(EVINTEREST$DVHsize)
-barplot(Hsizetable, xlab="Household size", ylab="Frequency", main="Distribution of Household Size")
-barplot(table(EVINTEREST$havechildren), ylab="Frequency", main="having children")
-barplot(table(EVINTEREST$Scotland), ylab="Frequency", main="Scotland Residents")
 ```
 
 
