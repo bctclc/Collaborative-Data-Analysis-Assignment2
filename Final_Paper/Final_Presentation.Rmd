@@ -24,6 +24,10 @@ library(dplyr)
 library(ggplot2)
 library(googleVis)
 library(xtable)
+library(plyr)
+library(maptools)
+library(ggmap)
+library(RColorBrewer)
   
 figcap <- captioner(prefix = "Figure", auto_space = TRUE, levels = 1, type = NULL)
 tablecap <-captioner(prefix = "Table", auto_space = TRUE, levels = 1, type = NULL)
@@ -76,11 +80,16 @@ $$p=\frac{1} {1 + exp\{-(\beta_{0} + \beta_{1} x_{1i} + \beta_{2} x_{2i} + \dots
 $p$: probability of being interested in buying an EV
 
 
-## Descriptive Analysis | Dependent Variables
-```{r echo=F, warning=F, message=F, error=F, results='asis', fig.width = 10}
+## Descriptive Analysis | Dependent Variables {.columns-2}
+- `r round(mean(EVINTEREST$EVinterest)*100, digits=2)`% of British People are interested in EVs
+
+
+```{r echo=F, warning=F, message=F, error=F, results='asis', fig.width = 5}
 # summary of EVinterest
-Region <- c('North \n East','North \n West','Yorkshire \n Humber','East \n Midlands', 'West \n Midrands',
-            'East of \n England','London','South \n East','South \n West','Wales', 'Scotland', 'National \n Ave.')
+
+# Regional Summary of Interest
+Region <- c('NorthEast','NorthWest','YorkshireHumber','EastMidlands', 'WestMidrands',
+            'EastofEngland','London','SouthEast','SouthWest','Wales', 'Scotland')
 IntRegion <- c(mean(EVINTEREST$EVinterest[EVINTEREST$NorthEast==1]),
                mean(EVINTEREST$EVinterest[EVINTEREST$NorthWest==1]),
                mean(EVINTEREST$EVinterest[EVINTEREST$YorkshireHumber==1]),
@@ -91,13 +100,36 @@ IntRegion <- c(mean(EVINTEREST$EVinterest[EVINTEREST$NorthEast==1]),
                mean(EVINTEREST$EVinterest[EVINTEREST$SouthEast==1]),
                mean(EVINTEREST$EVinterest[EVINTEREST$SouthWest==1]),
                mean(EVINTEREST$EVinterest[EVINTEREST$Wales==1]),
-               mean(EVINTEREST$EVinterest[EVINTEREST$Scotland==1]),
-               mean(EVINTEREST$EVinterest))
-Intsum <- data.frame(Region=Region, Interest=IntRegion)
+               mean(EVINTEREST$EVinterest[EVINTEREST$Scotland==1]))
+RegionDF <- data.frame(OID=c(1,2,3,4,5,6,7,8,9,10,11),
+                       Region=Region, Interest=IntRegion)
 
-barplot(IntRegion, names.arg=Region, cex.names=0.7)
+# shapefile
+tmp_dir = tempdir()
+url_data = "https://geoportal.statistics.gov.uk/Docs/Boundaries/Regions_(GB)_2014_Boundaries_(Full_Extent).zip"
+zip_file = sprintf("%s/shpfile.zip", tmp_dir)
+download.file(url_data, zip_file)
+unzip(zip_file, exdir = tmp_dir)
+gor=readShapeSpatial(sprintf('%s/RGN_DEC_2014_GB_BFE.shp', tmp_dir))
+
+# object ID to merge with EV interest data
+gor@data$OID <- c(1,2,3,4,5,6,7,8,9,11,10)
+
+gor@data$id <- rownames(gor@data)
+sh.df <- as.data.frame(gor)
+sh.fort <- fortify(gor)
+sh.line<- left_join(sh.fort, sh.df , by = "id" )
+sh.line <- sh.line[ order( sh.line$order ) , ]
+
+mapdf <- merge( sh.line , RegionDF , by.x= "OID", by.y="OID" , sort = FALSE)
+mapdf <- mapdf[ order( mapdf$order ) , ]
+
+ggplot(mapdf, aes(x = long, y = lat, group = group)) + 
+  geom_polygon(aes(fill = Interest, group = group))+
+  scale_fill_gradientn( colours = brewer.pal( 9 , "Reds" ) )+
+  coord_equal()
 ```
-`r round(mean(EVINTEREST$EVinterest)*100, digits=2)` % of British People are interested in EVs
+
 
 ## Descriptive Analysis | Independent Variables {.columns-2}
 - Average Age: `r round(mean(EVINTEREST$RAGE), digits=2)`

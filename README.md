@@ -15,13 +15,11 @@ This is a repository for the pair assignments in Collaborative Social Data Analy
 
 2. [Assingment3](https://github.com/bctclc/Collaborative-Data-Analysis-Assignment2/tree/master/Assignment3): Files for the assignment 3 (preliminary analysis)
 
-3. [Final_Paper](https://github.com/bctclc/Collaborative-Data-Analysis-Assignment2/tree/master/Final_Paper): Files for the final output in a written paper
+3. [Final_Paper](https://github.com/bctclc/Collaborative-Data-Analysis-Assignment2/tree/master/Final_Paper): Files for the final output in a written paper and a presentation
 
-4. Final_Presentation: files for the final output in a presentaiton 
+4. gitignore
 
-5. gitignore
-
-6. README.md : This file
+5. README.md : This file
 
 ## Branch
 The final outputs in a website format is stored in another branch of this repository. Please go to [gh-pages](https://github.com/bctclc/Collaborative-Data-Analysis-Assignment2/tree/gh-pages).
