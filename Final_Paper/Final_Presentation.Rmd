@@ -35,20 +35,30 @@ tablecap <-captioner(prefix = "Table", auto_space = TRUE, levels = 1, type = NUL
 load("EVdata1.rda")
 ```
 
-- Climate change, GHG emission
-- Government promoting low emission vehicles
-- Low adoption
+- Why electric vehicles?
+
+    + climate change, GHG emissions from cars
+
+    + Government promoting low-emission vehicles
+  
+- Problem: low adoption
+
 
 ## Purpose of Research
 
 - Identify the characteristics of potential EV buyers
+
 - Identify the factors encouraging/putting off buying EVs
 
 ## Data Source
-- Name: ["Opinions and Lifestyle Survey, Electric Vehicles Module, February 2014 and February 2015"](https://discover.ukdataservice.ac.uk/Catalogue/?sn=7571&type=Data%20catalogue) 
+- ["Opinions and Lifestyle Survey, Electric Vehicles Module, February 2014 and February 2015"](https://discover.ukdataservice.ac.uk/Catalogue/?sn=7571&type=Data%20catalogue) 
+
 - Source: Social Survey Division of the Office for National Statistics, the U.K. 
+
 - Survey year: 2014 and 2015. 
+
 - Sample size: 1,710
+
 
 ## List of Variables
 - Dependent variables
@@ -57,7 +67,7 @@ load("EVdata1.rda")
 
 - Independent variables
 
-    + Age, Sex, Income, College degree
+    + Age, Sex, Income, Education
 
     + Drivers licence, Number of Cars
 
@@ -82,7 +92,7 @@ $p$: probability of being interested in buying an EV
 
 ## Descriptive Analysis | Dependent Variables
 <div class="columns-2">
-- `r round(mean(EVINTEREST$EVinterest)*100, digits=2)`% of British People are interested in EVs
+- National average: `r round(mean(EVINTEREST$EVinterest)*100, digits=2)`% 
 
 
 ```{r echo=F, warning=F, message=F, error=F, results='asis', fig.width = 5}
@@ -128,6 +138,10 @@ mapdf <- mapdf[ order( mapdf$order ) , ]
 ggplot(mapdf, aes(x = long, y = lat, group = group)) + 
   geom_polygon(aes(fill = Interest, group = group))+
   scale_fill_gradientn( colours = brewer.pal( 9 , "Reds" ) )+
+  xlab('') + ylab('') +
+  theme(axis.ticks = element_blank(), 
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank()) +
   coord_equal()
 ```
 </div>
@@ -139,7 +153,6 @@ ggplot(mapdf, aes(x = long, y = lat, group = group)) +
 - `r round(mean(EVINTEREST$degree)*100, digits=2)`% college graduates
 - `r round(mean(EVINTEREST$licence)*100, digits=2)`% have drivers licence
 - Average number of cars: `r round(mean(EVINTEREST$NumCar), digits=2)`
-- `r round(mean(EVINTEREST$Scotland)*100, digits=2)`% in Scotland
 - Income level:
 
 
@@ -154,9 +167,9 @@ mtext(side=1, "(Low:~14,559 /Low-Mid:14,560~20,799 /High-Mid:20,800~25,999 /High
 
 ## Logistic Regression | Interest in EVs
 
-$$\ln{(\frac{p} {1-p})}=\underset{(.29^{***})}{-2.56}-\underset{(.004^{*})}{.01Age}+\underset{(.14^{***})}{.47Male}\underset{(.21)}{-.10Lowmid}+\underset{(.24)}{.03Highmid}$$
+$$\ln{(\frac{p} {1-p})}=\underset{(.29^{***})}{-2.56}-\underset{(.004^{*})}{.01\textbf{Age}}+\underset{(.14^{***})}{.47\textbf{Male}}\underset{(.21)}{-.10Lowmid}+\underset{(.24)}{.03Highmid}$$
 
-$$+\underset{(.17^*)}{.29High}+\underset{(.15^{***})}{.65College}+\underset{(.24^{***})}{.91license}+\underset{(.09^{**})}{.18NumCar}-\underset{(.29^{**})}{.70Scotland}$$
+$$+\underset{(.17^*)}{.29\textbf{High}}+\underset{(.15^{***})}{.65\textbf{College}}+\underset{(.24^{***})}{.91\textbf{license}}+\underset{(.09^{**})}{.18\textbf{NumCar}}-\underset{(.29^{**})}{.70\textbf{Scotland}}$$
 
 *Note:* $^{*}p<0.1$; $^{**}p<0.05$; $^{***}p<0.01$
 
