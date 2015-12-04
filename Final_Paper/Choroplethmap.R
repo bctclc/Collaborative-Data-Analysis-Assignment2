@@ -31,11 +31,11 @@ barplot(IntRegion, names.arg=Region)
 
 # shapefile
 tmp_dir = tempdir()
-url_data = "https://geoportal.statistics.gov.uk/Docs/Boundaries/Regions_(GB)_2014_Boundaries_(Full_Extent).zip"
+url_data = "https://geoportal.statistics.gov.uk/Docs/Boundaries/Regions_(GB)_2014_Boundaries_(Generalised_Clipped).zip"
 zip_file = sprintf("%s/shpfile.zip", tmp_dir)
 download.file(url_data, zip_file)
 unzip(zip_file, exdir = tmp_dir)
-gor=readShapeSpatial(sprintf('%s/RGN_DEC_2014_GB_BFE.shp', tmp_dir))
+gor=readShapeSpatial(sprintf('%s/RGN_DEC_2014_GB_BGC.shp', tmp_dir))
 
 # object ID to merge with EV interest data
 gor@data$OID <- c(1,2,3,4,5,6,7,8,9,11,10)
@@ -52,5 +52,9 @@ mapdf <- mapdf[ order( mapdf$order ) , ]
 ggplot(mapdf, aes(x = long, y = lat, group = group)) + 
   geom_polygon(aes(fill = Interest, group = group))+
   scale_fill_gradientn( colours = brewer.pal( 9 , "Reds" ) )+
+  xlab('') + ylab('') +
+  theme(axis.ticks = element_blank(), 
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank()) +
   coord_equal()
 
