@@ -395,7 +395,7 @@ fitted6$predicted <- round(fitted6$predicted*100, digits=2)
 
 ligroup <- c("Have driver's license", "Do not have driver's license")
 
-bylisex <- cbind(Edugroup, fitted5$predicted, fitted6$predicted)
+bylisex <- cbind(ligroup, fitted5$predicted, fitted6$predicted)
 
 kable(bylisex, caption="Probabilities by Driver's License Status & Sex", 
       col.names = c("License Status", "Male", "Female"))

@@ -90,7 +90,7 @@ $$p=\frac{1} {1 + exp\{-(\beta_{0} + \beta_{1} x_{1i} + \beta_{2} x_{2i} + \dots
 $p$: probability of being interested in buying an EV
 
 
-## Descriptive Analysis | Dependent Variables
+## Descriptive Analysis | Dependent Variables: Interest in EVs
 <div class="columns-2">
 - National average: `r round(mean(EVINTEREST$EVinterest)*100, digits=2)`% 
 
@@ -172,6 +172,8 @@ $$\ln{(\frac{p} {1-p})}=\underset{(.29^{***})}{-2.56}-\underset{(.004^{*})}{.01\
 $$+\underset{(.17^*)}{.29\textbf{High}}+\underset{(.15^{***})}{.65\textbf{College}}+\underset{(.24^{***})}{.91\textbf{license}}+\underset{(.09^{**})}{.18\textbf{NumCar}}-\underset{(.29^{**})}{.70\textbf{Scotland}}$$
 
 *Note:* $^{*}p<0.1$; $^{**}p<0.05$; $^{***}p<0.01$
+
+$R^2=0.12$
 
 ## Predicted Probabilities | Gender & Age
 ```{r echo=F, warning=F, message=F, error=F, fig.cap="Predicted Probability of Having an Interest in EVs by Age and Sex", fig.height=5}
