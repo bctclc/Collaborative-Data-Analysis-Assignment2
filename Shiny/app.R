@@ -15,7 +15,13 @@ setwd("C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/Shiny")
 ### the dataframe...
 load("data4web.rda")
 
-### Prepare Shapefiles
+library(dplyr)
+library(plyr)
+library(maptools)
+library(ggmap)
+library(ggplot2)
+library(RColorBrewer)
+
 # shapefile
 tmp_dir = tempdir()
 url_data = "https://geoportal.statistics.gov.uk/Docs/Boundaries/Regions_(GB)_2014_Boundaries_(Generalised_Clipped).zip"
@@ -27,7 +33,24 @@ gor=readShapeSpatial(sprintf('%s/RGN_DEC_2014_GB_BGC.shp', tmp_dir))
 # object ID to merge with EV interest data
 gor@data$OID <- c(1,2,3,4,5,6,7,8,9,11,10)
 
-gor@data = data.frame(gor@data, RegionDF[match(gor@data$OID, RegionDF$OID),])
+gor@data$id <- rownames(gor@data)
+sh.df <- as.data.frame(gor)
+sh.fort <- fortify(gor)
+sh.line<- left_join(sh.fort, sh.df , by = "id" )
+sh.line <- sh.line[ order( sh.line$order ) , ]
+
+mapdf <- merge( sh.line , RegionDF , by.x= "OID", by.y="OID" , sort = FALSE)
+mapdf <- mapdf[ order( mapdf$order ) , ]
+
+map1<-ggplot(mapdf, aes(x = long, y = lat, group = group)) + 
+  geom_polygon(aes(fill = Interest, group = group))+
+  scale_fill_gradientn( colours = brewer.pal( 9 , "Reds" ) )+
+  xlab('') + ylab('') +
+  theme(axis.ticks = element_blank(), 
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank()) +
+  coord_equal()
+
 
 
 ### Set color (for dots?)
@@ -74,7 +97,7 @@ server <- function(input, output, session) {
   
   datasetInput <- reactive({
     switch(input$data,
-           "Females"=gor@data$IntFemales,
+           "Females"=map1,
            "Males"=gor@data$IntMales,
            "Young People"=gor@data$IntYoung,
            "Middle-Age People"=gor@data$IntMiddleage,
@@ -98,16 +121,9 @@ server <- function(input, output, session) {
     paste(data$Names)
   }, ignoreNULL = FALSE)
   
-  output$mymap <- renderLeaflet({
-    leaflet() %>% 
-      addTiles() %>% 
-      addPolygons(data=gor@data, weight=2, fillOpacity = 0.8, 
-                  smoothFactor = 0.5, 
-                  color = ~colorBin("YlOrBr", bins = c(0,0.1,0.2,0.3,0.5,0.7,0.9,1), pretty = TRUE,
-                                    na.color = "white", gor@data)
-                  (datasetInput() )) %>%
-      
-      addMarkers(data=points(), popup= paste(data$Names)) 
+  output$mymap <- renderPlot({
+    
+    plot(datasetInput)
     
     
   })
