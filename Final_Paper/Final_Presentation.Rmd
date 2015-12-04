@@ -11,7 +11,7 @@ output:
 ```{r results='hide',echo=F, warning=F, message=F, error=F}
 
 ### set working directory
-possible_wd <- c("E:\\Šw???‘Š???\\R\\Collaborative-Data-Analysis-Assignment2\\Final_Paper", "C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/Final_Paper")
+possible_wd <- c("E:\\Ñ§Ï°Ïà¹Ø\\R\\Collaborative-Data-Analysis-Assignment2\\Final_Paper", "C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/Final_Paper")
 repmis::set_valid_wd(possible_wd)
 
 library(stargazer)
@@ -285,19 +285,19 @@ barplot(encostmeans, names.arg=encostnames, cex.names=0.6, cex.ylab=0.6,
 
 ## Conclusion & Recommendations
 
-- Females, elderies, people without college degree, people in Scotland, people who have fewer cars: 
+- Information campaign
 
-    + information campaign
-
-- Males, younger generation, college graduates, people outside scotland:
-
-    + increase recharging stations, 
-
-    + R&D to increase battery capacity, 
+    + General information campaign (on energy costs and environmental responsibility)
     
-    + financial incentives (buyers/producers), 
+    + Information campaigns targeting on low-ineterest groups
+
+- Investment in R&D
+
+    + Increasing the battery capacity of EVs 
+
+    + Improving the efficiency of recharging facilities
+
+- Putting recharing facilities in place
     
-    + information campaigns on energy costs, 
-    
-    + information campaigns on climate change
+    + Long-term plan on it
 
