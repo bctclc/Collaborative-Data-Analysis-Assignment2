@@ -27,7 +27,7 @@ gor=readShapeSpatial(sprintf('%s/RGN_DEC_2014_GB_BGC.shp', tmp_dir))
 # object ID to merge with EV interest data
 gor@data$OID <- c(1,2,3,4,5,6,7,8,9,11,10)
 
-RegionDF = data.frame(gor@data, RegionDF[match(gor@data$OID, RegionDF$OID),])
+gor@data = data.frame(gor@data, RegionDF[match(gor@data$OID, RegionDF$OID),])
 
 
 ### Set color (for dots?)
@@ -74,23 +74,23 @@ server <- function(input, output, session) {
   
   datasetInput <- reactive({
     switch(input$data,
-           "Females"=RegionDF$IntFemales,
-           "Males"=RegionDF$IntMales,
-           "Young People"=RegionDF$IntYoung,
-           "Middle-Age People"=RegionDF$IntMiddleage,
-           "Old-Age People"=RegionDF$IntOldage,
-           "Low-Income People"=RegionDF$IntLow,
-           "Lower-Middle Income People"=RegionDF$IntLowmid,
-           "Higher-Middle Income People"=RegionDF$IntHighmid,
-           "High-Income People"=RegionDF$IntHigh,
-           "College Graduates"=RegionDF$IntCollege,
-           "Non-College Graduates"=RegionDF$IntNocollege,
-           "Having Driver's Licence"=RegionDF$IntLicence,
-           "Not Having Driver's Licence"=RegionDF$IntNolicence,
-           "People with No Car"=RegionDF$IntNocar,
-           "People with One Car"=RegionDF$IntOnecar,
-           "People with Two Cars"=RegionDF$IntTwocars,
-           "People with Three or More Cars"=RegionDF$IntThreecars
+           "Females"=gor@data$IntFemales,
+           "Males"=gor@data$IntMales,
+           "Young People"=gor@data$IntYoung,
+           "Middle-Age People"=gor@data$IntMiddleage,
+           "Old-Age People"=gor@data$IntOldage,
+           "Low-Income People"=gor@data$IntLow,
+           "Lower-Middle Income People"=gor@data$IntLowmid,
+           "Higher-Middle Income People"=gor@data$IntHighmid,
+           "High-Income People"=gor@data$IntHigh,
+           "College Graduates"=gor@data$IntCollege,
+           "Non-College Graduates"=gor@data$IntNocollege,
+           "Having Driver's Licence"=gor@data$IntLicence,
+           "Not Having Driver's Licence"=gor@data$IntNolicence,
+           "People with No Car"=gor@data$IntNocar,
+           "People with One Car"=gor@data$IntOnecar,
+           "People with Two Cars"=gor@data$IntTwocars,
+           "People with Three or More Cars"=gor@data$IntThreecars
     )
   })
   
@@ -101,10 +101,10 @@ server <- function(input, output, session) {
   output$mymap <- renderLeaflet({
     leaflet() %>% 
       addTiles() %>% 
-      addPolygons(data=RegionDF, weight=2, fillOpacity = 0.8, 
+      addPolygons(data=gor@data, weight=2, fillOpacity = 0.8, 
                   smoothFactor = 0.5, 
                   color = ~colorBin("YlOrBr", bins = c(0,0.1,0.2,0.3,0.5,0.7,0.9,1), pretty = TRUE,
-                                    na.color = "white", RegionDF)
+                                    na.color = "white", gor@data)
                   (datasetInput() )) %>%
       
       addMarkers(data=points(), popup= paste(data$Names)) 
