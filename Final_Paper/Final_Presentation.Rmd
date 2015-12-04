@@ -283,7 +283,7 @@ barplot(encostmeans, names.arg=encostnames, cex.names=0.6, cex.ylab=0.6,
 ```
 
 
-## Conclusion & Recommendations
+## Recommendations (1)
 
 - Information campaign
 
@@ -301,3 +301,10 @@ barplot(encostmeans, names.arg=encostnames, cex.names=0.6, cex.ylab=0.6,
     
     + Long-term plan on it
 
+## Recommendations (1)
+
+- Financial incentives
+
+  + Policies that immediately reduce purchase price
+
+- Differentiated marketing strategies
