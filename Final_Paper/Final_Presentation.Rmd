@@ -301,10 +301,10 @@ barplot(encostmeans, names.arg=encostnames, cex.names=0.6, cex.ylab=0.6,
     
     + Long-term plan on it
 
-## Recommendations (1)
+## Recommendations (2)
 
 - Financial incentives
 
-  + Policies that immediately reduce purchase price
+    + Policies that immediately reduce purchase price
 
 - Differentiated marketing strategies
