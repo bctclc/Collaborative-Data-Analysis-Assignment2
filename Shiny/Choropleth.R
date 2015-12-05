@@ -37,7 +37,7 @@ mapdf <- mapdf[ order( mapdf$order ) , ]
 ### create 18 maps
 
 # total mean
-map01 <- ggplot(mapdf, aes(x = long, y = lat, group = group)) + 
+map1 <- ggplot(mapdf, aes(x = long, y = lat, group = group)) + 
   geom_polygon(aes(fill = Interest, group = group), colour = "grey50")+
   scale_fill_gradientn( colours = brewer.pal( 9 , "Reds" ) )+
   xlab('') + ylab('') +
@@ -46,12 +46,12 @@ map01 <- ggplot(mapdf, aes(x = long, y = lat, group = group)) +
         axis.text.y = element_blank()) +
   coord_equal()
 # save the plot in the folder
-png(filename='ExportedMaps/map01.png')
-plot(map01)
+png(filename='ExportedMaps/map1.png')
+plot(map1)
 dev.off()
 
 # female mean
-map02 <- ggplot(mapdf, aes(x = long, y = lat, group = group)) + 
+map2 <- ggplot(mapdf, aes(x = long, y = lat, group = group)) + 
   geom_polygon(aes(fill = IntFemales, group = group), colour = "grey50")+
   scale_fill_gradientn( colours = brewer.pal( 9 , "Reds" ) )+
   xlab('') + ylab('') +
@@ -59,12 +59,12 @@ map02 <- ggplot(mapdf, aes(x = long, y = lat, group = group)) +
         axis.text.x = element_blank(),
         axis.text.y = element_blank()) +
   coord_equal()
-png(filename='ExportedMaps/map02.png')
-plot(map02)
+png(filename='ExportedMaps/map2.png')
+plot(map2)
 dev.off()
 
 # male mean
-map03 <- ggplot(mapdf, aes(x = long, y = lat, group = group)) + 
+map3 <- ggplot(mapdf, aes(x = long, y = lat, group = group)) + 
   geom_polygon(aes(fill = IntMales, group = group), colour = "grey50")+
   scale_fill_gradientn( colours = brewer.pal( 9 , "Reds" ) )+
   xlab('') + ylab('') +
@@ -72,12 +72,12 @@ map03 <- ggplot(mapdf, aes(x = long, y = lat, group = group)) +
         axis.text.x = element_blank(),
         axis.text.y = element_blank()) +
   coord_equal()
-png(filename='ExportedMaps/map03.png')
-plot(map03)
+png(filename='ExportedMaps/map3.png')
+plot(map3)
 dev.off()
 
 # Young mean
-map04 <- ggplot(mapdf, aes(x = long, y = lat, group = group)) + 
+map4 <- ggplot(mapdf, aes(x = long, y = lat, group = group)) + 
   geom_polygon(aes(fill = IntYoung, group = group), colour = "grey50")+
   scale_fill_gradientn( colours = brewer.pal( 9 , "Reds" ) )+
   xlab('') + ylab('') +
@@ -85,12 +85,12 @@ map04 <- ggplot(mapdf, aes(x = long, y = lat, group = group)) +
         axis.text.x = element_blank(),
         axis.text.y = element_blank()) +
   coord_equal()
-png(filename='ExportedMaps/map04.png')
-plot(map04)
+png(filename='ExportedMaps/map4.png')
+plot(map4)
 dev.off()
 
 # Middle mean
-map05 <- ggplot(mapdf, aes(x = long, y = lat, group = group)) + 
+map5 <- ggplot(mapdf, aes(x = long, y = lat, group = group)) + 
   geom_polygon(aes(fill = IntMiddleage, group = group), colour = "grey50")+
   scale_fill_gradientn( colours = brewer.pal( 9 , "Reds" ) )+
   xlab('') + ylab('') +
@@ -98,12 +98,12 @@ map05 <- ggplot(mapdf, aes(x = long, y = lat, group = group)) +
         axis.text.x = element_blank(),
         axis.text.y = element_blank()) +
   coord_equal()
-png(filename='ExportedMaps/map05.png')
-plot(map05)
+png(filename='ExportedMaps/map5.png')
+plot(map5)
 dev.off()
 
 # Old mean
-map06 <- ggplot(mapdf, aes(x = long, y = lat, group = group)) + 
+map6 <- ggplot(mapdf, aes(x = long, y = lat, group = group)) + 
   geom_polygon(aes(fill = IntOldage, group = group), colour = "grey50")+
   scale_fill_gradientn( colours = brewer.pal( 9 , "Reds" ) )+
   xlab('') + ylab('') +
@@ -111,12 +111,12 @@ map06 <- ggplot(mapdf, aes(x = long, y = lat, group = group)) +
         axis.text.x = element_blank(),
         axis.text.y = element_blank()) +
   coord_equal()
-png(filename='ExportedMaps/map06.png')
-plot(map06)
+png(filename='ExportedMaps/map6.png')
+plot(map6)
 dev.off()
 
 # Low income mean
-map07 <- ggplot(mapdf, aes(x = long, y = lat, group = group)) + 
+map7 <- ggplot(mapdf, aes(x = long, y = lat, group = group)) + 
   geom_polygon(aes(fill = IntLow, group = group), colour = "grey50")+
   scale_fill_gradientn( colours = brewer.pal( 9 , "Reds" ) )+
   xlab('') + ylab('') +
@@ -124,12 +124,12 @@ map07 <- ggplot(mapdf, aes(x = long, y = lat, group = group)) +
         axis.text.x = element_blank(),
         axis.text.y = element_blank()) +
   coord_equal()
-png(filename='ExportedMaps/map07.png')
-plot(map07)
+png(filename='ExportedMaps/map7.png')
+plot(map7)
 dev.off()
 
 # Low-mid income mean
-map08 <- ggplot(mapdf, aes(x = long, y = lat, group = group)) + 
+map8 <- ggplot(mapdf, aes(x = long, y = lat, group = group)) + 
   geom_polygon(aes(fill = IntLowmid, group = group), colour = "grey50")+
   scale_fill_gradientn( colours = brewer.pal( 9 , "Reds" ) )+
   xlab('') + ylab('') +
@@ -137,12 +137,12 @@ map08 <- ggplot(mapdf, aes(x = long, y = lat, group = group)) +
         axis.text.x = element_blank(),
         axis.text.y = element_blank()) +
   coord_equal()
-png(filename='ExportedMaps/map08.png')
-plot(map08)
+png(filename='ExportedMaps/map8.png')
+plot(map8)
 dev.off()
 
 # High-mid income mean
-map09 <- ggplot(mapdf, aes(x = long, y = lat, group = group)) + 
+map9 <- ggplot(mapdf, aes(x = long, y = lat, group = group)) + 
   geom_polygon(aes(fill = IntHighmid, group = group), colour = "grey50")+
   scale_fill_gradientn( colours = brewer.pal( 9 , "Reds" ) )+
   xlab('') + ylab('') +
@@ -150,8 +150,8 @@ map09 <- ggplot(mapdf, aes(x = long, y = lat, group = group)) +
         axis.text.x = element_blank(),
         axis.text.y = element_blank()) +
   coord_equal()
-png(filename='ExportedMaps/map09.png')
-plot(map09)
+png(filename='ExportedMaps/map9.png')
+plot(map9)
 dev.off()
 
 # High income mean
