@@ -64,12 +64,18 @@ renderImage({
          alt = paste("Image number"))
     
                   }, deleteFile = FALSE)
+br()
+br()
+br()
 
 ```
 
+
+
+
 ### Factors that Encourage Buying Electric Vehicles
 
-Now we know who are interested in electric vehicles, but how to turn their interest into consumption? The two charts below will show you what matters and matters most to different groups.
+Now we know who are interested in electric vehicles, but how to turn their interest into consumption? The two charts below will show you what matters and matters most to different groups. (The second shows cost-specific factors.)
 
 ```{r, echo=FALSE}
 inputPanel(
@@ -93,14 +99,47 @@ renderImage({
                            "age"="factor_age.png",
                           "sex"="factor_sex.png",
                           "income level"="factor_income.png",
-                          "education level",
-                          "driver's licence status",
-                          "number of cars owned",
-                          "region")
+                          "education level"="factor_college.png",
+                          "driver's licence status"="factor_licence.png",
+                          "number of cars owned"="factor_carnumber.png",
+                          "region"="factor_scotland.png")
     
-    filename <- normalizePath(file.path('./ExportedMaps', selectedgroup))
+    filename2 <- normalizePath(file.path('./ExportedMaps', selectedgroup2))
     
-    list(src = filename,
+    list(src = filename2,
+         alt = paste("Image number"))
+    
+                  }, deleteFile = FALSE)
+br()
+br()
+br()
+br()
+br()
+br()
+br()
+
+```
+
+
+
+```{r, echo=FALSE}
+
+
+
+renderImage({
+    
+    selectedgroup3 <- switch(input$factor, 
+                           "age"="cost_age.png",
+                          "sex"="cost_sex.png",
+                          "income level"="cost_income.png",
+                          "education level"="cost_college.png",
+                          "driver's licence status"="cost_licence.png",
+                          "number of cars owned"="cost_carnumber.png",
+                          "region"="cost_scotland.png")
+    
+    filename3 <- normalizePath(file.path('./ExportedMaps', selectedgroup3))
+    
+    list(src = filename3,
          alt = paste("Image number"))
     
                   }, deleteFile = FALSE)
