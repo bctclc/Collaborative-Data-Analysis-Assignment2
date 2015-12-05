@@ -55,16 +55,24 @@ shinyUI(fluidPage(
 
   h3("Subtitle 2"),  
     
-  p("some texts some texts some texts some texts some texts some texts some texts some texts 
-    some texts some texts some texts some texts some texts some texts some texts some texts 
-    some texts some texts some texts some texts some texts some texts some texts some texts 
-    some texts some texts some texts some texts some texts some texts some texts some texts 
-    some texts some texts some texts some texts some texts some texts some texts some texts 
-    some texts some texts some texts some texts some texts some texts some texts some texts 
-    some texts some texts some texts some texts some texts some texts some texts some texts 
-    some texts some texts some texts some texts some texts some texts some texts some texts 
-    some texts some texts some texts some texts some texts some texts some texts some texts"),
+  p("What will encourage you to buy electric vehicles? \n Here are what other people are thinking, 
+and how different groups think differently. 
+    Just select the grouping criterion that interests you, you'll see a barplot comparing the weights 
+    given to different factors by different groups"),
   
+  br(),
+  selectInput("factor",
+              label=" ",
+              choices = c("age",
+                          "sex",
+                          "income level",
+                          "education level",
+                          "driver's licence status",
+                          "number of cars owned",
+                          "region")),
+  
+  textOutput("text2"),
+  imageOutput("factorbar"),
   br(),
   
   p("some texts some texts some texts some texts some texts some texts some texts some texts 

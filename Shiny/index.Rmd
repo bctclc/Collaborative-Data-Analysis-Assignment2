@@ -1,0 +1,108 @@
+---
+title: "Who are interested in electric vehicles?"
+author: "Claire Chang Liu & Noriko Magara"
+output: html_document
+runtime: shiny
+---
+
+### Interest in Electric Vehicles by Region
+
+In this part, you can choose a ceratin population of your interest and see the regional difference in levels of interest among this population. 
+
+```{r, echo=FALSE}
+inputPanel(
+  selectInput("var",
+              label = "Choose a group to display",
+              choices = c("Whole Population", 
+                          "Females",
+                          "Males",
+                          "Young People",
+                          "Middle-Age People",
+                          "Old-Age People",
+                          "Low-Income People",
+                          "Lower-Middle Income People",
+                          "Higher-Middle Income People",
+                          "High-Income People",
+                          "College Graduates",
+                          "Non-College Graduates",
+                          "Having Driver's Licence",
+                          "Not Having Driver's Licence",
+                          "People with No Car",
+                          "People with One Car",
+                          "People with Two Cars",
+                          "People with Three or More Cars"),
+              selected = "Whole Population")
+  
+)
+
+
+renderImage({
+    
+    selectedgroup <- switch(input$var, 
+                            "Whole Population" = 'map1.png', 
+                            "Females" = 'map2.png',
+                            "Males" = 'map3.png',
+                            "Young People" = 'map4.png',
+                            "Middle-Age People" = 'map5.png',
+                            "Old-Age People" = 'map6.png',
+                            "Low-Income People" = 'map7.png',
+                            "Lower-Middle Income People" = 'map8.png',
+                            "Higher-Middle Income People" = 'map9.png',
+                            "High-Income People" = 'map10.png',
+                            "College Graduates" = 'map11.png',
+                            "Non-College Graduates" = 'map12.png',
+                            "Having Driver's Licence" = 'map13.png',
+                            "Not Having Driver's Licence" = 'map14.png',
+                            "People with No Car" = 'map15.png',
+                            "People with One Car" = 'map16.png',
+                            "People with Two Cars" = 'map17.png',
+                            "People with Three or More Cars" = 'map18.png')
+    
+    filename <- normalizePath(file.path('./ExportedMaps', selectedgroup))
+    
+    list(src = filename,
+         alt = paste("Image number"))
+    
+                  }, deleteFile = FALSE)
+
+```
+
+### Factors that Encourage Buying Electric Vehicles
+
+Now we know who are interested in electric vehicles, but how to turn their interest into consumption? The two charts below will show you what matters and matters most to different groups.
+
+```{r, echo=FALSE}
+inputPanel(
+  selectInput("factor",
+              label = "Choose a grouping creterion",
+              choices = c("age",
+                          "sex",
+                          "income level",
+                          "education level",
+                          "driver's licence status",
+                          "number of cars owned",
+                          "region"),
+              selected = "age")
+  
+)
+
+
+renderImage({
+    
+    selectedgroup2 <- switch(input$factor, 
+                           "age"="factor_age.png",
+                          "sex"="factor_sex.png",
+                          "income level"="factor_income.png",
+                          "education level",
+                          "driver's licence status",
+                          "number of cars owned",
+                          "region")
+    
+    filename <- normalizePath(file.path('./ExportedMaps', selectedgroup))
+    
+    list(src = filename,
+         alt = paste("Image number"))
+    
+                  }, deleteFile = FALSE)
+```
+

@@ -41,3 +41,34 @@ shinyServer(function(input, output, session) {
   }, deleteFile = FALSE)
 
 })
+
+
+shinyServer(function(input, output, session) {
+  
+  
+  output$text2 <- renderText({
+    
+    paste("Relative weights given to different factors by", input$factor)
+    
+  })
+  
+  
+  output$factorbar <- renderImage({
+    
+    selectedgroup2 <- switch(input$factor, 
+                             "age"="factor_age.png",
+                             "sex"="factor_sex.png",
+                             "income level"="factor_income.png",
+                             "education level"="factor_college.png",
+                             "driver's licence status"="factor_licence.png",
+                             "number of cars owned"="factor_carnumber.png",
+                             "region"="factor_scotland.png")
+    
+    filename2 <- normalizePath(file.path('./ExportedMaps', selectedgroup2))
+    
+    list(src = filename2,
+         alt = paste("Image number"))
+    
+  }, deleteFile = FALSE)
+  
+})
