@@ -139,7 +139,6 @@ Thus, we are expecting to see different predicted probabilities of being interes
 
 # Analysis
 ## Descriptive Analysis
-### Variables
 The list of variables are shown in the table below.
 
 ```{r echo=F, warning=F, message=F, error=F, results='asis'}
@@ -161,20 +160,50 @@ vartable <- cbind(Names, Types, Descriptions)
 kable(vartable, caption="List of Variables")
 ```
 
-
-### Summary statistics
 The original data set contains 962 observations from Feburary 2014 and 1,034 from Feburary 2015. 
 After combining the two samples and liminating all the observations with missing values in any of the key variable listed above, a subset of 1,710 observations is obtained for this study. 
-Each of the variables are summarized as follows:
 
-* **EVinterest**: `r round(mean(EVINTEREST$EVinterest)*100, digits=2)` % of respondents have interests in EVs
+Among the whole sample, `r round(mean(EVINTEREST$EVinterest)*100, digits=2)` % of people have interests in EVs. 
+However, one can easily expecte, the percentage is not uniform among different groups of people. 
+Table 2 below is the percentage of interested peoope by groups. 
 
-* **RAGE**: Mean=`r round(mean(EVINTEREST$RAGE), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$RAGE), digits=2)`.
+```{r echo=F, warning=F, message=F, error=F, results='asis'}
+# table
+grp <- c('Sex', '', 'Income', '', '', '', 'College degree', '', 
+         'Drivers licence', '', 'Childrean in family', '')
+sgrp <- c('male', 'female', 'Low', 'Lower-middle', 'Higer-middle',
+          'High', 'Yes', 'No', 'Yes', 'No', 'Yes', 'No')
+meangrp <- c(mean(EVINTEREST$EVinterest[EVINTEREST$Male==1]),
+             mean(EVINTEREST$EVinterest[EVINTEREST$Male==0]),
+             mean(EVINTEREST$EVinterest[EVINTEREST$inccat==1]),
+             mean(EVINTEREST$EVinterest[EVINTEREST$inccat==2]),
+             mean(EVINTEREST$EVinterest[EVINTEREST$inccat==3]),
+             mean(EVINTEREST$EVinterest[EVINTEREST$inccat==4]),
+             mean(EVINTEREST$EVinterest[EVINTEREST$degree==1]),
+             mean(EVINTEREST$EVinterest[EVINTEREST$degree==0]),
+             mean(EVINTEREST$EVinterest[EVINTEREST$licence==1]),
+             mean(EVINTEREST$EVinterest[EVINTEREST$licence==0]),
+             mean(EVINTEREST$EVinterest[EVINTEREST$havechildren==1]),
+             mean(EVINTEREST$EVinterest[EVINTEREST$havechildren==0]))
+cbd_grp <- data.frame(category=grp, group=sgrp, percentage=round(meangrp*100, digits = 2))
+kable(cbd_grp, caption="% of people interested in EVs by groups")
+```
+
+From this, some possible characteristics of potential EV buyers can be observed: males generally have greater interested in EVs than females. 
+Higher income people are more likely to be interested. 
+People who have a college degree, people who have a drivers licence, and people who have children in their family shows grater interests compared to people who do not respectively. 
+These results make intuitive sense, and conforms the findings in previous studies.
+
+![% of people interested in EVs by regions](./Rplot01.png)
+
+Detailed determinants of people'S interest in EVs will be further investigated in the next section. The sample is summarized as follows by the other variables:
+
+* **RAGE**: Mean age of the sample is `r round(mean(EVINTEREST$RAGE), digits=2)`, with Standard deviation of `r round(sd(EVINTEREST$RAGE), digits=2)` years.
 The distribution of age is shown in figure 1 below.
 
-* **Male**: `r round(mean(EVINTEREST$Male)*100, digits=2)` % of respondents are male
+* **Male**: `r round(mean(EVINTEREST$Male)*100, digits=2)` % of respondents are male.
 
-* **inccat**: distribution is shown in table 2 and figure 2 below. 
+* **inccat**: distribution is shown in table 3 and figure 2 below. 
 The thresholds of each category are based on 25, 50, 75 percentile gross income from [Survey of Personal Incomes 2012-13 in the UK](https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/399041/Table_3_1_a_13.xls)(@UKincome).
 
 ```{r echo=F, warning=F, message=F, error=F, results='asis'}
@@ -191,7 +220,7 @@ kable(inccatsummary, caption="Distribution of Income")
 
 * **licence**: `r round(mean(EVINTEREST$licence)*100, digits=2)` % of respondents have valid drivers licence
 
-* **NumCar**: Mean=`r round(mean(EVINTEREST$NumCar), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$NumCar), digits=2)`. The distribution of the number of cars in respondent's household is shown in figure 3 below.
+* **NumCar**: Mean number of cars in household is `r round(mean(EVINTEREST$NumCar), digits=2)`, with standard deviation of `r round(sd(EVINTEREST$NumCar), digits=2)`. The distribution of the number of cars in respondent's household is shown in figure 3 below.
 
 * **DVHsize**: Mean=`r round(mean(EVINTEREST$DVHsize), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$DVHsize), digits=2)`. The distribution of household size is shown in figure 4 below.
 
@@ -231,7 +260,7 @@ This section presents our efforts to answer the question, "Who are more/less lik
 
 Nine independent variables are categorized into four groups. Socio-economic variables include age, sex, gross annual income level, and education level. The second group includes having driver's license or not, and the number of cars available to the household, which to some extent describe the respondents' potential to buy a new car. The third one is household-level variables, including household size and whether or not having dependent children. The last one is region. (The UK has 11 regions in total. However, our preliminary analysis suggests that, using London as the baseline, only Scotland is significantly different. Therefore, we only include "Scotland" in the regression.)
 
-We only include socio-economic variables in our base model (regression 1) and add in a new group of independent variables each time. As the results in table 3 show, all models are significant at 99% level. Except for the two variables, size of household and having dependent children or not, all other variables are statistically significant as well. The fact that household-related variables are effective predictors at macro level, but not at micro level, may suggest a neighborhood effect, but it is beyond the scope of this paper.
+We only include socio-economic variables in our base model (regression 1) and add in a new group of independent variables each time. As the results in table 4 show, all models are significant at 99% level. Except for the two variables, size of household and having dependent children or not, all other variables are statistically significant as well. The fact that household-related variables are effective predictors at macro level, but not at micro level, may suggest a neighborhood effect, but it is beyond the scope of this paper.
 
 ```{r echo=F, warning=F, message=F, error=F}
 # Estimate model-1 (AGE & SEX & INCOME & Education)
@@ -260,14 +289,12 @@ stargazer::stargazer(L1, L2, L3, L4,  type="latex", header=F, covariate.labels =
                      digits = 2, title="Step-wise Modelling")
 ```
 
-\newpage
-
 Based on this analysis, we leave out the two household-related variables and use the following formula.
 
 $$\ln{(\frac{p} {1-p})}=\beta_{0}+\beta_{1}Age+\beta_{2}Male+\beta_{3}Lowmid+\beta_{4}Highmid+\beta_{5}High+\beta_{6}College$$
 $$+\beta_{7}license+\beta_{8}NumCar+\beta_{9}Scotland$$
 
-Where $p$ is the probability of being interested in EVs. The estimated model is shown in table 4.
+Where $p$ is the probability of being interested in EVs. The estimated model is shown in table 5.
 
 ```{r echo=F, warning=F, message=F, error=F, results='asis'}
 finallabels <- c('Age', 'Male', 'Income: low-middle', 'Income: high-middle', 'Income: high', 
@@ -315,11 +342,9 @@ plot(simZP1, xlab="Age", ylab="Predicted Probability", col=rgb(0,0,1,0.15),
 legend("topright", c("Male","Female"),lwd=1, col=c("blue","red"))
 ```
 
-\newpage
-
 Figure 5 shows the predicted probability of having an interest in EVs by age and sex. Regardless of age, males show a greater interest than females. Even though the variation among males is larger too, the difference in probability is on average about 5 percentage points. The linear relationship between age and this probability is clearly demonstrated here as well. Younger people are more likely to be interested than older people.
 
-Table 5-9 summarize predicted probabilities of having an interest in EVs of different groups and allow us to know the differences between groups. 
+Table 6-10 summarize predicted probabilities of having an interest in EVs of different groups and allow us to know the differences between groups. 
 
 * By Income Level & Sex: predicted for those people with mean age, valid licence, college degree, a car, and who doesn't live in Scotland.
 

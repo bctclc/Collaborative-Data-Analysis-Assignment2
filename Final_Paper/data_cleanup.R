@@ -2,7 +2,7 @@
 ### Claire & Noriko ###
 
 ### set working directory
-
+setwd("C:/Users/noriko/Desktop/Collaborative-Data-Analysis-Assignment2/Final_Paper")
 
 library(foreign)
 library(dplyr)
