@@ -49,8 +49,9 @@ sh.line <- sh.line[ order( sh.line$order ) , ]
 mapdf <- merge( sh.line , RegionDF , by.x= "OID", by.y="OID" , sort = FALSE)
 mapdf <- mapdf[ order( mapdf$order ) , ]
 
-ggplot(mapdf, aes(x = long, y = lat, group = group)) + 
-  geom_polygon(aes(fill = Interest, group = group))+
+# plotting map
+map1 <- ggplot(mapdf, aes(x = long, y = lat, group = group)) + 
+  geom_polygon(aes(fill = Interest, group = group), colour = "grey50")+
   scale_fill_gradientn( colours = brewer.pal( 9 , "Reds" ) )+
   xlab('') + ylab('') +
   theme(axis.ticks = element_blank(), 
@@ -58,3 +59,7 @@ ggplot(mapdf, aes(x = long, y = lat, group = group)) +
         axis.text.y = element_blank()) +
   coord_equal()
 
+# save the plot in the folder
+png(filename='./map1.png')
+plot(map1)
+dev.off()
