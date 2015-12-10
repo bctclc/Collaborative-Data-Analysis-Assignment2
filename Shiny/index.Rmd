@@ -165,7 +165,9 @@ br()
 br()
 br()
 br()
-
+br()
+br()
+br()
 ```
 
 #### Cost-related factors
@@ -199,7 +201,9 @@ br()
 br()
 br()
 br()
-
+br()
+br()
+br()
 ```
 
 ### Some reccomendations
