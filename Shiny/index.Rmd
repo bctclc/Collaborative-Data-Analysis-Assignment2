@@ -21,9 +21,9 @@ What types of people are interest in electric vehicles? Who are the target popul
 According to the survey, **`r round(mean(EVINTEREST$EVinterest)*100, digits=2)`%** of people in the UK have interest in EVs. But different groups of people have different levels of interest. Here is a breakdown.
 
 ```{r, echo=FALSE, warning=F, message=F, error=F, results='asis'}
-sgrp2 <- c('Male', 'Female', 'Low income', 'Low-mid income', 'Hige-mid income',
-           'High income', 'College degree', 'No college degree', 'Driver's licence', 
-           'No driver's licence', 'Have children', 'No children')
+sgrp2 <- c("Male", "Female", "Low income", "Low-mid income", "Hige-mid income",
+           "High income", "College degree", "No college degree", "Driver's licence", 
+           "No driver's licence", "Have children", "No children")
 meangrp <- c(mean(EVINTEREST$EVinterest[EVINTEREST$Male==1]),
              mean(EVINTEREST$EVinterest[EVINTEREST$Male==0]),
              mean(EVINTEREST$EVinterest[EVINTEREST$inccat==1]),
