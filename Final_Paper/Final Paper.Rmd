@@ -175,8 +175,8 @@ Table 2 below is the percentage of interested peoope by groups.
 
 ```{r echo=F, warning=F, message=F, error=F, results='asis'}
 # table
-grp <- c('Sex', '', 'Income', '', '', '', 'College degree', '', 
-         'Driver's licence', '', 'Children in family', '')
+grp <- c("Sex", "", "Income", "", "", "", "College degree", "", 
+         "Driver's licence", "", "Children in family", "")
 sgrp <- c('Male', 'Female', 'Low', 'Lower-middle', 'Higer-middle',
           'High', 'Yes', 'No', 'Yes', 'No', 'Yes', 'No')
 meangrp <- c(mean(EVINTEREST$EVinterest[EVINTEREST$Male==1]),
@@ -340,9 +340,9 @@ L4 <- lrm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle +high + degree
 ```
 
 ```{r echo=F, warning=F, message=F, error=F, results='asis'}
-labels <- c('Age', 'Male', 'Income: low-middle', 'Income: high-middle', 'Income: high', 
-            'College degree', 'Driver's licence', 'Number of cars', "Size of household", 
-            'Having dependent children', 'Scotland', '(Intercept)') 
+labels <- c("Age", "Male", "Income: low-middle", "Income: high-middle", "Income: high", 
+            "College degree", "Driver's licence", "Number of cars", "Size of household", 
+            "Having dependent children", "Scotland", "(Intercept)") 
 
 stargazer::stargazer(L1, L2, L3, L4,  type="latex", header=F, covariate.labels = labels,
                      digits = 2, title="Step-wise Modelling")
@@ -356,8 +356,8 @@ $$+\beta_{7}license+\beta_{8}NumCar+\beta_{9}Scotland$$
 The estimated model is shown in table 5.
 
 ```{r echo=F, warning=F, message=F, error=F, results='asis'}
-finallabels <- c('Age', 'Male', 'Income: low-middle', 'Income: high-middle', 'Income: high', 
-            'College degree', 'Driver's licence', 'Number of cars', 'Scotland', '(Intercept)') 
+finallabels <- c("Age", "Male", "Income: low-middle", "Income: high-middle", "Income: high", 
+            "College degree", "Driver's licence", "Number of cars", "Scotland", "(Intercept)") 
 L5 <- lrm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
           + licence + NumCar + Scotland,
           EVINTEREST)
