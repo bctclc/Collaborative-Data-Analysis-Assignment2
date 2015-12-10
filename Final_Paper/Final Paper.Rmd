@@ -73,7 +73,7 @@ Availability of charging stations matters as well [@ChargingStation].
 Aiming to promote EVs and other types of low emission vehicles, governments have been taking various kinds of means such as financial incentives to owners, R&D grants, installation of charging infrastructures. 
 In order to maximize the performance of those governments' efforts, and thus to accelerate low emission vehicle adoption, it is crucial to **identify the characteristics of the potential EV buyers**, and **reasons that makes those potential buyers to choose EVs over conventional vehicles**.
 
-This study will focus on EVs, which is the most recent generation of low emission vehicles and thus not many researches have made so far compared to other types of sustainable vehicles.
+This study will focus on EVs, which are the most recent generation of low emission vehicles and thus not many researches have been done so far, compared to other types of sustainable vehicles.
 
 
 # Literature Review
@@ -81,7 +81,7 @@ This study will focus on EVs, which is the most recent generation of low emissio
 Previous studies have examined various factors that are related to consumers' choice.
 
 At the macro level, the relationship between demographic characteristics and EV adoption has been analyzed. For instance, 
-@countrycomparison identify financial incentives, the prevalence of charging stations, and the presence of a local EV manufacturer as the relevant factors, using data on 30 countries. Interestingly, however, they do not find socio-economic variables to be good predictors of a country's EV adoption level. Another macro-level study divides Finland into grids with different socio-economic characteristics and finds that "the income and education level, the amount of families with children and the average size of the residences" (p. 459) are related to the region-level or neighborhood-level adoption rate of EVs [@Finland2013].
+@countrycomparison identify financial incentives, the prevalence of charging stations, and the presence of a local EV manufacturer as the relevant factors, using data from 30 countries. Interestingly, however, they do not find socio-economic variables to be good predictors of a country's EV adoption level. Another macro-level study divides Finland into grids with different socio-economic characteristics and finds that "the income and education level, the amount of families with children and the average size of the residences" (p. 459) are related to the region-level or neighborhood-level adoption rate of EVs [@Finland2013].
 
 At the micro level, motivations and individual characteristics that affect individual choice are studied. 
 @egbue2012barriers explores characteristics of potential EV buyers through a survey targeting current conventional vehicle owners, which asked their opinions, perceptions, and attitudes towards EVs, besides socio-economic attributes. 
@@ -127,7 +127,7 @@ source("data_cleanup.R")
 We are interested in the potentially different attitudes and priorities of different groups and in identifying potential buyers of EVs as well as obstacles preventing EV consumption.
 In the survey, the questionnaire asks the respondent's attitudes towards buying an EV. The answer choices ranges from "I already have one" to "I don't drive". 
 The answers are recoded into a binary dummy variable whether the person is interested in buying an EV ("I already have one," "I am thinking about buying one," "I thought about buying one") or not.
-The explanatory variables will be each person's demographic characteristics such as age, gender, education level, etc.
+The explanatory variables will be each person's demographic characteristics such as age, gender, education level, and etc.
 In order to take the regional differences in policies to promote EVs into account, if there are, we will also include government administrative regions within the U.K. as a control.
 
 
@@ -155,13 +155,13 @@ Types <- c("dummy", "continuous", "dummy", "categorical", "dummy",
 Descriptions <- c("Whether the respondent is interested in EVs or not", 
                   "Respondent's age",
                   "Respondent's sex",
-                  "Respondent's income in 4 categories (low, low-mid, high-mid, high)",
+                  "Respondent's income in four categories (low, low-mid, high-mid, high)",
                   "Whether the respondent is a college graduate or not",
-                  "Whether the respondent has a valid drivers licence or not",
+                  "Whether the respondent has a valid driver's licence or not",
                   "Number of cars in the respondent's household",
                   "Respondent's household size",
-                  "Whether the Respondent has children or not",
-                  "Whether the Respondent lives in Scotland or not")
+                  "Whether the respondent has children or not",
+                  "Whether the respondent lives in Scotland or not")
 vartable <- cbind(Names, Types, Descriptions)
 kable(vartable, caption="List of Variables")
 ```
@@ -176,8 +176,8 @@ Table 2 below is the percentage of interested peoope by groups.
 ```{r echo=F, warning=F, message=F, error=F, results='asis'}
 # table
 grp <- c('Sex', '', 'Income', '', '', '', 'College degree', '', 
-         'Drivers licence', '', 'Childrean in family', '')
-sgrp <- c('male', 'female', 'Low', 'Lower-middle', 'Higer-middle',
+         'Driver's licence', '', 'Children in family', '')
+sgrp <- c('Male', 'Female', 'Low', 'Lower-middle', 'Higer-middle',
           'High', 'Yes', 'No', 'Yes', 'No', 'Yes', 'No')
 meangrp <- c(mean(EVINTEREST$EVinterest[EVINTEREST$Male==1]),
              mean(EVINTEREST$EVinterest[EVINTEREST$Male==0]),
@@ -197,7 +197,7 @@ kable(cbd_grp, caption="Percentage of people interested in EVs by groups")
 
 From this, some possible characteristics of potential EV buyers can be observed: males generally have greater interested in EVs than females. 
 Higher income people are more likely to be interested. 
-People who have a college degree, people who have a drivers licence, and people who have children in their family shows grater interests compared to people who do not respectively. 
+People who have a college degree, people who have a driver's licence, and people who have children in their family shows grater interests compared to people who do not respectively. 
 These results make intuitive sense, and conforms the findings in previous studies.
 
 Besides these groups, figure 1 below shows the geographical distribution by Government Administration Regions. People living in southern part of the U.K. have higher interests in EVs.
@@ -277,11 +277,11 @@ kable(inccatsummary, caption="Distribution of Income")
 
 * **degree**: `r round(mean(EVINTEREST$degree)*100, digits=2)` % of respondents have college degree
 
-* **licence**: `r round(mean(EVINTEREST$licence)*100, digits=2)` % of respondents have valid drivers licence
+* **licence**: `r round(mean(EVINTEREST$licence)*100, digits=2)` % of respondents have valid driver's licence
 
 * **NumCar**: Mean number of cars in household is `r round(mean(EVINTEREST$NumCar), digits=2)`, with standard deviation of `r round(sd(EVINTEREST$NumCar), digits=2)`. The distribution of the number of cars in respondent's household is shown in figure 4 below.
 
-* **DVHsize**: Mean=`r round(mean(EVINTEREST$DVHsize), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$DVHsize), digits=2)`. The distribution of household size is shown in figure 5 below.
+* **DVHsize**: The mean is `r round(mean(EVINTEREST$DVHsize), digits=2)`, and the standard deviation is `r round(sd(EVINTEREST$DVHsize), digits=2)`. The distribution of household size is shown in figure 5 below.
 
 * **havechildren**: `r round(mean(EVINTEREST$havechildren)*100, digits=2)` % of respondents have children
 
@@ -298,7 +298,7 @@ axis(side=1, at=seq(0,100, 10))
 inctable <-table(EVINTEREST$inccat)
 barplot(inctable, ylab="Frequnecy",
         names.arg=c("Low", "Low-Mid", "High-Mid", "High"))
-mtext(side=1, "Gross Annual Income", line=2)
+mtext(side=1, "Gross Annual Income (pounds)", line=2)
 mtext(side=1, "(Low:~14,559 /Low-Mid:14,560~20,799 /High-Mid:20,800~25,999 /High: 26,000+)", line=3, cex=0.75)
 ```
 
@@ -341,7 +341,7 @@ L4 <- lrm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle +high + degree
 
 ```{r echo=F, warning=F, message=F, error=F, results='asis'}
 labels <- c('Age', 'Male', 'Income: low-middle', 'Income: high-middle', 'Income: high', 
-            'College degree', 'Drivers licence', 'Number of cars', "Size of household", 
+            'College degree', 'Driver's licence', 'Number of cars', "Size of household", 
             'Having dependent children', 'Scotland', '(Intercept)') 
 
 stargazer::stargazer(L1, L2, L3, L4,  type="latex", header=F, covariate.labels = labels,
@@ -353,11 +353,11 @@ Based on this analysis, we leave out the two household-related variables and use
 $$\ln{(\frac{p} {1-p})}=\beta_{0}+\beta_{1}Age+\beta_{2}Male+\beta_{3}Lowmid+\beta_{4}Highmid+\beta_{5}High+\beta_{6}College$$
 $$+\beta_{7}license+\beta_{8}NumCar+\beta_{9}Scotland$$
 
-Where $p$ is the probability of being interested in EVs. The estimated model is shown in table 5.
+The estimated model is shown in table 5.
 
 ```{r echo=F, warning=F, message=F, error=F, results='asis'}
 finallabels <- c('Age', 'Male', 'Income: low-middle', 'Income: high-middle', 'Income: high', 
-            'College degree', 'Drivers licence', 'Number of cars', 'Scotland', '(Intercept)') 
+            'College degree', 'Driver's licence', 'Number of cars', 'Scotland', '(Intercept)') 
 L5 <- lrm(EVinterest ~ RAGE + Male + lowermiddle + highermiddle +high + degree 
           + licence + NumCar + Scotland,
           EVINTEREST)
@@ -372,7 +372,7 @@ $$+\underset{(.17)}{.29High}+\underset{(.15)}{.65College}+\underset{(.24)}{.91li
 The model is statistically significant at 99% level and five out of the seven variables are significant at 95% level. 
 On average, males are more likely to be interested in EVs: 
 the odds of being interested in EVs are 60% higher ($e^{0.47}=1.60$) for male than female, holding other variables constant [z=3.36, p<0.001]. 
-Having a college degree or driver's license also increases the likelihood of being interested: the odds of having interested in EVs are 92% higher ($e^{0.65}=1.92$) for people with college degree compared to people without [z=4.38, p<0.001], the odds are 148% higher ($e^{0.91}=2.48$) for those who have drivers licence compared to those who don't [z=3.83, p<0.001]. 
+Having a college degree or driver's license also increases the likelihood of being interested: the odds of having interested in EVs are 92% higher ($e^{0.65}=1.92$) for people with college degree compared to people without [z=4.38, p<0.001], the odds are 148% higher ($e^{0.91}=2.48$) for those who have driver's licence compared to those who don't [z=3.83, p<0.001]. 
 The number of cars is positively relative to the likelihood, suggesting that people who already have the "basics" are more likely to consider EVs: each additional car in a household increases the odds of being interested in EVs by 20% ($e^{0.18}=1.20$), holding other variables constant [z=2.12, p=0.034]. 
 However, being in Scotland reduces this likelihood: people who live in Scotland have 50% lower ($e^{-0.7}=0.50$) odds of being interested in EVs compared to people who live in other regions of the UK [z=-2.44, p<0.015]. 
 
@@ -597,7 +597,7 @@ barplot(cobsmean, names.arg=cobscat, cex.names=0.6,
         ylab="% of respondents who choose the category")
 ```
 
-As for encouraging cost-related factors shown in figure 10, the top three choices are the same, only with a different order. While the top choice is still the purchase cost (`r round(mean(EVINTEREST$ENCpurchase)*100, digits=2)`%), the second is fuel/recharging cost (`r round(mean(EVINTEREST$ENCfuel)*100, digits=2)`%) and the third is maintenance cost (`r round(mean(EVINTEREST$ENCmaintenance)*100, digits=2)`%).
+As for encouraging cost-related factors shown in figure 10, the top three choices are the same, only with a different order. While the top choice is still the purchase costs (`r round(mean(EVINTEREST$ENCpurchase)*100, digits=2)`%), the second is fuel/recharging costs (`r round(mean(EVINTEREST$ENCfuel)*100, digits=2)`%) and the third is maintenance costs (`r round(mean(EVINTEREST$ENCmaintenance)*100, digits=2)`%).
 
 ```{r echo=F, warning=F, message=F, error=F, results='asis', fig.cap="Cost-related factors that encourage buying EVs"}
 encostnames <-  c('purchase', 'fuel/recharging', 'maintenance', 'resale', 'excise tax',
