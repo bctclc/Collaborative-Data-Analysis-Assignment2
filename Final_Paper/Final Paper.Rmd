@@ -192,7 +192,7 @@ meangrp <- c(mean(EVINTEREST$EVinterest[EVINTEREST$Male==1]),
              mean(EVINTEREST$EVinterest[EVINTEREST$havechildren==1]),
              mean(EVINTEREST$EVinterest[EVINTEREST$havechildren==0]))
 cbd_grp <- data.frame(category=grp, group=sgrp, percentage=round(meangrp*100, digits = 2))
-kable(cbd_grp, caption="% of people interested in EVs by groups")
+kable(cbd_grp, caption="Percentage of people interested in EVs by groups")
 ```
 
 From this, some possible characteristics of potential EV buyers can be observed: males generally have greater interested in EVs than females. 
@@ -200,11 +200,11 @@ Higher income people are more likely to be interested.
 People who have a college degree, people who have a drivers licence, and people who have children in their family shows grater interests compared to people who do not respectively. 
 These results make intuitive sense, and conforms the findings in previous studies.
 
-Besides these groups, the figure below shows the geographical distribution by Government Administration Regions. People living in southern part of the U.K. have higher interests in EVs.
+Besides these groups, figure 1 below shows the geographical distribution by Government Administration Regions. People living in southern part of the U.K. have higher interests in EVs.
 These heterogeneity suggests that the U.K. government may want to differentiate the strategies to promote further EV adoptions.
 Detailed determinants of people'S interest in EVs will be further investigated in the next section. 
 
-```{r echo=F, warning=F, message=F, error=F, results='asis', fig.cap="% of interested people by region"}
+```{r echo=F, warning=F, message=F, error=F, results='asis', fig.cap="Percentage of interested people by region"}
 # Regional Summary of Interest
 Region <- c('NorthEast','NorthWest','YorkshireHumber','EastMidlands', 'WestMidrands',
             'EastofEngland','London','SouthEast','SouthWest','Wales', 'Scotland')
@@ -258,11 +258,11 @@ print(map1)
 The sample is summarized as follows by the other variables:
 
 * **RAGE**: Mean age of the sample is `r round(mean(EVINTEREST$RAGE), digits=2)`, with Standard deviation of `r round(sd(EVINTEREST$RAGE), digits=2)` years.
-The distribution of age is shown in figure 1 below.
+The distribution of age is shown in figure 2 below.
 
 * **Male**: `r round(mean(EVINTEREST$Male)*100, digits=2)` % of respondents are male.
 
-* **inccat**: distribution is shown in table 3 and figure 2 below. 
+* **inccat**: distribution is shown in table 3 and figure 3 below. 
 The thresholds of each category are based on 25, 50, 75 percentile gross income from [Survey of Personal Incomes 2012-13 in the UK](https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/399041/Table_3_1_a_13.xls)(@UKincome).
 
 ```{r echo=F, warning=F, message=F, error=F, results='asis'}
@@ -279,9 +279,9 @@ kable(inccatsummary, caption="Distribution of Income")
 
 * **licence**: `r round(mean(EVINTEREST$licence)*100, digits=2)` % of respondents have valid drivers licence
 
-* **NumCar**: Mean number of cars in household is `r round(mean(EVINTEREST$NumCar), digits=2)`, with standard deviation of `r round(sd(EVINTEREST$NumCar), digits=2)`. The distribution of the number of cars in respondent's household is shown in figure 3 below.
+* **NumCar**: Mean number of cars in household is `r round(mean(EVINTEREST$NumCar), digits=2)`, with standard deviation of `r round(sd(EVINTEREST$NumCar), digits=2)`. The distribution of the number of cars in respondent's household is shown in figure 4 below.
 
-* **DVHsize**: Mean=`r round(mean(EVINTEREST$DVHsize), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$DVHsize), digits=2)`. The distribution of household size is shown in figure 4 below.
+* **DVHsize**: Mean=`r round(mean(EVINTEREST$DVHsize), digits=2)`, Standard deviation=`r round(sd(EVINTEREST$DVHsize), digits=2)`. The distribution of household size is shown in figure 5 below.
 
 * **havechildren**: `r round(mean(EVINTEREST$havechildren)*100, digits=2)` % of respondents have children
 
@@ -401,7 +401,7 @@ plot(simZP1, xlab="Age", ylab="Predicted Probability", col=rgb(0,0,1,0.15),
 legend("topright", c("Male","Female"),lwd=1, col=c("blue","red"))
 ```
 
-Figure 5 shows the predicted probability of having an interest in EVs by age and sex. Regardless of age, males show a greater interest than females. Even though the variation among males is larger too, the difference in probability is on average about 5 percentage points. The linear relationship between age and this probability is clearly demonstrated here as well. Younger people are more likely to be interested than older people.
+Figure 6 shows the predicted probability of having an interest in EVs by age and sex. Regardless of age, males show a greater interest than females. Even though the variation among males is larger too, the difference in probability is on average about 5 percentage points. The linear relationship between age and this probability is clearly demonstrated here as well. Younger people are more likely to be interested than older people.
 
 Table 6-10 summarize predicted probabilities of having an interest in EVs of different groups and allow us to know the differences between groups. 
 
@@ -545,7 +545,7 @@ In order to investigate what would turn existing interest in EVs into actual con
 
 ###General factors
 
-The graph below shows the major obstacles to buying an EV. 
+Figure 7 below shows the major obstacles to buying an EV. 
 The most popular issue is the recharging of the EVs, as `r round(mean(EVINTEREST$POrecharge)*100, digits=2)`% of respondents answered that they are concerned about it.
 The second largest issue is the capacity of the batteries, which is crucial to the travel distance. `r round(mean(EVINTEREST$PObattery)*100, digits=2)`% of respondents are concerned about it, followed by the high costs of EVs (`r round(mean(EVINTEREST$POcost)*100, digits=2)`%).
 
@@ -562,7 +562,7 @@ barplot(obsmean, names.arg=obscat, cex.names=0.6,
         ylab="% of respondents who choose the category")
 ```
 
-Now we turn to the factors that may encourage EV consumption. The choices provided in the survey and their relative importance in the respondents' minds are shown in the figure xxx.
+Now we turn to the factors that may encourage EV consumption. The choices provided in the survey and their relative importance in the respondents' minds are shown in the figure 8.
 
 ```{r echo=F, warning=F, message=F, error=F, results='asis', fig.cap="Factors encouraging buying EVs"}
 ennames <- c('Cost', 'Battery: \n distance travelled \n on charge', 'Convenience \n of recharging', 'Resale/residual \n value', 'Safety \n features/record', 'Vehicle size, \n performance \n or aesthetics', 'If there was \n more choice \n available', 'Technology: \n reliable/proven', 'Environmentally \n friendly')
@@ -584,7 +584,7 @@ The facts above potentially reveal a public interest in EVs. If there were no in
 ### Cost-related factors
 
 The survey also asks what aspects of the costs people are concerned about. 
-As shown in the graph below, `r round(mean(EVINTEREST$POCpurchase)*100, digits=2)`% of respondents think that the purchasing costs would put them off buying an EV. The other major concerns are the maintenance costs (`r round(mean(EVINTEREST$POCmaintenance)*100, digits=2)`%) and the fuel/recharging costs including fuel tax (`r round(mean(EVINTEREST$POCfuel)*100, digits=2)`%). 
+As shown in figure 9 below, `r round(mean(EVINTEREST$POCpurchase)*100, digits=2)`% of respondents think that the purchasing costs would put them off buying an EV. The other major concerns are the maintenance costs (`r round(mean(EVINTEREST$POCmaintenance)*100, digits=2)`%) and the fuel/recharging costs including fuel tax (`r round(mean(EVINTEREST$POCfuel)*100, digits=2)`%). 
 
 ```{r echo=F, warning=F, message=F, error=F, fig.cap="Cost-related factors that put off buying EVs"}
 cobscat <- c('purchase', 'fuel/charging', 'maintenance', 'resale', 'excise tax',
@@ -597,7 +597,7 @@ barplot(cobsmean, names.arg=cobscat, cex.names=0.6,
         ylab="% of respondents who choose the category")
 ```
 
-As for encouraging cost-related factors, the top three choices are the same, only with a different order. While the top choice is still the purchase cost (`r round(mean(EVINTEREST$ENCpurchase)*100, digits=2)`%), the second is fuel/recharging cost (`r round(mean(EVINTEREST$ENCfuel)*100, digits=2)`%) and the third is maintenance cost (`r round(mean(EVINTEREST$ENCmaintenance)*100, digits=2)`%).
+As for encouraging cost-related factors shown in figure 10, the top three choices are the same, only with a different order. While the top choice is still the purchase cost (`r round(mean(EVINTEREST$ENCpurchase)*100, digits=2)`%), the second is fuel/recharging cost (`r round(mean(EVINTEREST$ENCfuel)*100, digits=2)`%) and the third is maintenance cost (`r round(mean(EVINTEREST$ENCmaintenance)*100, digits=2)`%).
 
 ```{r echo=F, warning=F, message=F, error=F, results='asis', fig.cap="Cost-related factors that encourage buying EVs"}
 encostnames <-  c('purchase', 'fuel/recharging', 'maintenance', 'resale', 'excise tax',
@@ -614,7 +614,7 @@ Admittedly, this question is rather vague, because it only gives us the informat
 
 
 ###Similar considerations for different groups
-In an attempt to formulate policy recommendations that resemble differentiated marketing strategy, we compare the relative weight given to the factors by different groups. We find that in most cases, different groups share their relative weight given to different factors. However, we do find some differences that can be used in differentiated marketing strategy.
+In an attempt to formulate policy recommendations that resemble differentiated marketing strategy, we compare the relative weight given to the factors by different groups. The results are shown in figure 11 (general encouragement) and figure 12 (cost-related encouragement). We find that in most cases, different groups share their relative weight given to different factors. However, we do find some differences that can be used in differentiated marketing strategy.
 
 1. Young people's stronger environmental awareness is somewhat confirmed in our results. They actually rank environmentalism before battery capacity and recharging conditions. So are females, people without driver's licence, people without cars and people living in Scotland, compared with males, people with driver's licence, people with car(s) and people living elsewhere respectively. Therefore, although people are most encouraged by practical improvements, people can also be motivated by ideological affinity.
 
