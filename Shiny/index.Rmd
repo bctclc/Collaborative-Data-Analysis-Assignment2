@@ -1,13 +1,50 @@
 ---
-title: "Who are interested in electric vehicles?"
+title: "Expanding electric vehicle sales in the UK"
 author: "Claire Chang Liu & Noriko Magara"
 output: html_document
 runtime: shiny
 ---
 
-### Interest in Electric Vehicles by Region
+```{r results='hide',echo=F, warning=F, message=F, error=F}
+library(knitr)
+library(googleVis)
 
-In this part, you can choose a ceratin population of your interest and see the regional difference in levels of interest among this population. 
+load("EVdata1.rda")
+```
+
+What types of people are interest in electric vehicles? Who are the target population that car manufacturers should focus? What kind of government policies could promote EV adoption?
+[A recent survey by the UK government](https://discover.ukdataservice.ac.uk/Catalogue/?sn=7571&type=Data%20catalogue) has revealed the potential EV buyers and their concerns. 
+
+
+### People who are interested in EVs
+
+According to the survey, **`r round(mean(EVINTEREST$EVinterest)*100, digits=2)`%** of people in the UK have interest in EVs. But different groups of people have different levels of interest. Here is a breakdown.
+
+```{r, echo=FALSE, warning=F, message=F, error=F, results='asis'}
+sgrp2 <- c('Male', 'Female', 'Low income', 'Low-mid income', 'Hige-mid income',
+           'High income', 'College degree', 'No college degree', 'Drivers licence', 
+           'No drivers licence', 'Have children', 'No children')
+meangrp <- c(mean(EVINTEREST$EVinterest[EVINTEREST$Male==1]),
+             mean(EVINTEREST$EVinterest[EVINTEREST$Male==0]),
+             mean(EVINTEREST$EVinterest[EVINTEREST$inccat==1]),
+             mean(EVINTEREST$EVinterest[EVINTEREST$inccat==2]),
+             mean(EVINTEREST$EVinterest[EVINTEREST$inccat==3]),
+             mean(EVINTEREST$EVinterest[EVINTEREST$inccat==4]),
+             mean(EVINTEREST$EVinterest[EVINTEREST$degree==1]),
+             mean(EVINTEREST$EVinterest[EVINTEREST$degree==0]),
+             mean(EVINTEREST$EVinterest[EVINTEREST$licence==1]),
+             mean(EVINTEREST$EVinterest[EVINTEREST$licence==0]),
+             mean(EVINTEREST$EVinterest[EVINTEREST$havechildren==1]),
+             mean(EVINTEREST$EVinterest[EVINTEREST$havechildren==0]))
+cbd_grp2 <- data.frame(group=sgrp2, Percent=round(meangrp*100, digits = 2))
+
+B <- gvisBarChart(cbd_grp2, options=list(width=800, height=300))
+print(B, tag = 'chart')
+```
+
+People living in different places have different levels of interest, and, the the geographical distribution differ by groups.
+The map below shows the levels of people's interest by Government Office Regions. 
+You can see different patterns by choosing a group from the dropdown list below.
 
 ```{r, echo=FALSE}
 inputPanel(
@@ -35,6 +72,11 @@ inputPanel(
   
 )
 
+renderText({
+    
+    paste("% of ", input$var, "who have interested in EVs by regions")
+    
+  })
 
 renderImage({
     
@@ -71,11 +113,11 @@ br()
 ```
 
 
+### Factors that encourage people to buy an EV
 
-
-### Factors that Encourage Buying Electric Vehicles
-
-Now we know who are interested in electric vehicles, but how to turn their interest into consumption? The two charts below will show you what matters and matters most to different groups. (The second shows cost-specific factors.)
+Now we know who are interested in electric vehicles, but how to turn their interest into consumption? 
+The two charts below will show you what matters and matters most to different groups. 
+You can choose a grouping creterion from the dropdown list below.
 
 ```{r, echo=FALSE}
 inputPanel(
@@ -91,7 +133,13 @@ inputPanel(
               selected = "age")
   
 )
+```
 
+#### General factors
+The graph below shows proportions of people who choose each category as a factor that encourages him/her buying an EV. 
+The choices are: costs, battery capacity (e.g. distance travelled on charge), convenience of recharging, environmentalism, technology (if it's reliable/proven), design, availability of choice, safety, and resale value.
+
+```{r, echo=FALSE}
 
 renderImage({
     
@@ -120,11 +168,11 @@ br()
 
 ```
 
-
+#### Cost-related factors
+The next graph shows detailed breakdown of costs - what kind of cost-related factors encourage people? 
+The choices are: purchase costs, fuel/recharging costs (including fuel tax), maintenance costs, insurance costs, vehicle excise tax, resale value, and company car tax.
 
 ```{r, echo=FALSE}
-
-
 
 renderImage({
     
@@ -143,5 +191,36 @@ renderImage({
          alt = paste("Image number"))
     
                   }, deleteFile = FALSE)
+
+br()
+br()
+br()
+br()
+br()
+br()
+br()
+
 ```
+
+### Some reccomendations
+
+Statistical analyses suggest that **age**, **sex**, **income**, **college degree**, **drivers licence**, **Number of cars**, **living in Scotland or not** are significant predictor of whether a person is interested in buying an EV.
+
+Namely, **younger** people are more likely to be interested in EVs than older people, and likewise, **male** are more likely than females, **high income** people are more likely than low income people, people who have a **college degree** and **drivers licence** are more likely compared to people who don't have ones, people who own **more cars** are more likely, and people living in **Scotland** are *less* likely than people living in other parts of the UK.
+
+Considering the encouraging factors chosen by those more-interested groups, a couple of possible strategies to promote EVs are derived:
+
+- **Information campaign**
+    + For people who already have interests in EVs, providing detailed information such as advangate in energy costs and environmental responsibility would be helpful to turn their interest to actual purchase.
+    + For people who are not interested in EVs yet, more general information campaigns that would make them make interested would be needed.
+- **Investment in R&D**
+    + As battery capacity (driving distance) is one of the major factors that encourage people buying an EV, thechnological advancement is definitely necessary. In order to achieve this, more investment on R&D are desirad.  
+    + Improving the efficiency of recharging facilities (chargers that take less time to charge) is also something that requires R&D efforts. 
+- **Putting recharing facilities in place**
+    + Convenience of recharging is also a major encouraging factor. Although increasing the number of charging stations may be a long-term plan, it is essential to wide-spread EV adoption.
+- **Financial incentives**
+    + Since many people are concerned about costs, especially purchase costs, policies that immediately reduce purchase price can increase the EV adoption.
+- **Differentiated marketing strategies**
+    + We know what group of people are interested or not very interested in purchasing an EV, and by what factors they would be encouraged. So, it is possible to differentiate these strategies depending on the target population.
+
 
