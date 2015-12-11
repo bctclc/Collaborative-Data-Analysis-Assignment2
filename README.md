@@ -9,6 +9,14 @@ This is a repository for the pair assignments in Collaborative Social Data Analy
 
 * <a href="mailto:norikomagara@gmail.com">Noriko Magara</a>
 
+## Quick links to the final outputs
+
+* [Presentation](https://cdn.rawgit.com/bctclc/Collaborative-Data-Analysis-Assignment2/master/Final_Paper/Final_Presentation.html)
+
+* [Research Paper](https://github.com/bctclc/Collaborative-Data-Analysis-Assignment2/blob/master/Final_Paper/Final_Paper.pdf)
+
+* [Webpage](https://magaranoriko.shinyapps.io/Shiny)
+
 ## Files in this repository
 
 1. [Assingment2](https://github.com/bctclc/Collaborative-Data-Analysis-Assignment2/tree/master/Assignment2): Files for the assignment 2 (research proposal)
@@ -22,7 +30,7 @@ This is a repository for the pair assignments in Collaborative Social Data Analy
 5. README.md : This file
 
 ## Branch
-The final outputs in a website format is stored in another branch of this repository. Please go to [gh-pages](https://github.com/bctclc/Collaborative-Data-Analysis-Assignment2/tree/gh-pages).
+The files for the webpage are stored in another branch of this repository. Please go to [gh-pages](https://github.com/bctclc/Collaborative-Data-Analysis-Assignment2/tree/gh-pages).
 
 ---
 
